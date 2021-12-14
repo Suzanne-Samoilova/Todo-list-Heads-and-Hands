@@ -3,8 +3,8 @@
     border-radius: 2px;
     width: 238px;
     min-height: 46px;
-    color: #fff;
-    background-color: #000;
+    color: #111;
+    background-color: #ffdd2d;
     font: inherit;
     font-style: normal;
     font-weight: normal;
@@ -17,7 +17,7 @@
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-    margin: 45px 0 22px;
+    margin: 22px 0;
     padding: 0;
 }
 
@@ -32,6 +32,6 @@
         line-height: 22px;
         width: 358px;
         min-height: 50px;
-        margin: 48px 0 37px;
+        /*margin: 48px 0 37px;*/
     }
 }

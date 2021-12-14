@@ -1,0 +1,11 @@
+.authorization__form-error {
+    color: #f00;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /*max-width: 250px;*/
+    width: 250px;
+    opacity: 0;
+    transition: 0.3s;
+}
