@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "osamoilov@ivi.ru",
+      "password": "dgdf"
+    },
+    {
+      "id": 2,
+      "email": "dfhaskjchar",
+      "password": "typicode"
+    },
+    {
+      "id": 3,
+      "email": "sdjvlksdj-server",
+      "password": "typicode"
+    },
+    {
+      "id": 4,
+      "email": "json-mnbcavlkdjvn",
+      "password": "typicode"
+    },
+    {
+      "id": 5,
+      "email": "jkdvakva",
+      "password": "typicode"
+    },
+    {
+      "id": 6,
+      "email": "json-server",
+      "password": "typicode"
+    },
+    {
+      "id": 7,
+      "email": "json-server",
+      "password": "typicode"
+    },
+    {
+      "id": 8,
+      "email": "json-server",
+      "password": "typicode"
+    },
+    {
+      "id": 9,
+      "email": "json-server",
+      "password": "typicode"
+    },
+    {
+      "id": 10,
+      "email": "json-server",
+      "password": "typicode"
+    }
+  ]
+}

@@ -12,19 +12,33 @@ function Form() {
         setPassword(e.target.value)
     };
 
-    const handleForm = (e:React.FormEvent<HTMLFormElement>) => {
-
-    };
-
+    function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+        fetch(`http://localhost:3001/users?email=${email}&password=${password}`)
+            .then(
+            (resp) => {
+                 return  resp.json()
+            }
+        ).then(
+            (matchedUsers) => {
+                if (matchedUsers.length) {
+                    console.log(matchedUsers, "Юзер найден!")
+                    document.location.href = 'http://stackoverflow.com'
+                } else {
+                    console.log(matchedUsers, "Такого юзера нет!")
+                }
+            }
+        )
+    }
 
     return (
         <div className="authorization">
             <h2 className="authorization__title">
                 Введите логин и пароль
             </h2>
-            <form className="authorization__form" onSubmit={handleForm}>
+            <form className="authorization__form" onSubmit={handleSubmit}>
                 <input className="authorization__form-input" id="email"
-                       type="text"
+                       type="email"
                        name="email"
                        placeholder="Эл.почта"
                        required
