@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 function Form() {
     const [email, setEmail] = React.useState<string>();
@@ -14,21 +15,34 @@ function Form() {
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        fetch(`http://localhost:3001/users?email=${email}&password=${password}`)
-            .then(
-            (resp) => {
-                 return  resp.json()
-            }
-        ).then(
-            (matchedUsers) => {
-                if (matchedUsers.length) {
-                    console.log(matchedUsers, "Юзер найден!")
-                    document.location.href = 'http://stackoverflow.com'
+
+        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
+            .then(resp => {
+                if (resp.data.length) {
+                    console.log(resp, "Юзер найден!")
+                    // document.location.href = 'http://stackoverflow.com'
                 } else {
-                    console.log(matchedUsers, "Такого юзера нет!")
+                    console.log(resp, "Такого юзера нет!")
                 }
-            }
-        )
+            })
+            .catch(error => console.log('error:', error));
+
+
+        // fetch(`http://localhost:3001/users?email=${email}&password=${password}`)
+        //     .then(
+        //     (resp) => {
+        //          return  resp.json()
+        //     })
+        //     .then(
+        //     (matchedUsers) => {
+        //         if (matchedUsers.length) {
+        //             console.log(matchedUsers, "Юзер найден!")
+        //             // document.location.href = 'http://stackoverflow.com'
+        //         } else {
+        //             console.log(matchedUsers, "Такого юзера нет!")
+        //         }
+        //     }
+        // )
     }
 
     return (
