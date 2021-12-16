@@ -1,0 +1,11 @@
+.tasks__button-delete {
+    margin-left: 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e5e5e5;
+}
+
+.tasks__button-delete:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

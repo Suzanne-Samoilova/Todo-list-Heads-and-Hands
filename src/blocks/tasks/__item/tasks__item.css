@@ -1,0 +1,10 @@
+.tasks__item {
+    list-style-type: none;
+    background-color: #f5f7f9;
+    border-radius: 4px;
+    margin: 0 150px 10px;
+    min-height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

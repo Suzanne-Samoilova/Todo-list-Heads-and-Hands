@@ -1,0 +1,21 @@
+.todo__button-add {
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+    height: 46px;
+    background-color: #ffdd2d;
+    font: inherit;
+    font-size: 14px;
+    line-height: 17px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    margin: 22px auto 0 150px;
+}
+
+.todo__button-add:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

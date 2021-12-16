@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
+import { Link } from "react-router-dom";
+
 
 function Form() {
     // для авторизации
@@ -30,6 +32,9 @@ function Form() {
                 if (resp.data.length) {
                     const userId = resp.data[0].id
                     console.log(resp, "Юзер найден!")
+
+                    // <Link to="/todo"></Link>
+
                     axios.get(`http://localhost:3001/todo?user_id=${userId}`)
                         .then(resp => {
                             dispatch({
@@ -85,7 +90,8 @@ function Form() {
             }
 
             {auth &&
-                <div>Успешный логин {email}!
+                <div>
+                    <h4>Успешный логин {email}!</h4>
                     <button className="authorization__button-save" onClick={() =>
                         dispatch({
                             type: "logout",
