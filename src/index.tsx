@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 
@@ -15,10 +15,18 @@ const reducer = (state:any = defaultState, action: any) => {
     switch (action.type) {
         case "login":
             console.log(action.payload.userId, state)
-            return {...state, isAuthorized: true, userId: action.payload.userId, todo: action.payload.todo}
+            return {...state,
+                isAuthorized: true,
+                userId: action.payload.userId,
+                todo: action.payload.todo}
+
         case "logout":
             console.log(action.payload.userId, state)
-            return {...state, isAuthorized: false, userId: action.payload.userId, todo: action.payload.todo}
+            return {...state,
+                isAuthorized: false,
+                userId: action.payload.userId,
+                todo: action.payload.todo}
+
         default:
             return state
     }
