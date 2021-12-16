@@ -3,24 +3,26 @@ import { Route, Switch } from "react-router-dom";
 import '../App.css';
 import Form from "./Form";
 import Todo from "./Todo";
+import {useSelector} from "react-redux";
+import {TRootState} from "../index";
 
 function App() {
+    const isAuthorized = useSelector((state: TRootState)=> state.isAuthorized )
 
   return (
     <div className="App">
-
         <Switch>
 
             <Route exact path="/">
                 <Form />
             </Route>
 
+            {isAuthorized &&
             <Route path="/todo">
-                <Todo />
-            </Route>
+                <Todo/>
+            </Route>}
 
         </Switch>
-
     </div>
   );
 }

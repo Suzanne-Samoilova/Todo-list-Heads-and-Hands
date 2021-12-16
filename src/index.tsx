@@ -5,7 +5,9 @@ import './index.css';
 import App from './components/App';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import createHistory from 'history/createBrowserHistory'
 
+export const history = createHistory();
 
 const defaultState = {
     isAuthorized: false,
@@ -20,7 +22,8 @@ const reducer = (state:any = defaultState, action: any) => {
             return {...state,
                 isAuthorized: true,
                 userId: action.payload.userId,
-                todo: action.payload.todo}
+                // todo: action.payload.todo
+            }
 
         case "logout":
             console.log(action.payload.userId, state)
@@ -35,6 +38,8 @@ const reducer = (state:any = defaultState, action: any) => {
 }
 
 const store = createStore(reducer)
+
+export type TRootState = ReturnType<typeof store.getState>
 
 ReactDOM.render(
     <Provider store = {store}>
