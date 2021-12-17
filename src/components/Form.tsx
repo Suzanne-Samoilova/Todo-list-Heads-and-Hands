@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, Route, useHistory, useRouteMatch} from "react-router-dom";
-import Todo from "./Todo";
 
 
 function Form() {
@@ -22,14 +21,12 @@ function Form() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
     // получить состояние авторизации
     const auth = useSelector((state: any) => state.isAuthorized);
     const todo = useSelector((state: any) => state.todo);
 
     // для роутера
     const { path, url } = useRouteMatch();
-
 
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {

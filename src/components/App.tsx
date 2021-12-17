@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {TRootState} from "../index";
 
 function App() {
-    const isAuthorized = useSelector((state: TRootState)=> state.isAuthorized )
+    const isAuthorized = useSelector((state: TRootState)=> state.auth.isAuthorized )
 
   return (
     <div className="App">

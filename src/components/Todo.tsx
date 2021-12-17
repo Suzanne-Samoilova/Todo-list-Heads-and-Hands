@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {createStore} from "redux";
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
+import {reducerTaskDone} from "../store/reducerTaskDone";
+
 
 function Todo() {
     // <div>
@@ -19,37 +20,11 @@ function Todo() {
     //     {JSON.stringify(todo)}
     // </div>
 
-    const dispatch = useDispatch();
-    // получить состояние чекбокса
-    const checkbox = useSelector((state: any) => state.checkbox);
-    console.log(checkbox);
+    // const dispatch = useDispatch();
+    // // получить состояние чекбокса
+    // const checkbox = useSelector((state: any) => state.checkbox);
+    // console.log(checkbox);
 
-    const defaultState = {
-        checkbox: false,
-        todo: []
-    };
-
-    // галочка стоит или нет
-    const reducer = (state:any = defaultState, action: any) => {
-        switch (action.type) {
-            case "task_done":
-                return {...state, checkbox: true}
-
-            case "task_not_done":
-                return {...state, checkbox: false}
-
-            default:
-                return state
-        }
-    };
-
-    const store = createStore(reducer);
-
-        //     dispatch({
-        //         type: "task_done",
-        //         payload: {
-        //             checkbox: resp.data.checkbox}})
-        // })
 
     // axios.get(`http://localhost:3001/todo?user_id=${userId}`)
     //     .then(resp => {
