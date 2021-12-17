@@ -5,7 +5,7 @@ const defaultState = {
 export const reducerGetToDo = (state:any = defaultState, action: any) => {
     switch (action.type) {
         case "get_todo":
-            console.log(action.payload.todo, state)
+            console.log(action.payload.todo, state, 'ТУДУШКИ ПОЛУЧЕНЫ')
             return {...state,
                 todo: action.payload.todo
             }

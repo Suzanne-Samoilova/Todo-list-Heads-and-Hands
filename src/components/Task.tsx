@@ -9,11 +9,6 @@ function Task() {
 
     // использовать useSelector() и подписаться на изменение тудушек в сторе (получится массив, мар получит тудушки)
     // получить состояние todo
-    const todo = useSelector((state: any) => state.todo);
-
-
-
-
 
 
 

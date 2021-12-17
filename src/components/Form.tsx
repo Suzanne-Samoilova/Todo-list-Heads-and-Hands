@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, Route, useHistory, useRouteMatch} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useHistory, useRouteMatch} from "react-router-dom";
 
 
 function Form() {
@@ -22,8 +22,8 @@ function Form() {
     const history = useHistory();
 
     // получить состояние авторизации
-    const auth = useSelector((state: any) => state.isAuthorized);
-    const todo = useSelector((state: any) => state.todo);
+    // const auth = useSelector((state: any) => state.isAuthorized);
+    // const todo = useSelector((state: any) => state.todo);
 
     // для роутера
     const { path, url } = useRouteMatch();
@@ -37,7 +37,7 @@ function Form() {
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
-                    console.log(resp, "Юзер найден!");
+                    // console.log(resp, "Юзер найден!");
                     dispatch({
                         type: "login",
                         payload: {
