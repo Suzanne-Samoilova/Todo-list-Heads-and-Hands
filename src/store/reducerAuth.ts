@@ -11,7 +11,7 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
             return {...state,
                 isAuthorized: true,
                 userId: action.payload.userId,
-                // todo: action.payload.todo
+                todo: action.payload.todo
             }
 
         case "logout":
@@ -19,7 +19,7 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
             return {...state,
                 isAuthorized: false,
                 userId: action.payload.userId,
-                // todo: action.payload.todo
+                todo: action.payload.todo
             }
 
         default:

@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {createStore} from "redux";
 import {useDispatch, useSelector} from "react-redux";
 import {reducerTaskDone} from "../store/reducerTaskDone";
+import axios from "axios";
 
 
 function Todo() {
@@ -20,26 +21,37 @@ function Todo() {
     //     {JSON.stringify(todo)}
     // </div>
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // // получить состояние чекбокса
     // const checkbox = useSelector((state: any) => state.checkbox);
     // console.log(checkbox);
 
 
-    // axios.get(`http://localhost:3001/todo?user_id=${userId}`)
-    //     .then(resp => {
-    //         dispatch({
-    //             type: "login",
-    //             payload: {
-    //                 userId: userId,
-    //                 todo: resp.data}})
-    //     })
-    //     .catch(error =>
-    //         console.log('error:', error))
+    const userId = useSelector((state: any) => state.userId);
+    const todo = useSelector((state: any) => state.todo);
+
+
 
     // использовать useSelector() и подписаться на изменение тудушек в сторе (получится массив, мар получит тудушки)
     useEffect(()=> {
         // загрузить список тудушек и положить в стор (аксиос запрос)
+
+        // axios.get(`http://localhost:3001/todo?user_id=${userId}`)
+
+        axios.get(`http://localhost:3001/todo/`)
+            .then(resp => {
+                console.log(resp.data, 'ТуДу-лист');
+
+                // dispatch({
+                //     type: "login",
+                //     payload: {
+                //         userId: userId,
+                //         todo: resp.data}})
+
+
+            })
+            .catch(error =>
+                console.log('error:', error))
     },[])
 
     return (
@@ -47,30 +59,7 @@ function Todo() {
             <h2 className="todo__title">Список дел:</h2>
             <button className="todo__button-add">Добавить</button>
             <ul className="tasks">
-                <li className="tasks__item">
-                    <input type="checkbox"></input>
-                    <p className="tasks__item-title">Task 1</p>
-                    <div className="tasks__box-buttons">
-                        <button className="tasks__button-delete">Удалить</button>
-                        <button className="tasks__button-archive">Отложить</button>
-                    </div>
-                </li>
-                <li className="tasks__item">
-                    <input type="checkbox"></input>
-                    <p  className="tasks__item-title">Task 2</p>
-                    <div className="tasks__box-buttons">
-                        <button className="tasks__button-delete">Удалить</button>
-                        <button className="tasks__button-archive">Отложить</button>
-                    </div>
-                </li>
-                <li className="tasks__item">
-                    <input type="checkbox"></input>
-                    <p  className="tasks__item-title">Task 3</p>
-                    <div className="tasks__box-buttons">
-                        <button className="tasks__button-delete">Удалить</button>
-                        <button className="tasks__button-archive">Отложить</button>
-                    </div>
-                </li>
+
             </ul>
         </section>
     );

@@ -41,13 +41,14 @@ function Form() {
                     dispatch({
                         type: "login",
                         payload: {
-                            userId: userId,
+                            userId: userId
                             // todo: resp.data
                         }});
                     history.push(`${url}todo`);
                 } else {
                     console.log(resp, "Такого юзера нет!");
-                }})
+                }
+            })
             .catch(error =>
                 console.log('error:', error)
             );
