@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {createStore} from "redux";
 import {useDispatch, useSelector} from "react-redux";
-import {log} from "util";
 import axios from "axios";
 
 function Todo() {
