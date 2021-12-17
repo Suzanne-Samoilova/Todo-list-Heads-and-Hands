@@ -1,6 +1,21 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 function Task() {
+    // // получить состояние чекбокса
+    // const checkbox = useSelector((state: any) => state.checkbox);
+    // console.log(checkbox);
+
+
+    // использовать useSelector() и подписаться на изменение тудушек в сторе (получится массив, мар получит тудушки)
+    // получить состояние todo
+    const todo = useSelector((state: any) => state.todo);
+
+
+
+
+
+
 
     return (
         <li className="tasks__item">

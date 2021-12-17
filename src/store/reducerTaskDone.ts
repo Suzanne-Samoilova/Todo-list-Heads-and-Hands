@@ -1,6 +1,5 @@
 const defaultState = {
-    checkbox: false,
-    todo: []
+    checkbox: false
 };
 
 // галочка стоит или нет
