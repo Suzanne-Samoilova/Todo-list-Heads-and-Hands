@@ -22,12 +22,18 @@
       "id": 2,
       "user_id": 1,
       "name": "Погулять с собакой",
-      "status": true
+      "status": false
     },
     {
       "id": 3,
-      "user_id": 2,
-      "name": "Выкинуть мусор",
+      "user_id": 1,
+      "name": "Погулять с собакой",
+      "status": false
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "name": "Погулять с собакой",
       "status": false
     }
   ]
