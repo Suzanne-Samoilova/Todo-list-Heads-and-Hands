@@ -1,13 +1,10 @@
 import { createStore, combineReducers} from 'redux';
 import {reducerAuth} from "./reducerAuth";
-import {reducerTaskDone} from "./reducerTaskDone";
-import {reducerGetToDo} from "./reducerGetToDo";
+import {reducerSetToDo} from "./reducerSetToDo";
 
 const rootReducer = combineReducers({
     auth: reducerAuth,
-    taskDone: reducerTaskDone,
-    getTodo: reducerGetToDo
-
+    setTodo: reducerSetToDo
 })
 
 const store = createStore(rootReducer)

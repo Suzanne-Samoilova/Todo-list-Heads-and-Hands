@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Task from "./Task";
 
@@ -7,21 +7,20 @@ import Task from "./Task";
 function Todo() {
     const dispatch = useDispatch();
 
-    // массив туду
-    // const todo = useSelector((state: any) => state.todo);
-    const todo = [1, 2, 3]
-
+    const getTodoList = (state: any) => state.setTodo.todo
+    const todo = useSelector(getTodoList);
 
 
     // загрузить список тудушек и положить в стор
     useEffect(()=> {
         axios.get(`http://localhost:3001/todo/`)
             .then(resp => {
-                console.log(resp.data, 'ТуДу-лист');
+                // console.log(resp.data, 'ТуДу-лист');
                 dispatch({
-                    type: "get_todo",
+                    type: "set_todo",
                     payload: {
-                        todo: resp.data}})
+                        todo: resp.data,
+                    }})
             })
             .catch(error =>
                 console.log('error:', error))
@@ -34,14 +33,11 @@ function Todo() {
             <button className="todo__button-add">Добавить</button>
             <ul className="tasks">
 
-                {todo.map(() => (
+                {todo.map((todoItem: any) => (
                     <Task
-                        // пропс для открывания таски
-                        // onCardClick={}
+                        {...todoItem}
                     />
                 ))}
-
-
 
             </ul>
         </section>
