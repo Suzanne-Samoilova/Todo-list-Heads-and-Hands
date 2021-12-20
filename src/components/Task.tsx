@@ -16,22 +16,7 @@ function Task(props: any) {
     // для удаления таски
     const handleDelete = () => {
         if (window.confirm('Вы действительно хотите удалить?')) {
-            // если да
             dispatch(deleteTask(props.id))
-
-            // axios.delete(`http://localhost:3001/todo/${props.id}`)
-            //     .then(resp => {
-            //         dispatch({
-            //             type: "delete_task",
-            //             payload: {
-            //                 id: props.id
-            //             }})
-            //     })
-            //     .catch(error =>
-            //         console.log('error:', error))
-
-        } else {
-            // если нет
         }
     }
 

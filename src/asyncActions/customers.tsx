@@ -1,5 +1,5 @@
 import axios from "axios";
-import {setTaskStatusAction} from "../store/reducerSetToDo";
+import {deleteTaskAction, setTaskStatusAction} from "../store/reducerSetToDo";
 
 
 // запрос из Todo
@@ -39,11 +39,7 @@ export const deleteTask = (taskId: number) => {
     return function (dispatch: any) {
         axios.delete(`http://localhost:3001/todo/${taskId}`)
             .then(resp => {
-                dispatch({
-                    type: "delete_task",
-                    payload: {
-                        id: taskId
-                    }})
+                dispatch(deleteTaskAction({id: taskId}))
             })
             .catch(error =>
                 console.log('error:', error))

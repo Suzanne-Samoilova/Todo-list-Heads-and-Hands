@@ -23,12 +23,6 @@
       "user_id": 1,
       "name": "Погулять с собакой",
       "status": true
-    },
-    {
-      "id": 3,
-      "user_id": 1,
-      "name": "Погулять с собакой",
-      "status": false
     }
   ]
 }
