@@ -8,9 +8,7 @@ import createHistory from 'history/createBrowserHistory'
 import store from "./store/store";
 
 
-
 export const history = createHistory();
-
 export type TRootState = ReturnType<typeof store.getState>
 
 ReactDOM.render(

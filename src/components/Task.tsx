@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
+import {deleteTask, setTaskStatusGalochka} from "../asyncActions/customers";
 
 
 function Task(props: any) {
@@ -9,35 +10,26 @@ function Task(props: any) {
     // для смены статуса чекбокса
     const handleChange = (event: any) => {
         // отослать статус таски
-        // console.log("handleChange", event.target.checked)
-        const newStatus = event.target.checked
-        axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": newStatus})
-            .then(resp => {
-                dispatch({
-                    type: "set_task_status",
-                    payload: {
-                        id: props.id,
-                        status: newStatus
-                    }})
-            })
-            .catch(error =>
-                console.log('error:', error))
+        dispatch(setTaskStatusGalochka(event.target.checked, props.id))
     }
 
     // для удаления таски
     const handleDelete = () => {
         if (window.confirm('Вы действительно хотите удалить?')) {
             // если да
-            axios.delete(`http://localhost:3001/todo/${props.id}`)
-                .then(resp => {
-                    dispatch({
-                        type: "delete_task",
-                        payload: {
-                            id: props.id
-                        }})
-                })
-                .catch(error =>
-                    console.log('error:', error))
+            dispatch(deleteTask(props.id))
+
+            // axios.delete(`http://localhost:3001/todo/${props.id}`)
+            //     .then(resp => {
+            //         dispatch({
+            //             type: "delete_task",
+            //             payload: {
+            //                 id: props.id
+            //             }})
+            //     })
+            //     .catch(error =>
+            //         console.log('error:', error))
+
         } else {
             // если нет
         }

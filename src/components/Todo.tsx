@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import Task from "./Task";
-import {axiosCustomers} from "../asyncActions/customers";
+import {setTodo} from "../asyncActions/customers";
 
 
 function Todo() {
@@ -11,20 +10,9 @@ function Todo() {
     const getTodoList = (state: any) => state.setTodo.todo
     const todo = useSelector(getTodoList);
 
-
     // загрузить список тудушек и положить в стор
     useEffect(()=> {
-        axios.get(`http://localhost:3001/todo/`)
-            .then(resp => {
-                // console.log(resp.data, 'ТуДу-лист');
-                dispatch({
-                    type: "set_todo",
-                    payload: {
-                        todo: resp.data,
-                    }})
-            })
-            .catch(error =>
-                console.log('error:', error))
+        dispatch(setTodo());
     },[])
 
 
@@ -41,8 +29,6 @@ function Todo() {
                 ))}
 
             </ul>
-            <button onClick={() => dispatch(axiosCustomers())}>test thank</button>
-
         </section>
     );
 }

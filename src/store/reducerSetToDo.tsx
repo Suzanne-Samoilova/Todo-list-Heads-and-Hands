@@ -2,16 +2,16 @@ const defaultState = {
     todo: []
 }
 
-const set_todo = "set_todo"
-const set_task_status = "set_task_status"
-const delete_task = "delete_task"
-const test_thank = "test_thank"
+const set_todo = "set_todo";
+const set_task_status = "set_task_status";
+const delete_task = "delete_task";
+const test_thank = "test_thank";
 
 export const reducerSetToDo = (state:any = defaultState, action: any) => {
     let newState = {...state}
     switch (action.type) {
         case set_todo:
-            console.log(action.payload.todo, 'todo ПОЛУЧЕН')
+            // console.log(action.payload.todo, 'todo ПОЛУЧЕН')
             return {...state,
                 todo: action.payload.todo
             }
@@ -36,15 +36,15 @@ export const reducerSetToDo = (state:any = defaultState, action: any) => {
             )
             return newState;
 
-
             // тест thank
         case test_thank:
             return {...state, customers: [...state.todo, ...action.payload]}
-
 
         default:
             return state
     }
 }
 
-export const testThank = (payload: any) => ({type: test_thank, payload})
+// тест thank
+export const setTaskStatusAction = (payload: any) => ({type: set_task_status, payload});
+export const deleteTaskAction = (payload: any) => ({type: delete_task, payload});
