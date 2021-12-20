@@ -16,7 +16,7 @@
       "id": 1,
       "user_id": 1,
       "name": "Купить хлеб",
-      "status": false
+      "status": true
     },
     {
       "id": 2,
@@ -26,12 +26,6 @@
     },
     {
       "id": 3,
-      "user_id": 1,
-      "name": "Погулять с собакой",
-      "status": false
-    },
-    {
-      "id": 5,
       "user_id": 1,
       "name": "Погулять с собакой",
       "status": false

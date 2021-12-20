@@ -21,13 +21,8 @@ function Form() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // получить состояние авторизации
-    // const auth = useSelector((state: any) => state.isAuthorized);
-    // const todo = useSelector((state: any) => state.todo);
-
     // для роутера
     const { path, url } = useRouteMatch();
-
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         // без него ничего не отправляю (не получаю)

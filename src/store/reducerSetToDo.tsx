@@ -2,16 +2,21 @@ const defaultState = {
     todo: []
 }
 
+const set_todo = "set_todo"
+const set_task_status = "set_task_status"
+const delete_task = "delete_task"
+const test_thank = "test_thank"
+
 export const reducerSetToDo = (state:any = defaultState, action: any) => {
     let newState = {...state}
     switch (action.type) {
-        case "set_todo":
+        case set_todo:
             console.log(action.payload.todo, 'todo ПОЛУЧЕН')
             return {...state,
                 todo: action.payload.todo
             }
 
-        case "set_task_status":
+        case set_task_status:
             // console.log(newState, action, 'reducerSetToDo Before')
             newState.todo = newState.todo.map(
                 (todoItem:any) => {
@@ -25,13 +30,21 @@ export const reducerSetToDo = (state:any = defaultState, action: any) => {
             // console.log(newState, action, 'reducerSetToDo After')
             return newState;
 
-        case "delete_task":
+        case delete_task:
             newState.todo = newState.todo.filter(
                 (todoItem:any) => {return action.payload.id !== todoItem.id}
             )
             return newState;
 
+
+            // тест thank
+        case test_thank:
+            return {...state, customers: [...state.todo, ...action.payload]}
+
+
         default:
             return state
     }
 }
+
+export const testThank = (payload: any) => ({type: test_thank, payload})

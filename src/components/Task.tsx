@@ -24,7 +24,7 @@ function Task(props: any) {
                 console.log('error:', error))
     }
 
-
+    // для удаления таски
     const handleDelete = () => {
         if (window.confirm('Вы действительно хотите удалить?')) {
             // если да
@@ -36,11 +36,8 @@ function Task(props: any) {
                             id: props.id
                         }})
                 })
-
                 .catch(error =>
                     console.log('error:', error))
-
-
         } else {
             // если нет
         }
