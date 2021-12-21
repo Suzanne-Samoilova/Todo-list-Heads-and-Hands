@@ -7,18 +7,10 @@ import {selectTaskAction, unselectTaskAction} from "../store/reducerSetToDo";
 function Task(props: any) {
     const dispatch = useDispatch();
 
-
     // для смены статуса чекбокса
     const handleChange = (event: any) => {
         // отослать статус таски
         dispatch(setTaskStatusGalochka(props.id, !props.status))
-    }
-
-    // для удаления таски
-    const handleDelete = () => {
-        if (window.confirm('Вы действительно хотите удалить?')) {
-            dispatch(deleteTask(props.id))
-        }
     }
 
     const handleSelect = (event: any) => {
@@ -32,21 +24,29 @@ function Task(props: any) {
         }
     }
 
+    // для удаления таски
+    const handleDelete = () => {
+        // if (window.confirm('Вы действительно хотите удалить?')) {
+        if (props.onConfirmDeleteTask()) {
+            dispatch(deleteTask(props.id))
+        }
+    }
+
     return (
         <li className="tasks__item">
-            {/*onChange см как работает*/}
             <input type="checkbox" onClick={handleSelect}/>
             <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
             <div className="tasks__box-buttons">
+                <p className="tasks__date">Крайний срок</p>
+                <p className="tasks__date">Дата созд</p>
+                <p className="tasks__date">Дата послед измен</p>
                 <button className="tasks__button-delete" onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
-
-                <button className="tasks__button-archive">Изменить</button>
-
-
+                <button className="tasks__button-archive" onClick={props.onChangeTask}>Изменить</button>
                 <button className="tasks__button-archive"
                         // onClick={handleDelete}
                         onClick={props.onConfirmDeleteTask}
-                >Удалить
+                >
+                    Удалить
                 </button>
                 <button className="tasks__button-archive">Отложить</button>
             </div>

@@ -20,8 +20,13 @@ function Todo(props: any) {
         dispatch(deleteSelectedTask());
     }
 
+    // const handleConfirmDeletePopup = ()=> {
+    //     dispatch(deleteSelectedTask());
+    // }
+
     // попап Хотите удалить?
     const [isConfirmDeleteTaskPopupOpen, setIsConfirmDeleteTaskPopupOpen] = React.useState(false);
+
     function handleConfirmDeleteTaskClick() {
         setIsConfirmDeleteTaskPopupOpen(true);
     }
@@ -32,8 +37,10 @@ function Todo(props: any) {
         setIsChangeTaskPopupOpen(true);
     }
 
+    // закрыть все попапы
     function closeAllPopups() {
         setIsConfirmDeleteTaskPopupOpen(false);
+        setIsChangeTaskPopupOpen(false);
     }
 
     return (
@@ -54,6 +61,7 @@ function Todo(props: any) {
                     {todo.map((todoItem: any) => (
                         <Task key={todoItem.id}
                               onConfirmDeleteTask={handleConfirmDeleteTaskClick}
+                              onChangeTask={handleChangeTaskClick}
                             {...todoItem}
                         />
                     ))}
@@ -67,15 +75,15 @@ function Todo(props: any) {
                            buttonText="Да"
                            isOpen={isConfirmDeleteTaskPopupOpen}
                            onClose={closeAllPopups}
+                           // submitHandler={}
             >
-                <input/>
             </PopupWithForm>
 
             {/*попап Изменить таск*/}
             <PopupWithForm name="change-task"
                            title="Изменить таск"
                            buttonText="Изменить"
-                           // isOpen={}
+                           isOpen={isChangeTaskPopupOpen}
                            onClose={closeAllPopups}
             >
                 <p className="popup__task-name">Выберите категорию:</p>
@@ -110,10 +118,6 @@ function Todo(props: any) {
                        type="date"
                 />
             </PopupWithForm>
-
-
-
-
         </>
     );
 }

@@ -22,7 +22,7 @@
       "id": 2,
       "user_id": 1,
       "name": "Заварить чай",
-      "status": true
+      "status": false
     },
     {
       "id": 3,

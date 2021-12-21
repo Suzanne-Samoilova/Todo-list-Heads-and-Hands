@@ -14,6 +14,7 @@
 @import url(./blocks/tasks/__item/tasks__item.css);
 @import url(./blocks/tasks/__item-title/tasks__item-title.css);
 @import url(./blocks/tasks/__box-buttons/tasks__box-buttons.css);
+@import url(./blocks/tasks/__date/tasks__date.css);
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);
 @import url(./blocks/tasks/__button-archive/tasks__button-archive.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
