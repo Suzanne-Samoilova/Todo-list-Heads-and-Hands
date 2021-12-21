@@ -18,3 +18,12 @@
 @import url(./blocks/tasks/__button-archive/tasks__button-archive.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
 
+
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__button-close/popup__button-close.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__form/popup__form.css);
+/*children*/
+@import url(./blocks/popup/__button-save/popup__button-save.css);
