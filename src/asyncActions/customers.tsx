@@ -1,5 +1,5 @@
 import axios from "axios";
-import {deleteTaskAction, setTaskStatusAction} from "../store/reducerSetToDo";
+import {deleteSelectedTaskAction, deleteTaskAction, setTaskStatusAction} from "../store/reducerSetToDo";
 
 
 // запрос из Todo
@@ -21,8 +21,7 @@ export const setTodo = () => {
 }
 
 // отослать статус таски из Task
-// асинхронная функция
-export const setTaskStatusGalochka = (status: boolean, taskId: number) => {
+export const setTaskStatusGalochka = (taskId: number, status: boolean) => {
     return function (dispatch: any) {
         axios.patch(`http://localhost:3001/todo/${taskId}`, {"status": status})
             .then(resp => {
@@ -34,7 +33,6 @@ export const setTaskStatusGalochka = (status: boolean, taskId: number) => {
 }
 
 // для удаления таски из Task
-// асинхронная функция
 export const deleteTask = (taskId: number) => {
     return function (dispatch: any) {
         axios.delete(`http://localhost:3001/todo/${taskId}`)
@@ -43,5 +41,16 @@ export const deleteTask = (taskId: number) => {
             })
             .catch(error =>
                 console.log('error:', error))
+    }
+}
+
+export const deleteSelectedTask = () => {
+    return function (dispatch: any, getState: any) {
+        let promises = getState().setTodo.selectedTasks.map(
+            (taskId:number)=> {return axios.delete(`http://localhost:3001/todo/${taskId}`)}
+        )
+        Promise.all(promises).then(resp => {
+            dispatch(deleteSelectedTaskAction())
+        })
     }
 }

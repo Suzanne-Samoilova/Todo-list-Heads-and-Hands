@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
-import {setTodo} from "../asyncActions/customers";
+import {deleteSelectedTask, setTodo} from "../asyncActions/customers";
 
 
 function Todo() {
@@ -16,10 +16,18 @@ function Todo() {
     },[])
 
 
+    const handleDeleteButton = ()=> {
+        dispatch(deleteSelectedTask());
+    }
+
+
     return (
         <section className="todo">
             <h2 className="todo__title">Список дел:</h2>
-            <button className="todo__button-add">Добавить</button>
+            <div className="todo__box-buttons">
+                <button className="todo__button-add">Добавить</button>
+                <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
+            </div>
             <ul className="tasks">
 
                 {todo.map((todoItem: any) => (

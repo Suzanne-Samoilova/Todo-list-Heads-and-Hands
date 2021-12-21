@@ -1,0 +1,4 @@
+.tasks__item_completed {
+    margin: 0;
+    text-decoration: line-through;
+}
