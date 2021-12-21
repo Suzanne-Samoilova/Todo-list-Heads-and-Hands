@@ -39,6 +39,10 @@ function Task(props: any) {
             <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
             <div className="tasks__box-buttons">
                 <button className="tasks__button-delete" onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
+
+                <button className="tasks__button-archive">Изменить</button>
+
+
                 <button className="tasks__button-archive"
                         // onClick={handleDelete}
                         onClick={props.onConfirmDeleteTask}

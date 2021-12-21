@@ -21,13 +21,19 @@ function Todo(props: any) {
     }
 
     // попап Хотите удалить?
-    const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = React.useState(false);
+    const [isConfirmDeleteTaskPopupOpen, setIsConfirmDeleteTaskPopupOpen] = React.useState(false);
     function handleConfirmDeleteTaskClick() {
-        setIsConfirmDeletePopupOpen(true);
+        setIsConfirmDeleteTaskPopupOpen(true);
+    }
+
+    // попап Изменить таск
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
+    function handleChangeTaskClick() {
+        setIsChangeTaskPopupOpen(true);
     }
 
     function closeAllPopups() {
-        setIsConfirmDeletePopupOpen(false);
+        setIsConfirmDeleteTaskPopupOpen(false);
     }
 
     return (
@@ -59,11 +65,55 @@ function Todo(props: any) {
             <PopupWithForm name="confirm_delete"
                            title="Хотите удалить?"
                            buttonText="Да"
-                           isOpen={isConfirmDeletePopupOpen}
+                           isOpen={isConfirmDeleteTaskPopupOpen}
                            onClose={closeAllPopups}
             >
                 <input/>
             </PopupWithForm>
+
+            {/*попап Изменить таск*/}
+            <PopupWithForm name="change-task"
+                           title="Изменить таск"
+                           buttonText="Изменить"
+                           // isOpen={}
+                           onClose={closeAllPopups}
+            >
+                <p className="popup__task-name">Выберите категорию:</p>
+                <select className="popup__input-text">
+                    <option>Общая заметка</option>
+                    <option>Спорт</option>
+                    <option>Покупки</option>
+                    <option>Здоровье</option>
+                    <option>Книги</option>
+                    <option>Напоминания</option>
+                    <option>Работа</option>
+                </select>
+
+                <p className="popup__task-name">Название:</p>
+                <input className="popup__input-text" id=""
+                       type="text"
+                       name="task-name"
+                       placeholder="Введите название таска"
+                       required
+                />
+
+                <p className="popup__task-name">Описание:</p>
+                <input className="popup__input-text" id=""
+                       type="text"
+                       name="task-description"
+                       placeholder="Введите описание таска"
+                       required
+                />
+
+                <p className="popup__task-name">Крайний срок исполнения:</p>
+                <input className="popup__input-text" id=""
+                       type="date"
+                />
+            </PopupWithForm>
+
+
+
+
         </>
     );
 }
