@@ -15,42 +15,46 @@
     {
       "id": 1,
       "user_id": 1,
+      "category": "Покупки",
       "name": "Купить хлеб",
-      "category": "",
+      "description": "sjdfhlKJNFK",
       "status": false,
-      "date-create": "",
-      "date-change": "",
-      "date-deadline": ""
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
     },
     {
       "id": 2,
       "user_id": 1,
+      "category": "Покупки",
       "name": "Заварить чай",
-      "category": "",
+      "description": "sjdfhlKJNFK",
       "status": false,
-      "date-create": "",
-      "date-change": "",
-      "date-deadline": ""
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
     },
     {
       "id": 3,
       "user_id": 1,
+      "category": "Здоровье",
       "name": "Сходить на прогулку",
-      "category": "",
+      "description": "sjdfhlKJNFK",
       "status": false,
-      "date-create": "",
-      "date-change": "",
-      "date-deadline": ""
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
     },
     {
       "id": 4,
       "user_id": 1,
+      "category": "Напоминания",
       "name": "Позвонить маме",
-      "category": "",
+      "description": "sjdfhlKJNFK",
       "status": false,
-      "date-create": "",
-      "date-change": "",
-      "date-deadline": ""
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
     }
   ]
 }

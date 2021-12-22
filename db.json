@@ -15,12 +15,23 @@
     {
       "id": 1,
       "user_id": 1,
+      "category": "Покупки",
       "name": "Купить хлеб",
-      "category": "",
+      "description": "sjdfhlKJNFK",
       "status": false,
-      "date-create": "",
-      "date-change": "",
-      "date-deadline": ""
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
+    },
+    {
+      "category": "Спорт",
+      "name": "dfgdgdfgdfgdfg",
+      "description": "ОПИСАНИЕ",
+      "date_create": "2021-12-23",
+      "date_change": "2021-12-23",
+      "date_deadline": "2021-12-23",
+      "user_id": 1,
+      "id": 2
     }
   ]
 }

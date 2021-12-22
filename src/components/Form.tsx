@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {useHistory, useRouteMatch} from "react-router-dom";
+import {loginAction} from "../store/reducerAuth";
 
 
 function Form() {
@@ -26,18 +27,12 @@ function Form() {
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-
         axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
                     // console.log(resp, "Юзер найден!");
-                    dispatch({
-                        type: "LOGIN",
-                        payload: {
-                            userId: userId
-                            // todo: resp.data
-                        }});
+                    dispatch(loginAction({userId: userId}));
                     history.push(`${url}todo`);
                 } else {
                     console.log(resp, "Такого юзера нет!");

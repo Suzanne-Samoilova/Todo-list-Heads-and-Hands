@@ -1,12 +1,12 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {reducerAuth} from "./reducerAuth";
-import {reducerSetToDo} from "./reducerSetToDo";
+import {reducerTodo} from "./reducerTodo";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
     auth: reducerAuth,
-    setTodo: reducerSetToDo
+    todo: reducerTodo
 });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

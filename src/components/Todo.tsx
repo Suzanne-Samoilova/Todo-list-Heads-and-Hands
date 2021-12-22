@@ -1,44 +1,63 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
-import {deleteSelectedTask, deleteTask, setTodo} from "../asyncActions/customers";
+import {getTodo} from "../asyncActions/customers";
 import PopupWithForm from "./PopupWithForm";
+import store from "../store/store";
+import axios from "axios";
+import {clearSelectedTasksAction} from "../store/reducerTodo";
 
 
 function Todo(props: any) {
     const dispatch = useDispatch();
 
-    const getTodoList = (state: any) => state.setTodo.todo
+    const getTodoList = (state: any) => state.todo.todo
     const todo = useSelector(getTodoList);
 
-    // загрузить список тудушек и положить в стор
+    // загрузить список тудушек и отрисовать
     useEffect(()=> {
-        dispatch(setTodo());
+        dispatch(getTodo());
     },[])
 
+    // Удалить выбранные таски
     const handleDeleteButton = ()=> {
-        dispatch(deleteSelectedTask());
-    }
-
-    // попап Хотите удалить?
-    const [isConfirmDeleteTaskPopupOpen, setIsConfirmDeleteTaskPopupOpen] = React.useState(false);
-
-    function handleConfirmDeleteTaskClick() {
-        setIsConfirmDeleteTaskPopupOpen(true);
+        let promises = store.getState().todo.selectedTasks.map(
+            (taskId:number) => {return axios.delete(`http://localhost:3001/todo/${taskId}`)}
+        )
+        Promise.all(promises).then(resp => {
+            dispatch(clearSelectedTasksAction());
+            dispatch(getTodo());
+        })
     }
 
     // попап Изменить таск
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
 
+    // попап Изменить таск
     function handleChangeTaskClick() {
+        // взять данные из таска, который открываем
+        // подставить эти данные в попап
+        // открыть попап Изменения
         setIsChangeTaskPopupOpen(true);
     }
 
     // закрыть все попапы
     function closeAllPopups() {
-        setIsConfirmDeleteTaskPopupOpen(false);
         setIsChangeTaskPopupOpen(false);
     }
+
+    // сабмит попапа Изменить таск
+    function handleSubmitChangeTask(e: any) {
+        e.preventDefault();
+        console.log('SUBMIT Изменить сработал!');
+        // диспач
+        closeAllPopups();
+        // закрыть попап
+        // взять данные из формы
+        // отправить на сервер аксиос запросом патч
+        // вызвать перерисовку Todo
+    }
+
 
     return (
         <>
@@ -57,7 +76,7 @@ function Todo(props: any) {
 
                     {todo.map((todoItem: any) => (
                         <Task key={todoItem.id}
-                              onConfirmDeleteTask={handleConfirmDeleteTaskClick}
+                              // id={todoItem.id}
                               onChangeTask={handleChangeTaskClick}
                             {...todoItem}
                         />
@@ -66,22 +85,13 @@ function Todo(props: any) {
                 </ul>
             </section>
 
-            {/*попап Хотите удалить?*/}
-            <PopupWithForm name="confirm_delete"
-                           title="Хотите удалить?"
-                           buttonText="Да"
-                           isOpen={isConfirmDeleteTaskPopupOpen}
-                           onClose={closeAllPopups}
-                           // onSubmit={handleSubmitDeleteTask}
-            >
-            </PopupWithForm>
-
             {/*попап Изменить таск*/}
             <PopupWithForm name="change-task"
                            title="Изменить таск"
                            buttonText="Изменить"
                            isOpen={isChangeTaskPopupOpen}
                            onClose={closeAllPopups}
+                           onSubmit={handleSubmitChangeTask}
             >
                 <p className="popup__task-name">Выберите категорию:</p>
                 <select className="popup__input-text">

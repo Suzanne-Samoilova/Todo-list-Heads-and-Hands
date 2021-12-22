@@ -1,16 +1,50 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {deleteTask, setTaskStatusGalochka} from "../asyncActions/customers";
-import {selectTaskAction, unselectTaskAction} from "../store/reducerSetToDo";
+import {getTodo} from "../asyncActions/customers";
+import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
+import PopupWithForm from "./PopupWithForm";
+import axios from "axios";
 
 
 function Task(props: any) {
     const dispatch = useDispatch();
 
-    // для смены статуса чекбокса
-    const handleChange = (event: any) => {
+    // для смены статуса Выполнено
+    const handleChange = () => {
         // отослать статус таски
-        dispatch(setTaskStatusGalochka(props.id, !props.status))
+        axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": !props.status})
+            .then(resp => {
+                dispatch(getTodo());
+            })
+            .catch(error =>
+                console.log('error:', error))
+
+    }
+
+    // попап Хотите удалить?
+    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
+
+    // попап Хотите удалить?
+    function handleOpenPopupDeleteTask() {
+        setIsOpenPopupDeleteTask(true);
+    }
+
+    function handleClosePopupDeleteTask() {
+        setIsOpenPopupDeleteTask(false);
+    }
+
+    // сабмит попапа Удалить таск
+    function handleSubmitDeleteTask(e: any) {
+        e.preventDefault();
+        // dispatch(deleteTask(props.id))
+        axios.delete(`http://localhost:3001/todo/${props.id}`)
+            .then(resp => {
+                dispatch(getTodo());
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('SUBMIT Удалить сработал!');
+        handleClosePopupDeleteTask();
     }
 
     const handleSelect = (event: any) => {
@@ -24,34 +58,41 @@ function Task(props: any) {
         }
     }
 
-    // для удаления таски
-    const handleDelete = () => {
-        if (window.confirm('Вы действительно хотите удалить?')) {
-        // if (props.onConfirmDeleteTask()) {
-            dispatch(deleteTask(props.id))
-        }
-    }
-
     return (
-        <li className="tasks__item">
-            <input type="checkbox" onClick={handleSelect}/>
-            <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
-            <p className="tasks__date">Категория</p>
-            <div className="tasks__box-buttons">
-                <p className="tasks__date">Крайний срок</p>
-                <p className="tasks__date">Дата созд</p>
-                <p className="tasks__date">Дата послед измен</p>
-                <button className="tasks__button-delete" onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
-                <button className="tasks__button-archive" onClick={props.onChangeTask}>Изменить</button>
-                <button className="tasks__button-archive"
-                        onClick={handleDelete}
-                        // onClick={props.onConfirmDeleteTask}
-                >
-                    Удалить
-                </button>
-                <button className="tasks__button-archive">Отложить</button>
-            </div>
-        </li>
+        <>
+            <li className="tasks__item">
+                <input type="checkbox" onClick={handleSelect}/>
+                <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
+                <p className="tasks__date">{props.category}</p>
+                <div className="tasks__box-buttons">
+                    <p className="tasks__date">Дата созд: {props.date_create}</p>
+                    <p className="tasks__date">Дата послед измен: {props.date_change}</p>
+                    <p className="tasks__date">Крайний срок: {props.date_deadline}</p>
+                    <button className="tasks__button-delete"
+                            onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
+                    <button className="tasks__button-archive"
+                            onClick={props.onChangeTask}>Изменить</button>
+                    <button className="tasks__button-archive"
+                            onClick={handleOpenPopupDeleteTask}>Удалить</button>
+                    <button className="tasks__button-archive">Отложить</button>
+                </div>
+            </li>
+
+            {/*попап Хотите удалить?*/}
+            <PopupWithForm name="confirm_delete"
+                           title="Хотите удалить?"
+                           buttonText="Да"
+                           isOpen={isOpenPopupDeleteTask}
+                           onClose={handleClosePopupDeleteTask}
+                           onSubmit={handleSubmitDeleteTask}
+            >
+                <button className=""
+                        type="button"
+                        aria-label="Отмена"
+                        onClick={handleClosePopupDeleteTask}
+                >Нет</button>
+            </PopupWithForm>
+        </>
     );
 }
 
