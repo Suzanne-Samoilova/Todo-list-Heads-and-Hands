@@ -6,14 +6,14 @@ const defaultState = {
 
 export const reducerAuth = (state:any = defaultState, action: any) => {
     switch (action.type) {
-        case "login":
+        case "LOGIN":
             // console.log(action.payload.userId, state)
             return {...state,
                 isAuthorized: true,
                 userId: action.payload.userId
             }
 
-        case "logout":
+        case "LOGOUT":
             // console.log(action.payload.userId, state)
             return {...state,
                 isAuthorized: false,

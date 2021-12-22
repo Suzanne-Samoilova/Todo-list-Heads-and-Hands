@@ -13,16 +13,14 @@
   ],
   "todo": [
     {
-      "id": 3,
+      "id": 1,
       "user_id": 1,
-      "name": "Сходить на прогулку",
-      "status": false
-    },
-    {
-      "id": 4,
-      "user_id": 1,
-      "name": "Позвонить маме",
-      "status": true
+      "name": "Купить хлеб",
+      "category": "",
+      "status": false,
+      "date-create": "",
+      "date-change": "",
+      "date-deadline": ""
     }
   ]
 }

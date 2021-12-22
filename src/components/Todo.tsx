@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
-import {deleteSelectedTask, setTodo} from "../asyncActions/customers";
+import {deleteSelectedTask, deleteTask, setTodo} from "../asyncActions/customers";
 import PopupWithForm from "./PopupWithForm";
 
 
@@ -40,13 +40,6 @@ function Todo(props: any) {
         setIsChangeTaskPopupOpen(false);
     }
 
-
-    function handleSubmitDeleteTask(e: any) {
-        e.preventDefault();
-    }
-
-
-
     return (
         <>
             <section className="todo">
@@ -79,7 +72,7 @@ function Todo(props: any) {
                            buttonText="Да"
                            isOpen={isConfirmDeleteTaskPopupOpen}
                            onClose={closeAllPopups}
-                           onSubmit={handleSubmitDeleteTask}
+                           // onSubmit={handleSubmitDeleteTask}
             >
             </PopupWithForm>
 

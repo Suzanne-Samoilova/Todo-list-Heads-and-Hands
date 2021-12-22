@@ -10,7 +10,7 @@ export const setTodo = () => {
             .then(resp => {
                 console.log(resp.data, 'ТЕСТ асинхронного запроса из ТУДУ');
                 dispatch({
-                    type: "set_todo",
+                    type: "SET_TODO",
                     payload: {
                         todo: resp.data,
                     }})

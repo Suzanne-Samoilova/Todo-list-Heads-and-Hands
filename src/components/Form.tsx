@@ -33,7 +33,7 @@ function Form() {
                     const userId = resp.data[0].id;
                     // console.log(resp, "Юзер найден!");
                     dispatch({
-                        type: "login",
+                        type: "LOGIN",
                         payload: {
                             userId: userId
                             // todo: resp.data

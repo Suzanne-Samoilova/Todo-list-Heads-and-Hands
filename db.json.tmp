@@ -16,25 +16,41 @@
       "id": 1,
       "user_id": 1,
       "name": "Купить хлеб",
-      "status": false
+      "category": "",
+      "status": false,
+      "date-create": "",
+      "date-change": "",
+      "date-deadline": ""
     },
     {
       "id": 2,
       "user_id": 1,
       "name": "Заварить чай",
-      "status": false
+      "category": "",
+      "status": false,
+      "date-create": "",
+      "date-change": "",
+      "date-deadline": ""
     },
     {
       "id": 3,
       "user_id": 1,
       "name": "Сходить на прогулку",
-      "status": false
+      "category": "",
+      "status": false,
+      "date-create": "",
+      "date-change": "",
+      "date-deadline": ""
     },
     {
       "id": 4,
       "user_id": 1,
       "name": "Позвонить маме",
-      "status": false
+      "category": "",
+      "status": false,
+      "date-create": "",
+      "date-change": "",
+      "date-deadline": ""
     }
   ]
 }

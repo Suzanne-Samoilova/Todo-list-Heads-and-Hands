@@ -26,8 +26,8 @@ function Task(props: any) {
 
     // для удаления таски
     const handleDelete = () => {
-        // if (window.confirm('Вы действительно хотите удалить?')) {
-        if (props.onConfirmDeleteTask()) {
+        if (window.confirm('Вы действительно хотите удалить?')) {
+        // if (props.onConfirmDeleteTask()) {
             dispatch(deleteTask(props.id))
         }
     }
@@ -44,8 +44,8 @@ function Task(props: any) {
                 <button className="tasks__button-delete" onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
                 <button className="tasks__button-archive" onClick={props.onChangeTask}>Изменить</button>
                 <button className="tasks__button-archive"
-                        // onClick={handleDelete}
-                        onClick={props.onConfirmDeleteTask}
+                        onClick={handleDelete}
+                        // onClick={props.onConfirmDeleteTask}
                 >
                     Удалить
                 </button>
