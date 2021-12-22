@@ -36,6 +36,7 @@ function Task(props: any) {
         <li className="tasks__item">
             <input type="checkbox" onClick={handleSelect}/>
             <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
+            <p className="tasks__date">Категория</p>
             <div className="tasks__box-buttons">
                 <p className="tasks__date">Крайний срок</p>
                 <p className="tasks__date">Дата созд</p>

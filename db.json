@@ -13,18 +13,6 @@
   ],
   "todo": [
     {
-      "id": 1,
-      "user_id": 1,
-      "name": "Купить хлеб",
-      "status": false
-    },
-    {
-      "id": 2,
-      "user_id": 1,
-      "name": "Заварить чай",
-      "status": false
-    },
-    {
       "id": 3,
       "user_id": 1,
       "name": "Сходить на прогулку",
@@ -34,7 +22,7 @@
       "id": 4,
       "user_id": 1,
       "name": "Позвонить маме",
-      "status": false
+      "status": true
     }
   ]
 }
