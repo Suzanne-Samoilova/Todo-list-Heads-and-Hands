@@ -55,6 +55,39 @@
       "date_create": "16.11.2021",
       "date_change": "16.11.2021",
       "date_deadline": "16.11.2021"
+    },
+    {
+      "id": 5,
+      "user_id": 2,
+      "category": "Покупки",
+      "name": "Заварить чай",
+      "description": "sjdfhlKJNFK",
+      "status": false,
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
+    },
+    {
+      "id": 6,
+      "user_id": 2,
+      "category": "Здоровье",
+      "name": "Сходить на прогулку",
+      "description": "sjdfhlKJNFK",
+      "status": false,
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
+    },
+    {
+      "id": 7,
+      "user_id": 2,
+      "category": "Напоминания",
+      "name": "Позвонить маме",
+      "description": "sjdfhlKJNFK",
+      "status": false,
+      "date_create": "16.11.2021",
+      "date_change": "16.11.2021",
+      "date_deadline": "16.11.2021"
     }
   ]
 }

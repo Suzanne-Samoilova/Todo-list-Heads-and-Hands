@@ -1,5 +1,6 @@
 .todo__box-buttons {
     display: flex;
     flex-direction: row;
-
+    margin: 0 80px 10px;
+    justify-content: space-between;
 }

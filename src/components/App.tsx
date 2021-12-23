@@ -9,7 +9,7 @@ import PopupWithForm from "./PopupWithForm";
 import axios from "axios";
 import {getTodo} from "../asyncActions/customers";
 import store from "../store/store";
-import {getDateByYYYYmmdd} from "../utils/DateHelper";
+import {getDateNowByDDmmyyyy} from "../utils/DateHelper";
 
 function App() {
     const dispatch = useDispatch();
@@ -24,15 +24,13 @@ function App() {
         setIsAddNewTaskPopupOpen(true);
     }
 
-    function closeAllPopups() {
+    function handleClosePopupAddNewTask() {
         setIsAddNewTaskPopupOpen(false);
     }
 
     const [category, setCategory] = React.useState("");
     const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
-    // const [date_create, setDate_create] = React.useState("");
-    // const [date_change, setDate_change] = React.useState("");
     const [date_deadline, setDate_deadline] = React.useState("");
 
     // забрать из формы
@@ -55,8 +53,7 @@ function App() {
     function handleSubmitCreateTask(e: any) {
         e.preventDefault();
         const userId = store.getState().auth.userId;
-        const dateNow = getDateByYYYYmmdd()
-
+        const dateNow = getDateNowByDDmmyyyy();
         axios.post(`http://localhost:3001/todo/`,
             {
                 "category": category,
@@ -73,11 +70,7 @@ function App() {
             })
             .catch(error =>
                 console.log('error:', error));
-        // закрыть попап
-        // взять данные из формы
-        // отправить на сервер аксиос запросом post
-        // вызвать перерисовку Todo
-        closeAllPopups();
+        handleClosePopupAddNewTask();
     }
 
 
@@ -101,7 +94,7 @@ function App() {
                        title="Добавить новый таск"
                        buttonText="Создать"
                        isOpen={isAddNewTaskPopupOpen}
-                       onClose={closeAllPopups}
+                       onClose={handleClosePopupAddNewTask}
                        onSubmit={handleSubmitCreateTask}
         >
             <p className="popup__task-name">Выберите категорию:</p>

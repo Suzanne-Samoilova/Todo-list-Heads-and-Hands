@@ -8,17 +8,16 @@
 @import url(./blocks/todo/todo.css);
 @import url(./blocks/todo/__title/todo__title.css);
 @import url(./blocks/todo/__box-buttons/todo__box-buttons.css);
+@import url(./blocks/todo/__box-buttons-left/todo__box-buttons-left.css);
 @import url(./blocks/todo/__button-add/todo__button-add.css);
 
 @import url(./blocks/tasks/tasks.css);
 @import url(./blocks/tasks/__item/tasks__item.css);
 @import url(./blocks/tasks/__item-title/tasks__item-title.css);
-@import url(./blocks/tasks/__box-buttons/tasks__box-buttons.css);
 @import url(./blocks/tasks/__date/tasks__date.css);
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);
 @import url(./blocks/tasks/__button-archive/tasks__button-archive.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
-
 
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
@@ -29,3 +28,4 @@
 @import url(./blocks/popup/__task-name/popup__task-name.css);
 @import url(./blocks/popup/__input-text/popup__input-text.css);
 @import url(./blocks/popup/__button-save/popup__button-save.css);
+

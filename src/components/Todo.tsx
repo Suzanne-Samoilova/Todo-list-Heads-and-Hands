@@ -6,6 +6,7 @@ import PopupWithForm from "./PopupWithForm";
 import store from "../store/store";
 import axios from "axios";
 import {clearSelectedTasksAction} from "../store/reducerTodo";
+import TableHeader from "./TableHeader";
 
 
 function Todo(props: any) {
@@ -42,7 +43,7 @@ function Todo(props: any) {
     }
 
     // закрыть все попапы
-    function closeAllPopups() {
+    function handleClosePopupChangeTask() {
         setIsChangeTaskPopupOpen(false);
     }
 
@@ -51,11 +52,11 @@ function Todo(props: any) {
         e.preventDefault();
         console.log('SUBMIT Изменить сработал!');
         // диспач
-        closeAllPopups();
         // закрыть попап
         // взять данные из формы
         // отправить на сервер аксиос запросом патч
         // вызвать перерисовку Todo
+        handleClosePopupChangeTask();
     }
 
 
@@ -64,14 +65,18 @@ function Todo(props: any) {
             <section className="todo">
                 <h2 className="todo__title">Список дел:</h2>
                 <div className="todo__box-buttons">
-                    <button className="todo__button-add"
-                            aria-label="Добавить новый таск"
-                            type="button"
-                            onClick={props.onAddNewTask}>
-                        Добавить
-                    </button>
-                    <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
+                    <div className="todo__box-buttons-left">
+                        <button className="todo__button-add"
+                                aria-label="Добавить новый таск"
+                                type="button"
+                                onClick={props.onAddNewTask}>
+                            Добавить
+                        </button>
+                        <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
+                    </div>
+                    <button className="todo__button-add">Перейти в архив</button>
                 </div>
+            <TableHeader/>
                 <ul className="tasks">
 
                     {todo.map((todoItem: any) => (
@@ -90,7 +95,7 @@ function Todo(props: any) {
                            title="Изменить таск"
                            buttonText="Изменить"
                            isOpen={isChangeTaskPopupOpen}
-                           onClose={closeAllPopups}
+                           onClose={handleClosePopupChangeTask}
                            onSubmit={handleSubmitChangeTask}
             >
                 <p className="popup__task-name">Выберите категорию:</p>

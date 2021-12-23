@@ -12,7 +12,10 @@
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-    margin: 22px auto 0 150px;
+    margin: 22px 30px 0 0;
+}
+.todo__button-add:last-child {
+    margin-right: 0;
 }
 
 .todo__button-add:hover {
