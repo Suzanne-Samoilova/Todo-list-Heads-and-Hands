@@ -51,7 +51,8 @@
       "date_change": "23.12.2021",
       "date_deadline": "2021-12-25",
       "user_id": 1,
-      "id": 23
+      "id": 23,
+      "status": false
     },
     {
       "category": "",
@@ -74,6 +75,27 @@
       "user_id": 1,
       "id": 25,
       "status": true
+    },
+    {
+      "category": "Общая заметка",
+      "name": "НОВЫЙee",
+      "description": "ОПИСАНИЕeee",
+      "date_create": "23.12.2021",
+      "date_change": "23.12.2021",
+      "date_deadline": "2021-12-02",
+      "user_id": 1,
+      "id": 28
+    },
+    {
+      "category": "Общая заметка",
+      "name": "Пехов \"Искры и ветер\"ddddddddddd",
+      "description": "ааааааааааааааааdddddddddddddddd",
+      "date_create": "23.12.2021",
+      "date_change": "23.12.2021",
+      "date_deadline": "2021-12-26",
+      "user_id": 1,
+      "id": 29,
+      "status": false
     }
   ]
 }

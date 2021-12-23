@@ -74,11 +74,10 @@ function Todo(props: any) {
                         </button>
                         <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
                     </div>
-                    <button className="todo__button-add">Перейти в архив</button>
+                    <button style={{marginLeft: "30px"}} className="todo__button-add">Перейти в архив</button>
                 </div>
             <TableHeader/>
                 <ul className="tasks">
-
                     {todo.map((todoItem: any) => (
                         <Task key={todoItem.id}
                               // id={todoItem.id}
@@ -86,8 +85,11 @@ function Todo(props: any) {
                             {...todoItem}
                         />
                     ))}
-
                 </ul>
+                <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
+                    <button className="todo__button-left"/>
+                    <button className="todo__button-right"/>
+                </div>
             </section>
 
             {/*попап Изменить таск*/}

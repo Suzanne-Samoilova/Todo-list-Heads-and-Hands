@@ -60,20 +60,16 @@ function Task(props: any) {
 
     return (
         <>
-            <li className="tasks__item">
-                <div style={{display: "flex", flexDirection: "row", backgroundColor: "green", marginRight: "auto"}}>
-                    <input type="checkbox" onClick={handleSelect}/>
-                    <p className={props.status ? "tasks__item_completed" : "tasks__item-title"}>{props.name}</p>
-                    <p className="tasks__date">{props.category}</p>
-                </div>
-
-                <div style={{display: "flex", flexDirection: "row", backgroundColor: "pink"}}>
+            <li className={props.status ? "tasks__item_completed" : "tasks__item"}>
+                <input type="checkbox" onClick={handleSelect}/>
+                <p className="tasks__item-title">{props.name}</p>
+                <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+                    <p style={{width: "100px", font: "inherit"}}>{props.category}</p>
                     <p className="tasks__date">{props.date_create}</p>
                     <p className="tasks__date">{props.date_change}</p>
                     <p className="tasks__date">{props.date_deadline}</p>
                 </div>
-
-                <div style={{width: "360px", display: "flex", justifyContent: "flex-end", backgroundColor: "yellow"}}>
+                <div style={{width: "360px", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <button className="tasks__button-delete"
                             onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
                     <button className="tasks__button-archive"

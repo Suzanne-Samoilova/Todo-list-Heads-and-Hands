@@ -1,4 +1,14 @@
 .tasks__item_completed {
-    margin: 0;
     text-decoration: line-through;
+    opacity: 33%;
+    /*list-style-type: none;*/
+    background-color: #f5f7f9;
+    border-radius: 4px;
+    margin: 0 150px 10px;
+    min-height: 30px;
+    max-height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
 }

@@ -1,11 +1,12 @@
 .tasks__item {
-    list-style-type: none;
+    /*list-style-type: none;*/
     background-color: #f5f7f9;
     border-radius: 4px;
-    margin: 0 80px 10px;
+    margin: 0 150px 10px;
     min-height: 30px;
+    max-height: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    font-size: 14px;
 }

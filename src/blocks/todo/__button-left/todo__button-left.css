@@ -1,24 +1,22 @@
-.todo__button-add {
+.todo__button-left {
     border: none;
     border-radius: 4px;
-    width: 150px;
+    width: 70px;
     height: 46px;
     background-color: #ffdd2d;
-    font: inherit;
-    font-size: 14px;
-    line-height: 17px;
+    background-image: url("../../../images/button-left.svg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 20px;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
-    margin: 0 30px 0 0;
-}
-.todo__button-add:last-child {
-    margin-right: 0;
+    margin: 10px 0 0 10px;
 }
 
-.todo__button-add:hover {
+.todo__button-left:hover {
     cursor: pointer;
     opacity: 0.8;
 }
