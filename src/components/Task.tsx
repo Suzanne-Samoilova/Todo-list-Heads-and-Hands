@@ -4,6 +4,8 @@ import {getTodo} from "../asyncActions/customers";
 import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
 import PopupWithForm from "./PopupWithForm";
 import axios from "axios";
+import {getDateNowByDDmmyyyy} from "../utils/DateHelper";
+import {listCategories} from "../utils/listCategories";
 
 
 function Task(props: any) {
@@ -36,7 +38,6 @@ function Task(props: any) {
     // сабмит попапа Удалить таск
     function handleSubmitDeleteTask(e: any) {
         e.preventDefault();
-        // dispatch(deleteTask(props.id))
         axios.delete(`http://localhost:3001/todo/${props.id}`)
             .then(resp => {
                 dispatch(getTodo());
@@ -58,6 +59,63 @@ function Task(props: any) {
         }
     }
 
+    // попап Изменить таск
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
+
+    // попап Изменить таск
+    function handleOpenPopupChangeTask() {
+        setIsChangeTaskPopupOpen(true);
+    }
+
+    // закрыть попап
+    function handleClosePopupChangeTask() {
+        setIsChangeTaskPopupOpen(false);
+    }
+
+    // сабмит попапа Изменить таск
+    function handleSubmitChangeTask(e: any) {
+        e.preventDefault();
+        axios.patch(`http://localhost:3001/todo/${props.id}`, {
+                "category": category,
+                "name": name,
+                "description": description,
+                "date_change": dateNow,
+                "date_deadline": dateDeadline
+            })
+            .then(resp => {
+                dispatch(getTodo());
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('SUBMIT Изменить сработал!');
+        handleClosePopupChangeTask();
+    }
+
+    const [category, setCategory] = React.useState(props.category);
+    const [name, setName] = React.useState(props.name);
+    const [description, setDescription] = React.useState(props.description);
+    const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
+
+    function handleChangeCategory(e: any) {
+        setCategory(e.target.value);
+    }
+
+    function handleChangeName(e: any) {
+        setName(e.target.value);
+    }
+
+    function handleChangeDescription(e: any) {
+        setDescription(e.target.value);
+    }
+
+    // Дата изменения
+    const dateNow = getDateNowByDDmmyyyy();
+
+    function handleChangeDateDeadline(e: any) {
+        setDateDeadline(e.target.value);
+    }
+
+
     return (
         <>
             <li className={props.status ? "tasks__item_completed" : "tasks__item"}>
@@ -73,7 +131,7 @@ function Task(props: any) {
                     <button className="tasks__button-delete"
                             onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
                     <button className="tasks__button-archive"
-                            onClick={props.onChangeTask}>Изменить</button>
+                            onClick={handleOpenPopupChangeTask}>Изменить</button>
                     <button className="tasks__button-archive"
                             onClick={handleOpenPopupDeleteTask}>Удалить</button>
                     <button className="tasks__button-archive">Отложить</button>
@@ -93,6 +151,52 @@ function Task(props: any) {
                         aria-label="Отмена"
                         onClick={handleClosePopupDeleteTask}
                 >Нет</button>
+            </PopupWithForm>
+
+            {/*попап Изменить таск*/}
+            <PopupWithForm name="change-task"
+                           title="Изменить таск"
+                           buttonText="Изменить"
+                           isOpen={isChangeTaskPopupOpen}
+                           onClose={handleClosePopupChangeTask}
+                           onSubmit={handleSubmitChangeTask}
+            >
+                <p style={{maxWidth: "300px", margin: "5px auto 0", textAlign: "center", overflow: "hidden", textOverflow: "ellipsis",
+                    whiteSpace: "nowrap", fontSize: "18px"}}>"{props.name}"</p>
+                <p className="popup__task-name">Выберите категорию:</p>
+                <select className="popup__input-text"
+                        value={category}
+                        onChange={handleChangeCategory}>
+                    {listCategories.map((item) => (
+                        <option key={item.id}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+                <p className="popup__task-name">Название:</p>
+                <input className="popup__input-text"
+                       type="text"
+                       name="task-name"
+                       placeholder="Введите название таска"
+                       required
+                       onChange={handleChangeName}
+                       value={name}
+                />
+                <p className="popup__task-name">Описание:</p>
+                <input className="popup__input-text"
+                       type="text"
+                       name="task-description"
+                       placeholder="Введите описание таска"
+                       required
+                       onChange={handleChangeDescription}
+                       value={description}
+                />
+                <p className="popup__task-name">Крайний срок исполнения:</p>
+                <input className="popup__input-text"
+                       type="date"
+                       onChange={handleChangeDateDeadline}
+                       value={dateDeadline}
+                />
             </PopupWithForm>
         </>
     );

@@ -10,6 +10,7 @@ import axios from "axios";
 import {getTodo} from "../asyncActions/customers";
 import store from "../store/store";
 import {getDateNowByDDmmyyyy} from "../utils/DateHelper";
+import {listCategories} from "../utils/listCategories";
 
 function App() {
     const dispatch = useDispatch();
@@ -71,6 +72,7 @@ function App() {
             .catch(error =>
                 console.log('error:', error));
         handleClosePopupAddNewTask();
+        // сброс полей
     }
 
 
@@ -102,13 +104,11 @@ function App() {
                     value={category}
                     onChange={handleCategoryChange}
                     required>
-                <option>Общая заметка</option>
-                <option>Спорт</option>
-                <option>Покупки</option>
-                <option>Здоровье</option>
-                <option>Книги</option>
-                <option>Напоминания</option>
-                <option>Работа</option>
+                {listCategories.map((item) => (
+                    <option key={item.id}>
+                        {item.name}
+                    </option>
+                ))}
             </select>
 
             <p className="popup__task-name">Название:</p>
@@ -128,7 +128,7 @@ function App() {
                    placeholder="Введите описание таска"
                    value={description}
                    onChange={handleDescriptionChange}
-                   required
+                   // required
             />
 
             <p className="popup__task-name">Крайний срок исполнения:</p>

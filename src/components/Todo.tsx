@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
 import {getTodo} from "../asyncActions/customers";
-import PopupWithForm from "./PopupWithForm";
 import store from "../store/store";
 import axios from "axios";
 import {clearSelectedTasksAction} from "../store/reducerTodo";
@@ -31,34 +30,6 @@ function Todo(props: any) {
         })
     }
 
-    // попап Изменить таск
-    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-
-    // попап Изменить таск
-    function handleChangeTaskClick() {
-        // взять данные из таска, который открываем
-        // подставить эти данные в попап
-        // открыть попап Изменения
-        setIsChangeTaskPopupOpen(true);
-    }
-
-    // закрыть все попапы
-    function handleClosePopupChangeTask() {
-        setIsChangeTaskPopupOpen(false);
-    }
-
-    // сабмит попапа Изменить таск
-    function handleSubmitChangeTask(e: any) {
-        e.preventDefault();
-        console.log('SUBMIT Изменить сработал!');
-        // диспач
-        // закрыть попап
-        // взять данные из формы
-        // отправить на сервер аксиос запросом патч
-        // вызвать перерисовку Todo
-        handleClosePopupChangeTask();
-    }
-
 
     return (
         <>
@@ -80,8 +51,6 @@ function Todo(props: any) {
                 <ul className="tasks">
                     {todo.map((todoItem: any) => (
                         <Task key={todoItem.id}
-                              // id={todoItem.id}
-                              onChangeTask={handleChangeTaskClick}
                             {...todoItem}
                         />
                     ))}
@@ -91,47 +60,6 @@ function Todo(props: any) {
                     <button className="todo__button-right"/>
                 </div>
             </section>
-
-            {/*попап Изменить таск*/}
-            <PopupWithForm name="change-task"
-                           title="Изменить таск"
-                           buttonText="Изменить"
-                           isOpen={isChangeTaskPopupOpen}
-                           onClose={handleClosePopupChangeTask}
-                           onSubmit={handleSubmitChangeTask}
-            >
-                <p className="popup__task-name">Выберите категорию:</p>
-                <select className="popup__input-text">
-                    <option>Общая заметка</option>
-                    <option>Спорт</option>
-                    <option>Покупки</option>
-                    <option>Здоровье</option>
-                    <option>Книги</option>
-                    <option>Напоминания</option>
-                    <option>Работа</option>
-                </select>
-
-                <p className="popup__task-name">Название:</p>
-                <input className="popup__input-text" id=""
-                       type="text"
-                       name="task-name"
-                       placeholder="Введите название таска"
-                       required
-                />
-
-                <p className="popup__task-name">Описание:</p>
-                <input className="popup__input-text" id=""
-                       type="text"
-                       name="task-description"
-                       placeholder="Введите описание таска"
-                       required
-                />
-
-                <p className="popup__task-name">Крайний срок исполнения:</p>
-                <input className="popup__input-text" id=""
-                       type="date"
-                />
-            </PopupWithForm>
         </>
     );
 }
