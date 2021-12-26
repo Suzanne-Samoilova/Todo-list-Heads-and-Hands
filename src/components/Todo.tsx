@@ -15,7 +15,7 @@ function Todo(props: any) {
     // загрузить список тудушек и отрисовать
     useEffect(()=> {
         dispatch(getTodo());
-    },[])
+    },[dispatch])
 
     // Удалить выбранные таски
     const handleDeleteButton = ()=> {

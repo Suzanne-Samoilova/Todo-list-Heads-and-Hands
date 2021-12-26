@@ -1,6 +1,6 @@
 import {listCategories} from "../utils/listCategories";
 import React from "react";
-import store from "../store/store";
+import store from "../store/configureStore";
 import {dateFormat, getDateNowByDDmmyyyy} from "../utils/DateHelper";
 import axios from "axios";
 import {getTodo} from "../asyncActions/thunkFunctions";

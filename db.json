@@ -67,24 +67,14 @@
     },
     {
       "category": "Здоровье",
-      "name": "НОВЫЙ",
-      "description": "****************************************",
-      "date_create": "25.12.2021",
-      "date_change": "26.12.2021",
-      "date_deadline": "06.01.2022",
-      "user_id": 1,
-      "id": 36,
-      "status": false
-    },
-    {
-      "category": "Здоровье",
       "name": "dddddd",
       "description": "аааааааааааааааа",
       "date_create": "26.12.2021",
       "date_change": "26.12.2021",
       "date_deadline": "09.01.2022",
       "user_id": 1,
-      "id": 37
+      "id": 37,
+      "status": false
     },
     {
       "category": "Здоровье",
@@ -95,6 +85,16 @@
       "date_deadline": "15.12.2021",
       "user_id": 1,
       "id": 38
+    },
+    {
+      "category": "",
+      "name": "НОВЫЙ",
+      "description": "аааааааааааааааа",
+      "date_create": "27.12.2021",
+      "date_change": "27.12.2021",
+      "date_deadline": "29.12.2021",
+      "user_id": 1,
+      "id": 39
     }
   ]
 }

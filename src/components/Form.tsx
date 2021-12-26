@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {useHistory, useRouteMatch} from "react-router-dom";
 import {loginAction} from "../store/reducerAuth";
-
+import { push } from 'connected-react-router'
+import store from "../store/configureStore";
 
 function Form() {
     // для авторизации
-    const [email, setEmail] = React.useState<string>();
-    const [password, setPassword] = React.useState<string>();
+    const [email, setEmail] = React.useState<string>('');
+    const [password, setPassword] = React.useState<string>('');
 
     const handleEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
@@ -20,10 +20,9 @@ function Form() {
 
     // для стора
     const dispatch = useDispatch();
-    const history = useHistory();
 
     // для роутера
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -31,9 +30,10 @@ function Form() {
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
-                    // console.log(resp, "Юзер найден!");
                     dispatch(loginAction({userId: userId}));
-                    history.push(`${url}todo`);
+                    console.log(resp, "Юзер найден!");
+                    // history.push(`${url}todo`);
+                    dispatch(push(`/todo`))
                 } else {
                     console.log(resp, "Такого юзера нет!");
                 }

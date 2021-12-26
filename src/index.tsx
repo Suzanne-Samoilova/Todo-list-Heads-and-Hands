@@ -1,23 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './components/App';
 import { Provider } from "react-redux";
-import createHistory from 'history/createBrowserHistory'
-import store from "./store/store";
+import store, { history } from "./store/configureStore";
+import {ConnectedRouter} from "connected-react-router";
 
-
-export const history = createHistory();
 export type TRootState = ReturnType<typeof store.getState>
+
 
 ReactDOM.render(
     <Provider store = {store}>
-        <React.StrictMode>
-            <BrowserRouter>
+        <ConnectedRouter history={history}>
+            <React.StrictMode>
                 <App />
-            </BrowserRouter>
-        </React.StrictMode>
+            </React.StrictMode>
+        </ConnectedRouter>
     </Provider>,
   document.getElementById('root')
 );
