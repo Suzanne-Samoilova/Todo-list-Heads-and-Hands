@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getTodoAction} from "../store/reducerTodo";
+import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import store from "../store/store";
 
 
@@ -15,5 +15,20 @@ export const getTodo = () => {
             })
             .catch(error =>
                 console.log('error:', error))
+    }
+}
+
+
+// удаление нескольких Tasks
+// асинхронная функция
+export const deleteMultipleTask = () => {
+    return function (dispatch: any) {
+        let promises = store.getState().todo.selectedTasks.map(
+            (taskId:number) => {return axios.delete(`http://localhost:3001/todo/${taskId}`)}
+        )
+        Promise.all(promises).then(resp => {
+            dispatch(clearSelectedTasksAction());
+            dispatch(getTodo());
+        })
     }
 }

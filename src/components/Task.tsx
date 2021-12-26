@@ -1,11 +1,14 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {getTodo} from "../asyncActions/customers";
+import {getTodo} from "../asyncActions/thunkFunctions";
 import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
 import PopupWithForm from "./PopupWithForm";
 import axios from "axios";
-import {getDateNowByDDmmyyyy} from "../utils/DateHelper";
+import {dateFormat, getDateNowByDDmmyyyy} from "../utils/DateHelper";
 import {listCategories} from "../utils/listCategories";
+import locale from "antd/es/date-picker/locale/ru_RU";
+import {DatePicker} from "antd";
+import moment from "moment";
 
 
 function Task(props: any) {
@@ -111,8 +114,8 @@ function Task(props: any) {
     // Дата изменения
     const dateNow = getDateNowByDDmmyyyy();
 
-    function handleChangeDateDeadline(e: any) {
-        setDateDeadline(e.target.value);
+    function handleChangeDateDeadline(date: any, dateString: string) {
+        setDateDeadline(dateString);
     }
 
 
@@ -192,11 +195,12 @@ function Task(props: any) {
                        value={description}
                 />
                 <p className="popup__task-name">Крайний срок исполнения:</p>
-                <input className="popup__input-text"
-                       type="date"
-                       onChange={handleChangeDateDeadline}
-                       value={dateDeadline}
-                />
+                <DatePicker onChange={handleChangeDateDeadline} format={dateFormat} locale={locale} value={moment(dateDeadline, dateFormat)}/>
+                {/*<input className="popup__input-text"*/}
+                {/*       type="date"*/}
+                {/*       onChange={handleChangeDateDeadline}*/}
+                {/*       value={dateDeadline}*/}
+                {/*/>*/}
             </PopupWithForm>
         </>
     );

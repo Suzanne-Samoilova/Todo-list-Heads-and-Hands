@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
-import {getTodo} from "../asyncActions/customers";
-import store from "../store/store";
-import axios from "axios";
-import {clearSelectedTasksAction} from "../store/reducerTodo";
+import {deleteMultipleTask, getTodo} from "../asyncActions/thunkFunctions";
 import TableHeader from "./TableHeader";
+import PopupNewTask from "./PopupNewTask";
 
 
 function Todo(props: any) {
@@ -21,13 +19,19 @@ function Todo(props: any) {
 
     // Удалить выбранные таски
     const handleDeleteButton = ()=> {
-        let promises = store.getState().todo.selectedTasks.map(
-            (taskId:number) => {return axios.delete(`http://localhost:3001/todo/${taskId}`)}
-        )
-        Promise.all(promises).then(resp => {
-            dispatch(clearSelectedTasksAction());
-            dispatch(getTodo());
-        })
+        dispatch(deleteMultipleTask())
+    }
+
+    // открыть попап новый таск
+    const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
+
+    // Добавить новый таск
+    function handleAddNewTask() {
+        setIsAddNewTaskPopupOpen(true);
+    }
+
+    function handleClosePopupAddNewTask() {
+        setIsAddNewTaskPopupOpen(false);
     }
 
 
@@ -40,7 +44,7 @@ function Todo(props: any) {
                         <button className="todo__button-add"
                                 aria-label="Добавить новый таск"
                                 type="button"
-                                onClick={props.onAddNewTask}>
+                                onClick={handleAddNewTask}>
                             Добавить
                         </button>
                         <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
@@ -60,6 +64,11 @@ function Todo(props: any) {
                     <button className="todo__button-right"/>
                 </div>
             </section>
+
+            <PopupNewTask
+                isOpen={isAddNewTaskPopupOpen}
+                onClose={handleClosePopupAddNewTask}
+            />
         </>
     );
 }
