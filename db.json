@@ -56,17 +56,6 @@
     },
     {
       "category": "Здоровье",
-      "name": "НОВЫЙ",
-      "description": "****************************************",
-      "date_create": "25.12.2021",
-      "date_change": "26.12.2021",
-      "date_deadline": "02.01.2022",
-      "user_id": 1,
-      "id": 35,
-      "status": true
-    },
-    {
-      "category": "Здоровье",
       "name": "dddddd",
       "description": "аааааааааааааааа",
       "date_create": "26.12.2021",
@@ -84,17 +73,29 @@
       "date_change": "26.12.2021",
       "date_deadline": "15.12.2021",
       "user_id": 1,
-      "id": 38
+      "id": 38,
+      "status": true
     },
     {
-      "category": "",
-      "name": "НОВЫЙ",
-      "description": "аааааааааааааааа",
+      "category": "Здоровье",
+      "name": "777777",
+      "description": "777777",
       "date_create": "27.12.2021",
       "date_change": "27.12.2021",
-      "date_deadline": "29.12.2021",
+      "date_deadline": "05.01.2022",
       "user_id": 1,
-      "id": 39
+      "id": 41
+    },
+    {
+      "category": "Покупки",
+      "name": "Пехов \"Искры и ветер\"",
+      "description": "найти весь цикл",
+      "date_create": "27.12.2021",
+      "date_change": "27.12.2021",
+      "date_deadline": "25.01.2022",
+      "user_id": 1,
+      "id": 42,
+      "status": false
     }
   ]
 }

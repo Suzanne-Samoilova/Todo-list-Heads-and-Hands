@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Route, Switch } from 'react-router';
-import Form from "./Form";
+import Auth from "./Auth";
 import Todo from "./Todo";
 import {useSelector} from "react-redux";
 import {TRootState} from "../index";
@@ -12,12 +12,12 @@ function App() {
     return (
         <div className="App">
             <Switch>
-                <Route exact path="/">
-                    <Form />
+                <Route path="/auth">
+                    <Auth />
                 </Route>
 
                 {isAuthorized &&
-                <Route path="/todo">
+                <Route exact path="/">
                     <Todo/>
                 </Route>}
             </Switch>

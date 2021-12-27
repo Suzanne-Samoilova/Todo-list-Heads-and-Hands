@@ -101,11 +101,6 @@ function PopupNewTask(props: any) {
 
             <p className="popup__task-name">Крайний срок исполнения:</p>
             <DatePicker onChange={handleDateDeadlineChange} format={dateFormat} locale={locale}/>
-            {/*<input className="popup__input-text"*/}
-            {/*       type="date"*/}
-            {/*       value={date_deadline}*/}
-            {/*       onChange={handleDateDeadlineChange}*/}
-            {/*/>*/}
         </PopupWithForm>
     );
 }

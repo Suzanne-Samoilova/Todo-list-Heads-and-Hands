@@ -2,17 +2,27 @@
     border: none;
     border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
     min-height: 27px;
-    /*max-width: 250px;*/
-    width: 250px;
+    width: 200px;
     color: #000;
     font-family: inherit;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 15px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     margin-bottom: 5px;
     padding: 0;
+}
+
+.authorization__form-input:focus {
+    background-color: #fff8d6;
+}
+
+@media screen and (min-width: 880px) {
+    .authorization__form-input {
+        width: 250px;
+        line-height: 17px;
+    }
 }

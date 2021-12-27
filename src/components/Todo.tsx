@@ -65,10 +65,10 @@ function Todo(props: any) {
                 </div>
             </section>
 
-            <PopupNewTask
+            {isAddNewTaskPopupOpen && <PopupNewTask
                 isOpen={isAddNewTaskPopupOpen}
                 onClose={handleClosePopupAddNewTask}
-            />
+            />}
         </>
     );
 }

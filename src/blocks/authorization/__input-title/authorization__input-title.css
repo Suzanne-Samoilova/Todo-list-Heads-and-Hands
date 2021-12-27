@@ -1,0 +1,14 @@
+.authorization__input-title {
+    width: 200px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 15px;
+}
+
+@media screen and (min-width: 880px) {
+    .authorization__input-title {
+        width: 250px;
+        line-height: 17px;
+    }
+}

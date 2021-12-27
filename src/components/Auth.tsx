@@ -2,10 +2,9 @@ import React from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {loginAction} from "../store/reducerAuth";
-import { push } from 'connected-react-router'
-import store from "../store/configureStore";
+import { push } from "connected-react-router";
 
-function Form() {
+function Auth() {
     // для авторизации
     const [email, setEmail] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
@@ -21,9 +20,6 @@ function Form() {
     // для стора
     const dispatch = useDispatch();
 
-    // для роутера
-    // const { path, url } = useRouteMatch();
-
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
@@ -32,8 +28,7 @@ function Form() {
                     const userId = resp.data[0].id;
                     dispatch(loginAction({userId: userId}));
                     console.log(resp, "Юзер найден!");
-                    // history.push(`${url}todo`);
-                    dispatch(push(`/todo`))
+                    dispatch(push(`/`))
                 } else {
                     console.log(resp, "Такого юзера нет!");
                 }
@@ -47,23 +42,25 @@ function Form() {
     return (
         <div className="authorization">
             <h2 className="authorization__title">
-                Введите логин и пароль
+                Авторизация
             </h2>
             <form className="authorization__form" onSubmit={handleSubmit}>
+                <p className="authorization__input-title">E-mail:</p>
                 <input className="authorization__form-input" id="email"
                        type="email"
                        name="email"
-                       placeholder="Эл.почта"
+                       placeholder="Введите адрес эл.почты"
                        required
                        onChange={handleEmail}
                        value={email}
                 />
                 <span className="authorization__form-error" id="email-error">Введите адрес эл.почты.</span>
 
+                <p className="authorization__input-title">Пароль:</p>
                 <input className="authorization__form-input" id="password"
                        type="text"
                        name="password"
-                       placeholder="Пароль"
+                       placeholder="Введите пароль"
                        required
                        onChange={handlePassword}
                        value={password}
@@ -72,8 +69,9 @@ function Form() {
 
                 <button className="authorization__button-save" type="submit">Войти</button>
             </form>
+            <button className="registration">Зарегистрироваться</button>
         </div>
     );
 }
 
-export default Form;
+export default Auth;

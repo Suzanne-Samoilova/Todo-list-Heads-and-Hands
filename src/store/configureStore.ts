@@ -22,7 +22,7 @@ function configureStore(preloadedState?: any) {
     )
 
     return store
-}
+};
 
 const store = configureStore();
 export default store;
