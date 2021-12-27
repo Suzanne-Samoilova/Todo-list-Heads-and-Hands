@@ -31,7 +31,7 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
             }
 
         case GET_TODO:
-            console.log(action.payload.todo, 'todo ПОЛУЧЕН')
+            // console.log(action.payload.todo, 'todo ПОЛУЧЕН')
             return {...state,
                 todo: action.payload.todo
             }

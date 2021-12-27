@@ -19,7 +19,8 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
             // console.log(action.payload.userId, state)
             return {...state,
                 isAuthorized: false,
-                userId: action.payload.userId
+                // userId: action.payload.userId
+                userId: undefined
             }
 
         default:

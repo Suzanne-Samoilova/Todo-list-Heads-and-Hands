@@ -46,6 +46,8 @@ function Auth() {
                     Авторизация
                 </h2>
                 <form className="authorization__form" onSubmit={handleSubmit}>
+                    {/*</label> ???*/}
+                    {/*<label htmlFor=”email”>Email address</label>*/}
                     <p className="authorization__input-title">E-mail:</p>
                     <input className="authorization__form-input" id="email"
                            type="email"
@@ -60,6 +62,7 @@ function Auth() {
                     <p className="authorization__input-title">Пароль:</p>
                     <input className="authorization__form-input" id="password"
                            type="text"
+                           // type="password"
                            name="password"
                            placeholder="Введите пароль"
                            required

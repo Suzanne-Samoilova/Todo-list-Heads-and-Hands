@@ -4,6 +4,7 @@ import Task from "./Task";
 import {deleteMultipleTask, getTodo} from "../asyncActions/thunkFunctions";
 import TableHeader from "./TableHeader";
 import PopupNewTask from "./PopupNewTask";
+import Header from "./Header";
 
 
 function Todo(props: any) {
@@ -38,7 +39,8 @@ function Todo(props: any) {
     return (
         <>
             <section className="todo">
-                <h2 className="todo__title">Список дел:</h2>
+            <Header/>
+                <h2 className="todo__title">Список задач:</h2>
                 <div className="todo__box-buttons">
                     <div className="todo__box-buttons-left">
                         <button className="todo__button-add"
@@ -49,7 +51,6 @@ function Todo(props: any) {
                         </button>
                         <button className="todo__button-add" onClick={handleDeleteButton}>Удалить выбранное</button>
                     </div>
-                    <button style={{marginLeft: "30px"}} className="todo__button-add">Перейти в архив</button>
                 </div>
             <TableHeader/>
                 <ul className="tasks">

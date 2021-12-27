@@ -125,7 +125,7 @@ function Task(props: any) {
                 <input type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <p style={{width: "100px", font: "inherit"}}>{props.category}</p>
+                    <p style={{width: "100px", font: "inherit", margin: "0"}}>{props.category}</p>
                     <p className="tasks__date">{props.date_create}</p>
                     <p className="tasks__date">{props.date_change}</p>
                     <p className="tasks__date">{props.date_deadline}</p>

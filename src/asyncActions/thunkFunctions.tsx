@@ -10,7 +10,7 @@ export const getTodo = () => {
         const userId = store.getState().auth.userId;
         axios.get(`http://localhost:3001/todo?user_id=${userId}`)
             .then(resp => {
-                console.log(resp.data, 'ТЕСТ асинхронного запроса из ТУДУ');
+                // console.log(resp.data, 'ТЕСТ асинхронного запроса из ТУДУ');
                 dispatch(getTodoAction({todo: resp.data}));
             })
             .catch(error =>
