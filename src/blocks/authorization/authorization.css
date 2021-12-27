@@ -7,11 +7,12 @@
     flex-direction: column;
     max-width: 250px;
     width: 100%;
-    margin: 120px auto auto;
+    margin: 120px auto 13px;
 }
 
 @media screen and (min-width: 880px) {
     .authorization {
         max-width: 380px;
+        margin-bottom: 15px;
     }
 }

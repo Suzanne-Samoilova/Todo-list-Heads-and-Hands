@@ -21,6 +21,13 @@
     padding: 0;
 }
 
+.authorization__button-save:disabled {
+    border: 1px solid #000;
+    background-color: transparent;
+    opacity: 40%;
+    pointer-events: none;
+}
+
 .authorization__button-save:hover {
     cursor: pointer;
     opacity: 0.8;
