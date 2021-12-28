@@ -1,4 +1,6 @@
 .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 150px 0;
 }

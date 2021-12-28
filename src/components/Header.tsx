@@ -26,25 +26,21 @@ function Header(props: any) {
 
     return (
         <div className="header">
-            <p style={{display: "flex", flexDirection: "row", margin: "10px 150px 5px", justifyContent: "flex-end", opacity: "80%"}}>Email</p>
-
-            <div className="todo__menu">
-                <div>
-                    <button className="todo__button-add"
-                            onClick={handleGoTodo}
-                    >Список задач</button>
-                    <button className="todo__button-add"
-                            onClick={handleGoArchive}
-                    >Архив</button>
-                </div>
-                <div>
-                    <button className="todo__button-add"
-                            onClick={handleGoProfile}
-                    >Профиль</button>
-                    <button className="todo__button-add"
-                            onClick={handleGoExit}
-                    >Выйти</button>
-                </div>
+            <div>
+                <button className="todo__button-add"
+                        onClick={handleGoTodo}
+                >Список задач</button>
+                <button className="todo__button-add"
+                        onClick={handleGoArchive}
+                >Архив</button>
+            </div>
+            <div>
+                <button className="todo__button-add"
+                        onClick={handleGoProfile}
+                >Профиль</button>
+                <button className="todo__button-add"
+                        onClick={handleGoExit}
+                >Выйти</button>
             </div>
         </div>
     )

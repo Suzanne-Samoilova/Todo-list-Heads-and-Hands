@@ -1,11 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {loginAction} from "../store/reducerAuth";
 import { push } from "connected-react-router";
-
-
-
 
 
 function Auth() {
@@ -19,67 +16,62 @@ function Auth() {
     };
 
     // для авторизации
-    // const [email, setEmail] = React.useState<string>('');
-    // const [password, setPassword] = React.useState<string>('');
+    const [email, setEmail] = React.useState<string>('');
+    const [password, setPassword] = React.useState<string>('');
 
-    const [buttonEnabled, setButtonEnabled] = React.useState<boolean>(false);
+    // статус кнопки сабмита
+    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
 
-    const [emailErrors, setEmailErrors] = React.useState<string[]>([]);
-    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([]);
+    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
+    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
 
-    const handleEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
-
-        let emailIsValid = true;
+    const handleEmail = function (e:React.ChangeEvent<HTMLInputElement>) {
 
         let emailForValidation = e.target.value;
-
-        let emailErr = [];
+        let errs = [];
 
         if (emailForValidation.length === 0) {
-            emailErr.push("Пароль не может быть пустым.")
-            emailIsValid = false;
+            errs.push("Email не может быть пустым.")
         }
-
 
         if (!validateEmail(emailForValidation)) {
-            console.log(validateEmail(emailForValidation), emailForValidation)
-            emailErr.push("Формат неверный.")
-            emailIsValid = false;
+            errs.push("Формат неверный.")
         }
 
-        setEmailErrors(emailErr)
-        console.log(!emailErrors && !passwordErrors)
-        setButtonEnabled(!emailErrors && !passwordErrors)
+        setEmailErrors(errs)
+        setEmail(emailForValidation)
+        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
+        console.log("handleEmail: perr = ", passwordErrors.length, " +++ ", "eerr = ", errs, " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs))
+    }
 
-        return emailIsValid
-    };
 
-    const handlePassword = (e:React.ChangeEvent<HTMLInputElement>) => {
-        let passwordIsValid = true;
+    const handlePassword = function (e:React.ChangeEvent<HTMLInputElement>) {
 
-        let passwordForValidation = e.target.value
-
-        let passwordErr = []
+        let passwordForValidation = e.target.value;
+        let errs = [];
 
         if (passwordForValidation.length === 0) {
-            passwordErr.push("Пароль не может быть пустым.")
-            passwordIsValid = false;
+            errs.push("Пароль не может быть пустым.")
         }
 
-        setPasswordErrors(passwordErr)
+        setPasswordErrors(errs)
+        setPassword(passwordForValidation)
+        setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
+        console.log("handlePassword: perr = ", errs, " +++ ", "eerr = ", emailErrors, " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs))
+    }
 
-        console.log(!emailErrors && !passwordErrors, emailErrors, passwordErrors, passwordErr)
-        setButtonEnabled(!emailErrors && !passwordErrors)
 
-        return passwordIsValid
-    };
+    // useEffect( () => {
+    //     setButtonDisabled(Boolean(emailErrors) || Boolean(passwordErrors))
+    //     console.log(Boolean(emailErrors) || Boolean(passwordErrors))
+    // }, [])
 
     // для стора
     const dispatch = useDispatch();
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        axios.get(`http://localhost:3001/users?email=${null}&password=${null}`)
+        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
@@ -96,8 +88,6 @@ function Auth() {
     }
 
 
-
-
     return (
         <div className="auth">
             <div className="authorization">
@@ -105,8 +95,6 @@ function Auth() {
                     Авторизация
                 </h2>
                 <form className="authorization__form" onSubmit={handleSubmit}>
-                    {/*</label> ???*/}
-                    {/*<label htmlFor=”email”>Email address</label>*/}
                     <p className="authorization__input-title">E-mail:</p>
                     <input className="authorization__form-input" id="email"
                            type="email"
@@ -120,7 +108,6 @@ function Auth() {
                     <p className="authorization__input-title">Пароль:</p>
                     <input className="authorization__form-input" id="password"
                            type="text"
-                           // type="password"
                            name="password"
                            placeholder="Введите пароль"
                            required
@@ -130,7 +117,7 @@ function Auth() {
 
                     <button className="authorization__button-save"
                             type="submit"
-                            disabled={!buttonEnabled}
+                            disabled={buttonDisabled}
                     >Войти</button>
                 </form>
 

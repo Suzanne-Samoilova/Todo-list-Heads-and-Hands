@@ -15,7 +15,6 @@
 @import url(./blocks/header/header.css);
 
 @import url(./blocks/todo/todo.css);
-@import url(./blocks/todo/__menu/todo__menu.css);
 @import url(./blocks/todo/__title/todo__title.css);
 @import url(./blocks/todo/__box-buttons/todo__box-buttons.css);
 @import url(./blocks/todo/__box-buttons-left/todo__box-buttons-left.css);
