@@ -6,6 +6,8 @@ import { push } from "connected-react-router";
 
 
 function Auth() {
+    // для стора
+    const dispatch = useDispatch();
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
@@ -26,7 +28,6 @@ function Auth() {
     const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
 
     const handleEmail = function (e:React.ChangeEvent<HTMLInputElement>) {
-
         let emailForValidation = e.target.value;
         let errs = [];
 
@@ -35,18 +36,18 @@ function Auth() {
         }
 
         if (!validateEmail(emailForValidation)) {
-            errs.push("Формат неверный.")
+            errs.push("Email введен неверно.")
         }
 
-        setEmailErrors(errs)
-        setEmail(emailForValidation)
+        setEmailErrors(errs);
+        setEmail(emailForValidation);
         setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
-        console.log("handleEmail: perr = ", passwordErrors.length, " +++ ", "eerr = ", errs, " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs))
+
+        console.log("handleEmail: pass err = ", passwordErrors.length, " +++ ", "err = ", errs,
+            " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs));
     }
 
-
     const handlePassword = function (e:React.ChangeEvent<HTMLInputElement>) {
-
         let passwordForValidation = e.target.value;
         let errs = [];
 
@@ -54,20 +55,16 @@ function Auth() {
             errs.push("Пароль не может быть пустым.")
         }
 
-        setPasswordErrors(errs)
-        setPassword(passwordForValidation)
+        setPasswordErrors(errs);
+        setPassword(passwordForValidation);
         setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
-        console.log("handlePassword: perr = ", errs, " +++ ", "eerr = ", emailErrors, " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs))
+
+        console.log("handlePassword: pass err = ", errs, " +++ ", "err = ", emailErrors,
+            " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs));
     }
 
 
-    // useEffect( () => {
-    //     setButtonDisabled(Boolean(emailErrors) || Boolean(passwordErrors))
-    //     console.log(Boolean(emailErrors) || Boolean(passwordErrors))
-    // }, [])
-
-    // для стора
-    const dispatch = useDispatch();
+    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -80,6 +77,9 @@ function Auth() {
                     dispatch(push(`/`))
                 } else {
                     console.log(resp, "Такого юзера нет!");
+                    let errAuth = [];
+                    errAuth.push("Email или пароль введены неправильно.")
+                    setErrorAuth(errAuth);
                 }
             })
             .catch(error =>
@@ -114,6 +114,8 @@ function Auth() {
                            onChange={handlePassword}
                     />
                     <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
+
+                    <span className="authorization__form-error" id="password-error">{errorAuth}</span>
 
                     <button className="authorization__button-save"
                             type="submit"

@@ -5,12 +5,15 @@ import {deleteMultipleTask, getTodo} from "../asyncActions/thunkFunctions";
 import TableHeader from "./TableHeader";
 import PopupNewTask from "./PopupNewTask";
 import Header from "./Header";
+import {decrementPageAction, incrementPageAction} from "../store/reducerTodo";
+import store from "../store/configureStore";
+import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
 
 function Todo(props: any) {
     const dispatch = useDispatch();
+    const getTodoList = (state: any) => state.todo.todo;
 
-    const getTodoList = (state: any) => state.todo.todo
     const todo = useSelector(getTodoList);
 
     // загрузить список тудушек и отрисовать
@@ -18,21 +21,32 @@ function Todo(props: any) {
         dispatch(getTodo());
     },[dispatch])
 
-    // Удалить выбранные таски
-    const handleDeleteButton = ()=> {
-        dispatch(deleteMultipleTask())
-    }
-
-    // открыть попап новый таск
+    // попап новый таск
     const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
 
-    // Добавить новый таск
+    // открыть попап новый таск
     function handleAddNewTask() {
         setIsAddNewTaskPopupOpen(true);
     }
 
     function handleClosePopupAddNewTask() {
         setIsAddNewTaskPopupOpen(false);
+    }
+
+    // Удалить выбранные таски
+    const handleDeleteButton = ()=> {
+        dispatch(deleteMultipleTask())
+    }
+
+    // для пагинации
+    function handleNextPage() {
+        dispatch(incrementPageAction());
+        dispatch(getTodo());
+    }
+
+    function handlePreviousPage() {
+        dispatch(decrementPageAction());
+        dispatch(getTodo());
     }
 
 
@@ -61,8 +75,14 @@ function Todo(props: any) {
                     ))}
                 </ul>
                 <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
-                    <button className="todo__button-left"/>
-                    <button className="todo__button-right"/>
+                    <button className="todo__button-left"
+                            onClick={handlePreviousPage}
+                            disabled={store.getState().todo.currentPage <= 1}
+                    />
+                    <button className="todo__button-right"
+                            onClick={handleNextPage}
+                            disabled={store.getState().todo.todo.length < LIMIT_PAGINATE_TODO_LIST}
+                    />
                 </div>
             </section>
 

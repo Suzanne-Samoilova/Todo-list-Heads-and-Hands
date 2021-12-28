@@ -74,7 +74,7 @@
       "date_deadline": "15.12.2021",
       "user_id": 1,
       "id": 38,
-      "status": true
+      "status": false
     },
     {
       "category": "Здоровье",
@@ -84,7 +84,8 @@
       "date_change": "27.12.2021",
       "date_deadline": "05.01.2022",
       "user_id": 1,
-      "id": 41
+      "id": 41,
+      "status": true
     },
     {
       "category": "Покупки",
@@ -96,6 +97,46 @@
       "user_id": 1,
       "id": 42,
       "status": false
+    },
+    {
+      "category": "Покупки",
+      "name": "ssssssssssssssssss",
+      "description": "ssssssssssssss",
+      "date_create": "28.12.2021",
+      "date_change": "28.12.2021",
+      "date_deadline": "30.12.2021",
+      "user_id": 1,
+      "id": 43
+    },
+    {
+      "category": "Здоровье",
+      "name": "sssssssssssssssssss",
+      "description": "sssssssssssssss",
+      "date_create": "28.12.2021",
+      "date_change": "28.12.2021",
+      "date_deadline": "29.12.2021",
+      "user_id": 1,
+      "id": 44
+    },
+    {
+      "category": "Здоровье",
+      "name": "1111111111111111111",
+      "description": "111111111111111",
+      "date_create": "28.12.2021",
+      "date_change": "28.12.2021",
+      "date_deadline": "09.01.2022",
+      "user_id": 1,
+      "id": 45
+    },
+    {
+      "category": "Напоминания",
+      "name": "dddddd",
+      "description": "аааааааааааааааа",
+      "date_create": "28.12.2021",
+      "date_change": "28.12.2021",
+      "date_deadline": "23.12.2021",
+      "user_id": 1,
+      "id": 46
     }
   ]
 }

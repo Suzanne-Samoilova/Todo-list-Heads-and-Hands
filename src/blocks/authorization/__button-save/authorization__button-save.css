@@ -23,8 +23,8 @@
 
 .authorization__button-save:disabled {
     border: 1px solid #000;
-    background-color: transparent;
-    opacity: 40%;
+    background-color: #c0c0c0;
+    opacity: 70%;
     pointer-events: none;
 }
 

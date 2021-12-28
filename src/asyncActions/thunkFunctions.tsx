@@ -1,6 +1,7 @@
 import axios from "axios";
 import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import store from "../store/configureStore";
+import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
 
 // запрос из Todo
@@ -8,7 +9,9 @@ import store from "../store/configureStore";
 export const getTodo = () => {
     return function (dispatch: any) {
         const userId = store.getState().auth.userId;
-        axios.get(`http://localhost:3001/todo?user_id=${userId}`)
+        const currentPage = store.getState().todo.currentPage;
+
+        axios.get(`http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}`)
             .then(resp => {
                 // console.log(resp.data, 'ТЕСТ асинхронного запроса из ТУДУ');
                 dispatch(getTodoAction({todo: resp.data}));
@@ -17,7 +20,6 @@ export const getTodo = () => {
                 console.log('error:', error))
     }
 }
-
 
 // удаление нескольких Tasks
 // асинхронная функция
