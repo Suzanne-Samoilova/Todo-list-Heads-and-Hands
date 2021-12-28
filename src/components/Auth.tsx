@@ -4,17 +4,74 @@ import {useDispatch} from "react-redux";
 import {loginAction} from "../store/reducerAuth";
 import { push } from "connected-react-router";
 
+
+
+
+
 function Auth() {
+
+    const validateEmail = (rawEmail: any) => {
+        return String(rawEmail)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     // для авторизации
-    const [email, setEmail] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
+    // const [email, setEmail] = React.useState<string>('');
+    // const [password, setPassword] = React.useState<string>('');
+
+    const [buttonEnabled, setButtonEnabled] = React.useState<boolean>(false);
+
+    const [emailErrors, setEmailErrors] = React.useState<string[]>([]);
+    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([]);
 
     const handleEmail = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
+
+        let emailIsValid = true;
+
+        let emailForValidation = e.target.value;
+
+        let emailErr = [];
+
+        if (emailForValidation.length === 0) {
+            emailErr.push("Пароль не может быть пустым.")
+            emailIsValid = false;
+        }
+
+
+        if (!validateEmail(emailForValidation)) {
+            console.log(validateEmail(emailForValidation), emailForValidation)
+            emailErr.push("Формат неверный.")
+            emailIsValid = false;
+        }
+
+        setEmailErrors(emailErr)
+        console.log(!emailErrors && !passwordErrors)
+        setButtonEnabled(!emailErrors && !passwordErrors)
+
+        return emailIsValid
     };
 
     const handlePassword = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
+        let passwordIsValid = true;
+
+        let passwordForValidation = e.target.value
+
+        let passwordErr = []
+
+        if (passwordForValidation.length === 0) {
+            passwordErr.push("Пароль не может быть пустым.")
+            passwordIsValid = false;
+        }
+
+        setPasswordErrors(passwordErr)
+
+        console.log(!emailErrors && !passwordErrors, emailErrors, passwordErrors, passwordErr)
+        setButtonEnabled(!emailErrors && !passwordErrors)
+
+        return passwordIsValid
     };
 
     // для стора
@@ -22,7 +79,7 @@ function Auth() {
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
+        axios.get(`http://localhost:3001/users?email=${null}&password=${null}`)
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
@@ -37,6 +94,8 @@ function Auth() {
                 console.log('error:', error)
             );
     }
+
+
 
 
     return (
@@ -55,9 +114,8 @@ function Auth() {
                            placeholder="Введите адрес эл.почты"
                            required
                            onChange={handleEmail}
-                           value={email}
                     />
-                    <span className="authorization__form-error" id="email-error">Введите адрес эл.почты.</span>
+                    <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
 
                     <p className="authorization__input-title">Пароль:</p>
                     <input className="authorization__form-input" id="password"
@@ -67,13 +125,12 @@ function Auth() {
                            placeholder="Введите пароль"
                            required
                            onChange={handlePassword}
-                           value={password}
                     />
-                    <span className="authorization__form-error" id="password-error">Введите пароль.</span>
+                    <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
 
                     <button className="authorization__button-save"
                             type="submit"
-                            // disabled
+                            disabled={!buttonEnabled}
                     >Войти</button>
                 </form>
 
