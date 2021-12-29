@@ -1,7 +1,8 @@
 const defaultState = {
     todo: [],
     selectedTasks: [],
-    currentPage: 1
+    currentPage: 1,
+    statusTask: '',
 }
 
 const GET_TODO = "GET_TODO";
@@ -11,6 +12,10 @@ const CLEAR_SELECTED_TASKS = "CLEAR_SELECTED_TASKS";
 
 const INCREMENT_PAGE = "INCREMENT_PAGE";
 const DECREMENT_PAGE = "DECREMENT_PAGE";
+
+const FILTER_STATUS = "FILTER_STATUS";
+// const FILTER_STATUS_TRUE = "FILTER_STATUS_TRUE";
+// const FILTER_STATUS_FALSE = "FILTER_STATUS_FALSE";
 
 export const reducerTodo = (state:any = defaultState, action: any) => {
 
@@ -34,7 +39,6 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
             }
 
         case GET_TODO:
-            // console.log(action.payload.todo, 'todo ПОЛУЧЕН')
             return {...state,
                 todo: action.payload.todo
             }
@@ -50,15 +54,26 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
                 currentPage: state.currentPage-1
             }
 
+        case FILTER_STATUS:
+            return {...state,
+                statusTask: action.payload.status
+            }
+
+
+
         default:
             return state
     }
 }
 
-// тест thank
+
 export const getTodoAction = (payload: any) => ({type: GET_TODO, payload});
 export const selectTaskAction = (payload: any) => ({type: SELECT_TASK, payload});
 export const unselectTaskAction = (payload: any) => ({type: UNSELECT_TASK, payload});
 export const clearSelectedTasksAction = () => ({type: CLEAR_SELECTED_TASKS});
+
 export const incrementPageAction = () => ({type: INCREMENT_PAGE});
 export const decrementPageAction = () => ({type: DECREMENT_PAGE});
+
+export const filterStatusTaskAction = (payload: any) => ({type: FILTER_STATUS, payload});
+

@@ -122,7 +122,7 @@ function Task(props: any) {
     return (
         <>
             <li className={props.status ? "tasks__item_completed" : "tasks__item"}>
-                <input type="checkbox" onClick={handleSelect}/>
+                <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                     <p style={{width: "100px", font: "inherit", margin: "0"}}>{props.category}</p>
@@ -130,7 +130,7 @@ function Task(props: any) {
                     <p className="tasks__date">{props.date_change}</p>
                     <p className="tasks__date">{props.date_deadline}</p>
                 </div>
-                <div style={{width: "360px", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                <div style={{width: "370px", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <button className="tasks__button-delete"
                             onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
                     <button className="tasks__button-archive"
@@ -195,12 +195,10 @@ function Task(props: any) {
                        value={description}
                 />
                 <p className="popup__task-name">Крайний срок исполнения:</p>
-                <DatePicker onChange={handleChangeDateDeadline} format={dateFormat} locale={locale} value={moment(dateDeadline, dateFormat)}/>
-                {/*<input className="popup__input-text"*/}
-                {/*       type="date"*/}
-                {/*       onChange={handleChangeDateDeadline}*/}
-                {/*       value={dateDeadline}*/}
-                {/*/>*/}
+                <DatePicker onChange={handleChangeDateDeadline}
+                            format={dateFormat}
+                            locale={locale}
+                            value={moment(dateDeadline, dateFormat)}/>
             </PopupWithForm>
         </>
     );

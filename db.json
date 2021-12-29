@@ -23,16 +23,6 @@
       "id": 14
     },
     {
-      "category": "Покупки",
-      "name": "НОВЫЙ",
-      "description": "ОПИСАНИЕ",
-      "date_create": "23.12.2021",
-      "date_change": "26.12.2021",
-      "date_deadline": "25.12.2021",
-      "user_id": 2,
-      "id": 16
-    },
-    {
       "category": "",
       "name": "dfgdgdfgdfgdfg",
       "description": "аааааааааааааааа",
@@ -52,7 +42,7 @@
       "date_deadline": "02.01.2022",
       "user_id": 1,
       "id": 25,
-      "status": true
+      "status": false
     },
     {
       "category": "Здоровье",
@@ -74,7 +64,7 @@
       "date_deadline": "15.12.2021",
       "user_id": 1,
       "id": 38,
-      "status": false
+      "status": true
     },
     {
       "category": "Здоровье",
@@ -109,34 +99,24 @@
       "id": 43
     },
     {
-      "category": "Здоровье",
-      "name": "sssssssssssssssssss",
-      "description": "sssssssssssssss",
-      "date_create": "28.12.2021",
-      "date_change": "28.12.2021",
-      "date_deadline": "29.12.2021",
-      "user_id": 1,
-      "id": 44
-    },
-    {
-      "category": "Здоровье",
-      "name": "1111111111111111111",
-      "description": "111111111111111",
-      "date_create": "28.12.2021",
-      "date_change": "28.12.2021",
-      "date_deadline": "09.01.2022",
-      "user_id": 1,
-      "id": 45
-    },
-    {
       "category": "Напоминания",
-      "name": "dddddd",
-      "description": "аааааааааааааааа",
+      "name": "НОВЫЙ",
+      "description": "ОПИСАНИЕ",
       "date_create": "28.12.2021",
       "date_change": "28.12.2021",
-      "date_deadline": "23.12.2021",
+      "date_deadline": "21.01.2022",
+      "user_id": 2,
+      "id": 47
+    },
+    {
+      "category": "Книги",
+      "name": "Пехов \"Искры и ветер\"",
+      "description": "найти весь цикл",
+      "date_create": "29.12.2021",
+      "date_change": "29.12.2021",
+      "date_deadline": "31.01.2022",
       "user_id": 1,
-      "id": 46
+      "id": 48
     }
   ]
 }

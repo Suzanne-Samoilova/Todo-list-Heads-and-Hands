@@ -1,1 +1,1 @@
-export const LIMIT_PAGINATE_TODO_LIST = 2;
+export const LIMIT_PAGINATE_TODO_LIST = 5;

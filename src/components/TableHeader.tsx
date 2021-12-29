@@ -8,7 +8,7 @@ function TableHeader() {
 
             <div style={{display: "flex", flexDirection: "row", marginRight: "auto", marginLeft: "auto",
                 alignItems: "center"}}>
-                <li style={{paddingLeft: "16px"}}>Название:</li>
+                <li style={{paddingLeft: "26px"}}>Название:</li>
             </div>
 
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center"}}>

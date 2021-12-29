@@ -27,6 +27,8 @@ function Auth() {
     const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
     const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
 
+    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
+
     const handleEmail = function (e:React.ChangeEvent<HTMLInputElement>) {
         let emailForValidation = e.target.value;
         let errs = [];
@@ -47,6 +49,7 @@ function Auth() {
             " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs));
     }
 
+
     const handlePassword = function (e:React.ChangeEvent<HTMLInputElement>) {
         let passwordForValidation = e.target.value;
         let errs = [];
@@ -63,8 +66,6 @@ function Auth() {
             " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs));
     }
 
-
-    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();

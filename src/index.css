@@ -14,16 +14,21 @@
 
 @import url(./blocks/header/header.css);
 
+@import url(./blocks/table-filters/table-filters.css);
+@import url(./blocks/table-filters/__input-name/table-filters__input-name.css);
+@import url(./blocks/table-filters/__sorting/table-filters__sorting.css);
+
 @import url(./blocks/todo/todo.css);
 @import url(./blocks/todo/__title/todo__title.css);
 @import url(./blocks/todo/__box-buttons/todo__box-buttons.css);
 @import url(./blocks/todo/__box-buttons-left/todo__box-buttons-left.css);
 @import url(./blocks/todo/__button-add/todo__button-add.css);
-@import url(blocks/todo/__button-left/todo__button-left.css);
-@import url(blocks/todo/__button-right/todo__button-right.css);
+@import url(./blocks/todo/__button-left/todo__button-left.css);
+@import url(./blocks/todo/__button-right/todo__button-right.css);
 
 @import url(./blocks/tasks/tasks.css);
 @import url(./blocks/tasks/__item/tasks__item.css);
+@import url(./blocks/tasks/__checkbox/tasks__checkbox.css);
 @import url(./blocks/tasks/__item-title/tasks__item-title.css);
 @import url(./blocks/tasks/__date/tasks__date.css);
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);

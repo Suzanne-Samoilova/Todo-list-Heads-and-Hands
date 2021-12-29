@@ -1,5 +1,5 @@
 import axios from "axios";
-import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
+import {clearSelectedTasksAction, filterStatusTaskAction, getTodoAction} from "../store/reducerTodo";
 import store from "../store/configureStore";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
@@ -32,5 +32,23 @@ export const deleteMultipleTask = () => {
             dispatch(clearSelectedTasksAction());
             dispatch(getTodo());
         })
+    }
+}
+
+// фильтр тасков по статусу
+export const filterStatus = () => {
+    return function (dispatch: any) {
+        const userId = store.getState().auth.userId;
+        const statusTask = store.getState().todo.statusTask;
+        // dispatch(filterStatusTaskAction({statusTask: true}));
+
+        axios.get(`http://localhost:3001/todo?user_id=${userId}&status=${statusTask}&_limit=${LIMIT_PAGINATE_TODO_LIST}`)
+            .then(resp => {
+                console.log(resp.data, 'ТЕСТ статуса');
+
+                // dispatch(filterStatusTaskAction({status: resp.data.status}));
+            })
+            .catch(error =>
+                console.log('error:', error))
     }
 }
