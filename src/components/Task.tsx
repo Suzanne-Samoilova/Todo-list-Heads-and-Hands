@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {getTodo} from "../asyncActions/thunkFunctions";
+import {changeStatusArchive, filtersTasks} from "../asyncActions/thunkFunctions";
 import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
 import PopupWithForm from "./PopupWithForm";
 import axios from "axios";
@@ -14,20 +14,26 @@ import moment from "moment";
 function Task(props: any) {
     const dispatch = useDispatch();
 
-    // для смены статуса Выполнено
-    const handleChange = () => {
-        // отослать статус таски
-        axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": !props.status})
-            .then(resp => {
-                dispatch(getTodo());
-            })
-            .catch(error =>
-                console.log('error:', error))
+    // Дата изменения
+    const dateNow = getDateNowByDDmmyyyy();
 
-    }
-
+    const [category, setCategory] = React.useState(props.category);
+    const [name, setName] = React.useState(props.name);
+    const [description, setDescription] = React.useState(props.description);
+    const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
+    // попап Изменить таск
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
     // попап Хотите удалить?
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
+
+    // попап Изменить таск
+    function handleOpenPopupChangeTask() {
+        setIsChangeTaskPopupOpen(true);
+    }
+
+    function handleClosePopupChangeTask() {
+        setIsChangeTaskPopupOpen(false);
+    }
 
     // попап Хотите удалить?
     function handleOpenPopupDeleteTask() {
@@ -37,67 +43,6 @@ function Task(props: any) {
     function handleClosePopupDeleteTask() {
         setIsOpenPopupDeleteTask(false);
     }
-
-    // сабмит попапа Удалить таск
-    function handleSubmitDeleteTask(e: any) {
-        e.preventDefault();
-        axios.delete(`http://localhost:3001/todo/${props.id}`)
-            .then(resp => {
-                dispatch(getTodo());
-            })
-            .catch(error =>
-                console.log('error:', error));
-        console.log('SUBMIT Удалить сработал!');
-        handleClosePopupDeleteTask();
-    }
-
-    const handleSelect = (event: any) => {
-        const checked = event.target.checked;
-        const taskId = props.id;
-        // отослать статус таски
-        if (checked) {
-            dispatch(selectTaskAction({id: taskId}))
-        } else {
-            dispatch(unselectTaskAction({id: taskId}))
-        }
-    }
-
-    // попап Изменить таск
-    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-
-    // попап Изменить таск
-    function handleOpenPopupChangeTask() {
-        setIsChangeTaskPopupOpen(true);
-    }
-
-    // закрыть попап
-    function handleClosePopupChangeTask() {
-        setIsChangeTaskPopupOpen(false);
-    }
-
-    // сабмит попапа Изменить таск
-    function handleSubmitChangeTask(e: any) {
-        e.preventDefault();
-        axios.patch(`http://localhost:3001/todo/${props.id}`, {
-                "category": category,
-                "name": name,
-                "description": description,
-                "date_change": dateNow,
-                "date_deadline": dateDeadline
-            })
-            .then(resp => {
-                dispatch(getTodo());
-            })
-            .catch(error =>
-                console.log('error:', error));
-        console.log('SUBMIT Изменить сработал!');
-        handleClosePopupChangeTask();
-    }
-
-    const [category, setCategory] = React.useState(props.category);
-    const [name, setName] = React.useState(props.name);
-    const [description, setDescription] = React.useState(props.description);
-    const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
 
     function handleChangeCategory(e: any) {
         setCategory(e.target.value);
@@ -111,17 +56,109 @@ function Task(props: any) {
         setDescription(e.target.value);
     }
 
-    // Дата изменения
-    const dateNow = getDateNowByDDmmyyyy();
-
     function handleChangeDateDeadline(date: any, dateString: string) {
         setDateDeadline(dateString);
     }
 
+    // для смены статуса Выполнено
+    const handleChange = () => {
+        // отослать статус таски
+        axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": !props.status})
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error))
+    }
+
+    const handleSelect = (event: any) => {
+        const checked = event.target.checked;
+        const taskId = props.id;
+        // отослать статус таски
+        if (checked) {
+            dispatch(selectTaskAction({id: taskId}))
+        } else {
+            dispatch(unselectTaskAction({id: taskId}))
+        }
+    }
+
+    // сабмит попапа Изменить таск
+    function handleSubmitChangeTask(e: any) {
+        e.preventDefault();
+        axios.patch(`http://localhost:3001/todo/${props.id}`, {
+                "category": category,
+                "name": name,
+                "description": description,
+                "date_change": dateNow,
+                "date_deadline": dateDeadline
+            })
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('SUBMIT Изменить сработал!');
+        handleClosePopupChangeTask();
+    }
+
+    // сабмит попапа Удалить таск
+    function handleSubmitDeleteTask(e: any) {
+        e.preventDefault();
+        axios.delete(`http://localhost:3001/todo/${props.id}`)
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('SUBMIT Удалить сработал!');
+        handleClosePopupDeleteTask();
+    }
+
+    function handleArchiveTask() {
+        const id = props.id;
+        console.log('сработала функция по клику', id);
+        dispatch(changeStatusArchive(id, true));
+    }
+
+
+    function taskClassNameSelector() {
+        // 1 мин = 60000 millisecond
+        // 1 час = 60000 * 60 = 3 600 000
+        // 1 день = 24 * 3600000 = 86 400 000
+
+        let deadlineIsNear = () => {
+            const msPerDay = 86400000;
+
+            let [dd, mm, yyyy] = dateDeadline.split(".").map((ss: string) => Number(ss));
+
+            console.log(dateDeadline.split("."), 'СПЛИТ');
+            console.log(dateDeadline.split(".").map((ss: string) => Number(ss)), 'МАР НАМБЕР');
+
+            const criticalDate = new Date(yyyy, mm, dd).getTime();
+            console.log(criticalDate, 'criticalDate');
+
+            const nowDate = Date.now();
+            console.log(nowDate, 'СЕЙЧАС-ДАТА');
+
+            const timeDelta = criticalDate - nowDate;
+
+            console.log(timeDelta, 'criticalDate - nowDate');
+            console.log(timeDelta % msPerDay, 'ОСТАТОК ОТ ДЕЛЕНИЯ');
+            console.log(Math.floor(timeDelta / msPerDay), 'Math.floor(timeDelta / msPerDay)');
+
+            return (timeDelta % msPerDay) <= 3;
+        }
+
+        let className =  props.status ? "tasks__item_completed" : "tasks__item"
+
+        className += deadlineIsNear() ? " tasks__item_red": ""
+        // className += " tasks__item_red"
+        return className
+    }
 
     return (
         <>
-            <li className={props.status ? "tasks__item_completed" : "tasks__item"}>
+            <li className={taskClassNameSelector()}>
                 <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -137,7 +174,8 @@ function Task(props: any) {
                             onClick={handleOpenPopupChangeTask}>Изменить</button>
                     <button className="tasks__button-archive"
                             onClick={handleOpenPopupDeleteTask}>Удалить</button>
-                    <button className="tasks__button-archive">Отложить</button>
+                    <button className="tasks__button-archive"
+                            onClick={handleArchiveTask}>Отложить</button>
                 </div>
             </li>
 
@@ -152,8 +190,8 @@ function Task(props: any) {
                 <button className=""
                         type="button"
                         aria-label="Отмена"
-                        onClick={handleClosePopupDeleteTask}
-                >Нет</button>
+                        onClick={handleClosePopupDeleteTask}>Нет
+                </button>
             </PopupWithForm>
 
             {/*попап Изменить таск*/}

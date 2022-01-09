@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
-import {deleteMultipleTask, getTodo} from "../asyncActions/thunkFunctions";
+import {deleteMultipleTask, filtersTasks} from "../asyncActions/thunkFunctions";
 import TableHeader from "./TableHeader";
 import PopupNewTask from "./PopupNewTask";
 import Header from "./Header";
@@ -11,7 +11,7 @@ import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 import TableFilters from "./TableFilters";
 
 
-function Todo(props: any) {
+function Todo() {
     const dispatch = useDispatch();
     const getTodoList = (state: any) => state.todo.todo;
 
@@ -19,7 +19,8 @@ function Todo(props: any) {
 
     // загрузить список тудушек и отрисовать
     useEffect(()=> {
-        dispatch(getTodo());
+        dispatch(filtersTasks());
+        // dispatch(getTodo());
     },[dispatch])
 
     // попап новый таск
@@ -37,18 +38,18 @@ function Todo(props: any) {
     // Удалить выбранные таски
     const handleDeleteButton = ()=> {
         dispatch(deleteMultipleTask());
-        dispatch(getTodo());
+        dispatch(filtersTasks());
     }
 
     // для пагинации
     function handleNextPage() {
         dispatch(incrementPageAction());
-        dispatch(getTodo());
+        dispatch(filtersTasks());
     }
 
     function handlePreviousPage() {
         dispatch(decrementPageAction());
-        dispatch(getTodo());
+        dispatch(filtersTasks());
     }
 
 
@@ -79,26 +80,24 @@ function Todo(props: any) {
             <ul className="tasks">
                 {todo.map((todoItem: any) => (
                     <Task key={todoItem.id}
-                        {...todoItem}
-                    />
+                        {...todoItem}/>
                 ))}
             </ul>
+
             <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
                 <button className="todo__button-left"
                         onClick={handlePreviousPage}
-                        disabled={store.getState().todo.currentPage <= 1}
-                />
+                        disabled={store.getState().todo.currentPage <= 1}/>
+
                 <button className="todo__button-right"
                         onClick={handleNextPage}
-                        disabled={store.getState().todo.todo.length < LIMIT_PAGINATE_TODO_LIST}
-                />
+                        disabled={store.getState().todo.todo.length < LIMIT_PAGINATE_TODO_LIST}/>
             </div>
             </section>
 
             {isAddNewTaskPopupOpen && <PopupNewTask
                 isOpen={isAddNewTaskPopupOpen}
-                onClose={handleClosePopupAddNewTask}
-            />}
+                onClose={handleClosePopupAddNewTask}/>}
         </>
     );
 }

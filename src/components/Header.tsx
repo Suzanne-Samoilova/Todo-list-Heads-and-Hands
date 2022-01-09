@@ -28,19 +28,15 @@ function Header(props: any) {
         <div className="header">
             <div>
                 <button className="todo__button-add"
-                        onClick={handleGoTodo}
-                >Список задач</button>
+                        onClick={handleGoTodo}>Список задач</button>
                 <button className="todo__button-add"
-                        onClick={handleGoArchive}
-                >Архив</button>
+                        onClick={handleGoArchive}>Архив</button>
             </div>
             <div>
                 <button className="todo__button-add"
-                        onClick={handleGoProfile}
-                >Профиль</button>
+                        onClick={handleGoProfile}>Профиль</button>
                 <button className="todo__button-add"
-                        onClick={handleGoExit}
-                >Выйти</button>
+                        onClick={handleGoExit}>Выйти</button>
             </div>
         </div>
     )

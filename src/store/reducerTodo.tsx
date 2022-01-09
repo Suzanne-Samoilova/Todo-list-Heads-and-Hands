@@ -2,7 +2,11 @@ const defaultState = {
     todo: [],
     selectedTasks: [],
     currentPage: 1,
-    statusTask: '',
+
+    nameTask: null,
+    sortNameTask: null,
+    statusTask: null,
+    categoryTask: null
 }
 
 const GET_TODO = "GET_TODO";
@@ -13,15 +17,15 @@ const CLEAR_SELECTED_TASKS = "CLEAR_SELECTED_TASKS";
 const INCREMENT_PAGE = "INCREMENT_PAGE";
 const DECREMENT_PAGE = "DECREMENT_PAGE";
 
+const FILTER_NAME = "FILTER_NAME";
+const SORTING_NAME = "SORTING_NAME";
+const FILTER_CATEGORY = "FILTER_CATEGORY";
 const FILTER_STATUS = "FILTER_STATUS";
-// const FILTER_STATUS_TRUE = "FILTER_STATUS_TRUE";
-// const FILTER_STATUS_FALSE = "FILTER_STATUS_FALSE";
 
 export const reducerTodo = (state:any = defaultState, action: any) => {
-
     switch (action.type) {
+        // нажал галочку одной таски
         case SELECT_TASK:
-            // нажал галочку одной таски
             return {...state,
                 selectedTasks: [...state.selectedTasks, action.payload.id]
             }
@@ -31,8 +35,7 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
                 selectedTasks: []
             }
 
-            // отжал галочку
-            // это норм, потому что не храним на сервере
+        // отжал галочку одной таски (это норм, потому что не храним на сервере)
         case UNSELECT_TASK:
             return {...state,
                 selectedTasks: state.selectedTasks.filter((id: number) => action.payload.id !== id)
@@ -42,7 +45,6 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
             return {...state,
                 todo: action.payload.todo
             }
-
 
         case INCREMENT_PAGE:
             return {...state,
@@ -54,18 +56,30 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
                 currentPage: state.currentPage-1
             }
 
-        case FILTER_STATUS:
+        case FILTER_NAME:
             return {...state,
-                statusTask: action.payload.status
+                nameTask: action.payload.nameTask
             }
 
+        case SORTING_NAME:
+            return {...state,
+                sortNameTask: action.payload.sortNameTask
+            }
 
+        case FILTER_CATEGORY:
+            return {...state,
+                categoryTask: action.payload.categoryTask
+            }
+
+        case FILTER_STATUS:
+            return {...state,
+                statusTask: action.payload.statusTask
+            }
 
         default:
             return state
     }
 }
-
 
 export const getTodoAction = (payload: any) => ({type: GET_TODO, payload});
 export const selectTaskAction = (payload: any) => ({type: SELECT_TASK, payload});
@@ -75,5 +89,7 @@ export const clearSelectedTasksAction = () => ({type: CLEAR_SELECTED_TASKS});
 export const incrementPageAction = () => ({type: INCREMENT_PAGE});
 export const decrementPageAction = () => ({type: DECREMENT_PAGE});
 
+export const filterNameTaskAction = (payload: any) => ({type: FILTER_NAME, payload});
+export const sortingNameTaskAction = (payload: any) => ({type: SORTING_NAME, payload});
+export const filterCategoryTaskAction = (payload: any) => ({type: FILTER_CATEGORY, payload});
 export const filterStatusTaskAction = (payload: any) => ({type: FILTER_STATUS, payload});
-

@@ -3,7 +3,7 @@ import React from "react";
 import store from "../store/configureStore";
 import {dateFormat, getDateNowByDDmmyyyy} from "../utils/DateHelper";
 import axios from "axios";
-import {getTodo} from "../asyncActions/thunkFunctions";
+import {filtersTasks} from "../asyncActions/thunkFunctions";
 import {useDispatch} from "react-redux";
 import PopupWithForm from "./PopupWithForm";
 import { DatePicker } from 'antd';
@@ -14,7 +14,7 @@ import locale from 'antd/es/date-picker/locale/ru_RU'
 function PopupNewTask(props: any) {
     const dispatch = useDispatch();
 
-    const [category, setCategory] = React.useState("");
+    const [category, setCategory] = React.useState("Общая заметка");
     const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
     const [date_deadline, setDate_deadline] = React.useState("");
@@ -48,11 +48,13 @@ function PopupNewTask(props: any) {
                 "date_create": dateNow,
                 "date_change": dateNow,
                 "date_deadline": date_deadline,
-                "user_id": userId
+                "user_id": userId,
+                "status": false,
+                "archive": false
             })
             .then(resp => {
                 console.log('Ответ после POST-запроса', resp)
-                dispatch(getTodo());
+                dispatch(filtersTasks());
             })
             .catch(error =>
                 console.log('error:', error));

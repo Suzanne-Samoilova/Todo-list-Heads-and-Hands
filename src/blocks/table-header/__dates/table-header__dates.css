@@ -1,0 +1,9 @@
+.table-header__dates {
+    width: 93px;
+    margin: 0 5px;
+}
+
+.table-header__dates:last-child {
+    width: 453px;
+    text-align: left;
+}

@@ -3,22 +3,18 @@ import React from "react";
 function TableHeader() {
 
     return (
-        <ul style={{backgroundColor: "#c8c9cb",  display: "flex", flexDirection: "row", minHeight: "30px", listStyleType: "none",
-            padding: 0, margin: "0 150px 10px", fontStyle: "inherit", fontSize: "14px", borderRadius: "4px", alignItems: "center"}}>
+        <ul className="table-header">
 
-            <div style={{display: "flex", flexDirection: "row", marginRight: "auto", marginLeft: "auto",
-                alignItems: "center"}}>
-                <li style={{paddingLeft: "26px"}}>Название:</li>
+            <div className="table-header__box-name">
+                <li className="table-header__name">Название:</li>
             </div>
 
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center"}}>
-                <li style={{width: "100px", textAlign: "left"}}>Категория:</li>
-                <li style={{width: "93px", margin: "0 5px"}}>Дата создания:</li>
-                <li style={{width: "93px", margin: "0 5px"}}>Дата последнего изменения:</li>
-                <li style={{width: "93px", margin: "0 5px"}}>Крайний срок:</li>
+            <div className="table-header__box-about">
+                <li className="table-header__category">Категория:</li>
+                <li className="table-header__dates">Дата создания:</li>
+                <li className="table-header__dates">Дата последнего изменения:</li>
+                <li className="table-header__dates">Крайний срок:</li>
             </div>
-
-            <li style={{width: "360px", height: "10px"}}/>
         </ul>
     );
 }

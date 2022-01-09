@@ -1,0 +1,7 @@
+.table-header__box-name {
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+}

@@ -1,4 +1,4 @@
-export const  listCategoriesFilter = [
+export const  listCategoriesForFilter = [
     {
         id: 1,
         name: 'Любая категория'

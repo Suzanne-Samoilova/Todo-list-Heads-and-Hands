@@ -1,5 +1,5 @@
 import axios from "axios";
-import {clearSelectedTasksAction, filterStatusTaskAction, getTodoAction} from "../store/reducerTodo";
+import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import store from "../store/configureStore";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
@@ -30,23 +30,58 @@ export const deleteMultipleTask = () => {
         )
         Promise.all(promises).then(resp => {
             dispatch(clearSelectedTasksAction());
-            dispatch(getTodo());
+            dispatch(filtersTasks());
         })
     }
 }
 
-// фильтр тасков по статусу
-export const filterStatus = () => {
-    return function (dispatch: any) {
+// фильтр туду
+export const filtersTasks = () => {
         const userId = store.getState().auth.userId;
+        const currentPage = store.getState().todo.currentPage;
+
+        const nameTask = store.getState().todo.nameTask;
+        const sortNameTask = store.getState().todo.sortNameTask;
+        const categoryTask = store.getState().todo.categoryTask;
         const statusTask = store.getState().todo.statusTask;
-        // dispatch(filterStatusTaskAction({statusTask: true}));
+        // в отображении тасков туду фильтр архива всегда false
+        const statusArchive = false;
 
-        axios.get(`http://localhost:3001/todo?user_id=${userId}&status=${statusTask}&_limit=${LIMIT_PAGINATE_TODO_LIST}`)
+        let url = `http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
+
+        if (nameTask !== null) url = url + `&name=${nameTask}`;
+
+        // по возрастанию
+        if (sortNameTask === 'ascending') {
+            url = url + `&_sort=name&_order=asc`;
+        // по убыванию
+        } else if (sortNameTask === 'descending') {
+            url = url + `&_sort=name&_order=desc`;
+        }
+
+        if (categoryTask !== null) url = url + `&category=${categoryTask}`;
+
+        if (statusTask !== null) url = url + `&status=${statusTask}`;
+
+    return function (dispatch: any) {
+        axios.get(url)
             .then(resp => {
-                console.log(resp.data, 'ТЕСТ статуса');
+                console.log(resp.data, 'ТЕСТ фильтра');
+                dispatch(getTodoAction({todo: resp.data}));
+            })
+            .catch(error =>
+                console.log('error:', error))
+    }
+}
 
-                // dispatch(filterStatusTaskAction({status: resp.data.status}));
+export const changeStatusArchive = (id: any, statusArchive: boolean) => {
+        console.log("id:", id, "statusArchive:", statusArchive);
+
+    return function (dispatch: any) {
+        axios.patch(`http://localhost:3001/todo/${id}`, {"archive": statusArchive})
+            .then(resp => {
+                console.log('сработал запрос архив');
+                dispatch(filtersTasks());
             })
             .catch(error =>
                 console.log('error:', error))

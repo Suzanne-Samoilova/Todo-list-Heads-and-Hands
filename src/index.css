@@ -18,6 +18,16 @@
 @import url(./blocks/table-filters/__input-name/table-filters__input-name.css);
 @import url(./blocks/table-filters/__sorting/table-filters__sorting.css);
 
+@import url(./blocks/table-header/table-header.css);
+@import url(./blocks/table-header/__box-name/table-header__box-name.css);
+@import url(./blocks/table-header/__name/table-header__name.css);
+@import url(./blocks/table-header/__box-about/table-header__box-about.css);
+@import url(./blocks/table-header/__category/table-header__category.css);
+@import url(./blocks/table-header/__dates/table-header__dates.css);
+
+
+
+
 @import url(./blocks/todo/todo.css);
 @import url(./blocks/todo/__title/todo__title.css);
 @import url(./blocks/todo/__box-buttons/todo__box-buttons.css);
@@ -34,6 +44,7 @@
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);
 @import url(./blocks/tasks/__button-archive/tasks__button-archive.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
+@import url(./blocks/tasks/__item/_red/tasks__item_red.css);
 
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_opened/popup_opened.css);

@@ -1,0 +1,13 @@
+.table-header {
+    background-color: #c8c9cb;
+    display: flex;
+    flex-direction: row;
+    min-height: 30px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 150px 10px;
+    font-style: inherit;
+    font-size: 14px;
+    border-radius: 4px;
+    align-items: center;
+}
