@@ -12,3 +12,18 @@ export const  selectSortingName = [
         name: 'По убыванию'
     }
 ]
+
+export const selectSortingStatus = [
+    {
+        id: 1,
+        name: 'Любой статус'
+    },
+    {
+        id: 2,
+        name: 'Выполнено'
+    },
+    {
+        id: 3,
+        name: 'Не выполнено'
+    }
+]

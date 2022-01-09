@@ -1,7 +1,7 @@
 import {listCategories} from "../utils/listCategories";
 import React from "react";
 import store from "../store/configureStore";
-import {dateFormat, getDateNowByDDmmyyyy} from "../utils/DateHelper";
+import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
 import axios from "axios";
 import {filtersTasks} from "../asyncActions/thunkFunctions";
 import {useDispatch} from "react-redux";

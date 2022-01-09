@@ -4,7 +4,7 @@ import {changeStatusArchive, filtersTasks} from "../asyncActions/thunkFunctions"
 import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
 import PopupWithForm from "./PopupWithForm";
 import axios from "axios";
-import {dateFormat, getDateNowByDDmmyyyy} from "../utils/DateHelper";
+import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
 import {listCategories} from "../utils/listCategories";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import {DatePicker} from "antd";
@@ -187,7 +187,9 @@ function Task(props: any) {
                            onClose={handleClosePopupDeleteTask}
                            onSubmit={handleSubmitDeleteTask}
             >
-                <button className=""
+                <p style={{maxWidth: "300px", margin: "5px auto 0", textAlign: "center", overflow: "hidden", textOverflow: "ellipsis",
+                    whiteSpace: "nowrap", fontSize: "18px"}}>"{props.name}"</p>
+                <button className="popup__button-save popup__button-cancel"
                         type="button"
                         aria-label="Отмена"
                         onClick={handleClosePopupDeleteTask}>Нет

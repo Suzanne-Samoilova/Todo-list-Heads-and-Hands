@@ -9,17 +9,11 @@ import {
 import {filtersTasks} from "../asyncActions/thunkFunctions";
 import store from "../store/configureStore";
 import {listCategoriesForFilter} from "../utils/listCategoriesForFilter";
-// import {selectSortingName} from "../utils/listSelectsForFilter";
+import {selectSortingName, selectSortingStatus} from "../utils/listSelectsForFilter";
 
 
 function TableFilters() {
     const dispatch = useDispatch();
-
-    // Чтобы были актуальные селекты в строке фильтров
-    // const [name, setName] = React.useState("");
-    // const [sortingName, setSortingName] = React.useState("Любой порядок");
-    // const [category, setCategory] = React.useState("Любая категория");
-    // const [status, setStatus] = React.useState("Любой статус");
 
     function handleFilterName(e: any) {
         let filterName = e.target.value;
@@ -33,10 +27,11 @@ function TableFilters() {
 
     function handleSortingName(e: any) {
         let sortNameTask = e.target.value;
-        if (sortNameTask === 'По возрастанию') {
-            dispatch(sortingNameTaskAction({sortNameTask: 'ascending'}));
+        // if (status in ['Не выполнено', 'Выполнено']) {
+            if (sortNameTask === 'По возрастанию') {
+            dispatch(sortingNameTaskAction({sortNameTask: 'По возрастанию'}));
         } else if (sortNameTask === 'По убыванию') {
-            dispatch(sortingNameTaskAction({sortNameTask: 'descending'}));
+            dispatch(sortingNameTaskAction({sortNameTask: 'По убыванию'}));
         } else {
             dispatch(sortingNameTaskAction({sortNameTask: null}));
         }
@@ -74,16 +69,12 @@ function TableFilters() {
 
             <select className="table-filters__sorting"
                     onChange={handleSortingName}>
-                <option>Любой порядок</option>
-                <option>По возрастанию</option>
-                <option>По убыванию</option>
-
-                {/*{selectSortingName.map((item) => (*/}
-                {/*    <option key={item.id}*/}
-                {/*            selected={store.getState().todo.sortNameTask && store.getState().todo.sortNameTask === item.name}>*/}
-                {/*        {item.name}*/}
-                {/*    </option>*/}
-                {/*))}*/}
+                {selectSortingName.map((item) => (
+                    <option key={item.id}
+                            selected={store.getState().todo.sortNameTask && store.getState().todo.sortNameTask === item.name}>
+                        {item.name}
+                    </option>
+                ))}
             </select>
 
             <select className="table-filters__sorting"
@@ -98,9 +89,14 @@ function TableFilters() {
 
             <select className="table-filters__sorting"
                     onChange={handleSortingStatus}>
-                <option>Любой статус</option>
-                <option>Выполнено</option>
-                <option>Не выполнено</option>
+                {selectSortingStatus.map((item) => (
+                    <option key={item.id}
+                            // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === item.name}
+                    >
+                        {item.name}
+                    </option>
+                ))}
+
             </select>
         </div>
     );

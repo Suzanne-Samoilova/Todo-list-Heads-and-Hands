@@ -51,11 +51,9 @@ export const filtersTasks = () => {
 
         if (nameTask !== null) url = url + `&name=${nameTask}`;
 
-        // по возрастанию
-        if (sortNameTask === 'ascending') {
+        if (sortNameTask === 'По возрастанию') {
             url = url + `&_sort=name&_order=asc`;
-        // по убыванию
-        } else if (sortNameTask === 'descending') {
+        } else if (sortNameTask === 'По убыванию') {
             url = url + `&_sort=name&_order=desc`;
         }
 
