@@ -9,6 +9,7 @@ import {listCategories} from "../utils/listCategories";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import {DatePicker} from "antd";
 import moment from "moment";
+import {add, parse} from 'date-fns';
 
 
 function Task(props: any) {
@@ -122,37 +123,13 @@ function Task(props: any) {
 
 
     function taskClassNameSelector() {
-        // 1 мин = 60000 millisecond
-        // 1 час = 60000 * 60 = 3 600 000
-        // 1 день = 24 * 3600000 = 86 400 000
-
         let deadlineIsNear = () => {
-            const msPerDay = 86400000;
-
-            let [dd, mm, yyyy] = dateDeadline.split(".").map((ss: string) => Number(ss));
-
-            console.log(dateDeadline.split("."), 'СПЛИТ');
-            console.log(dateDeadline.split(".").map((ss: string) => Number(ss)), 'МАР НАМБЕР');
-
-            const criticalDate = new Date(yyyy, mm, dd).getTime();
-            console.log(criticalDate, 'criticalDate');
-
-            const nowDate = Date.now();
-            console.log(nowDate, 'СЕЙЧАС-ДАТА');
-
-            const timeDelta = criticalDate - nowDate;
-
-            console.log(timeDelta, 'criticalDate - nowDate');
-            console.log(timeDelta % msPerDay, 'ОСТАТОК ОТ ДЕЛЕНИЯ');
-            console.log(Math.floor(timeDelta / msPerDay), 'Math.floor(timeDelta / msPerDay)');
-
-            return (timeDelta % msPerDay) <= 3;
+            const criticalDate = parse(dateDeadline, 'dd.MM.yyyy', new Date());
+            const redDate = add(Date.now(), {days: 3});
+            return criticalDate <= redDate
         }
-
         let className =  props.status ? "tasks__item_completed" : "tasks__item"
-
         className += deadlineIsNear() ? " tasks__item_red": ""
-        // className += " tasks__item_red"
         return className
     }
 

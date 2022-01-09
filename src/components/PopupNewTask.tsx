@@ -49,7 +49,7 @@ function PopupNewTask(props: any) {
                 "date_change": dateNow,
                 "date_deadline": date_deadline,
                 "user_id": userId,
-                "status": false,
+                "status": "Не выполнено",
                 "archive": false
             })
             .then(resp => {

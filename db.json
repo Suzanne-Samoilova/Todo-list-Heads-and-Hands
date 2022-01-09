@@ -21,7 +21,7 @@
       "date_deadline": "08.01.2022",
       "user_id": 2,
       "id": 14,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false
     },
     {
@@ -29,11 +29,11 @@
       "name": "dfgdgdfgdfgdfg",
       "description": "аааааааааааааааа",
       "date_create": "23.12.2021",
-      "date_change": "06.1.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "26.12.2021",
       "user_id": 2,
       "id": 24,
-      "status": true,
+      "status": "Выполнено",
       "archive": false
     },
     {
@@ -45,7 +45,7 @@
       "date_deadline": "02.01.2022",
       "user_id": 1,
       "id": 25,
-      "status": false,
+      "status": "Не выполнено",
       "archive": true
     },
     {
@@ -69,7 +69,7 @@
       "date_deadline": "15.12.2021",
       "user_id": 1,
       "id": 38,
-      "status": true,
+      "status": "Выполнено",
       "archive": false
     },
     {
@@ -81,7 +81,7 @@
       "date_deadline": "05.01.2022",
       "user_id": 1,
       "id": 41,
-      "status": true,
+      "status": "Выполнено",
       "archive": true
     },
     {
@@ -93,7 +93,7 @@
       "date_deadline": "25.01.2022",
       "user_id": 1,
       "id": 42,
-      "status": true,
+      "status": false,
       "archive": false
     },
     {
@@ -101,11 +101,11 @@
       "name": "Старый",
       "description": "ОПИСАНИЕ старый",
       "date_create": "28.12.2021",
-      "date_change": "06.1.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "21.01.2022",
       "user_id": 2,
       "id": 47,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false
     },
     {
@@ -129,7 +129,7 @@
       "date_deadline": "09.01.2022",
       "user_id": 1,
       "id": 51,
-      "status": false,
+      "status": "Не выполнено",
       "archive": true
     },
     {
@@ -141,15 +141,15 @@
       "date_deadline": "08.01.2022",
       "user_id": 1,
       "id": 52,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false
     },
     {
       "category": "Покупки",
       "name": "Новогодние подарки",
       "description": "купить когда-нибудь",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "09.01.2022",
       "user_id": 1,
       "id": 53,
@@ -160,8 +160,8 @@
       "category": "Покупки",
       "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.kvcasdmcПехов \"Искры и ветер\"",
       "description": "ОПИСАНИЕ",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "06.02.2022",
       "user_id": 1,
       "id": 54,
@@ -172,35 +172,35 @@
       "category": "Покупки",
       "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.kvcasdmcПехов \"Искры и ветер\"",
       "description": "****************************************",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "06.02.2022",
       "user_id": 2,
       "id": 55,
-      "status": false,
+      "status": "Не выполнено",
       "archive": true
     },
     {
       "category": "Покупки",
       "name": "dddddd",
       "description": "****************************************",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "03.02.2022",
       "user_id": 1,
       "id": 56,
-      "status": false,
+      "status": true,
       "archive": false
     },
     {
       "category": "Здоровье",
       "name": "Сходить к врачу",
       "description": "рассказать и показать",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "25.01.2022",
       "user_id": 2,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false,
       "id": 58
     },
@@ -208,11 +208,11 @@
       "category": "Общая заметка",
       "name": "1111111111111111111",
       "description": "****************************************",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "30.01.2022",
       "user_id": 2,
-      "status": false,
+      "status": "Не выполнено",
       "archive": true,
       "id": 59
     },
@@ -220,11 +220,11 @@
       "category": "Книги",
       "name": "dfgdgdfgdfgdfg",
       "description": "аааааааааааааааа",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "05.02.2022",
       "user_id": 2,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false,
       "id": 60
     },
@@ -232,11 +232,11 @@
       "category": "Общая заметка",
       "name": "Тест",
       "description": "Тестовый тест тестович",
-      "date_create": "06.1.2022",
-      "date_change": "06.1.2022",
+      "date_create": "06.01.2022",
+      "date_change": "06.01.2022",
       "date_deadline": "16.01.2022",
       "user_id": 2,
-      "status": false,
+      "status": "Не выполнено",
       "archive": false,
       "id": 61
     },
@@ -244,23 +244,23 @@
       "category": "Покупки",
       "name": "dfgdgdfgdfgdfg",
       "description": "****************************************",
-      "date_create": "07.1.2022",
-      "date_change": "07.1.2022",
+      "date_create": "07.01.2022",
+      "date_change": "07.01.2022",
       "date_deadline": "07.01.2022",
       "user_id": 1,
-      "status": true,
+      "status": false,
       "archive": false,
       "id": 62
     },
     {
       "category": "Покупки",
-      "name": "dfgdgdfgdfgdfg",
+      "name": "dfgdgdfgdfgdfgc",
       "description": "ОПИСАНИЕ",
-      "date_create": "08.1.2022",
-      "date_change": "08.1.2022",
+      "date_create": "08.01.2022",
+      "date_change": "10.01.2022",
       "date_deadline": "31.01.2022",
       "user_id": 1,
-      "status": false,
+      "status": true,
       "archive": false,
       "id": 63
     },
@@ -268,13 +268,37 @@
       "category": "Здоровье",
       "name": "НОВЫЙ",
       "description": "****************************************",
-      "date_create": "09.1.2022",
-      "date_change": "09.1.2022",
+      "date_create": "09.01.2022",
+      "date_change": "09.01.2022",
       "date_deadline": "15.01.2022",
+      "user_id": 1,
+      "status": "Не выполнено",
+      "archive": false,
+      "id": 64
+    },
+    {
+      "category": "Работа",
+      "name": "777777",
+      "description": "777777",
+      "date_create": "10.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "13.01.2022",
       "user_id": 1,
       "status": false,
       "archive": false,
-      "id": 64
+      "id": 65
+    },
+    {
+      "category": "Напоминания",
+      "name": "Проверить статус таски",
+      "description": "выполнено или нет",
+      "date_create": "10.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "16.01.2022",
+      "user_id": 1,
+      "status": true,
+      "archive": false,
+      "id": 66
     }
   ]
 }
