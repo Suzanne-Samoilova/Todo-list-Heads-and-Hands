@@ -21,7 +21,7 @@
       "date_deadline": "08.01.2022",
       "user_id": 2,
       "id": 14,
-      "status": "Не выполнено",
+      "status": false,
       "archive": false
     },
     {
@@ -33,7 +33,7 @@
       "date_deadline": "26.12.2021",
       "user_id": 2,
       "id": 24,
-      "status": "Выполнено",
+      "status": true,
       "archive": false
     },
     {
@@ -45,7 +45,7 @@
       "date_deadline": "02.01.2022",
       "user_id": 1,
       "id": 25,
-      "status": "Не выполнено",
+      "status": false,
       "archive": true
     },
     {
@@ -53,8 +53,8 @@
       "name": "dddddd",
       "description": "аааааааааааааааа",
       "date_create": "26.12.2021",
-      "date_change": "26.12.2021",
-      "date_deadline": "09.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "30.01.2022",
       "user_id": 1,
       "id": 37,
       "status": false,
@@ -69,7 +69,7 @@
       "date_deadline": "15.12.2021",
       "user_id": 1,
       "id": 38,
-      "status": "Выполнено",
+      "status": true,
       "archive": false
     },
     {
@@ -81,15 +81,15 @@
       "date_deadline": "05.01.2022",
       "user_id": 1,
       "id": 41,
-      "status": "Выполнено",
+      "status": true,
       "archive": true
     },
     {
-      "category": "Покупки",
+      "category": "Книги",
       "name": "Пехов \"Искры и ветер\"",
       "description": "найти весь цикл",
       "date_create": "27.12.2021",
-      "date_change": "27.12.2021",
+      "date_change": "10.01.2022",
       "date_deadline": "25.01.2022",
       "user_id": 1,
       "id": 42,
@@ -105,7 +105,7 @@
       "date_deadline": "21.01.2022",
       "user_id": 2,
       "id": 47,
-      "status": "Не выполнено",
+      "status": false,
       "archive": false
     },
     {
@@ -113,8 +113,8 @@
       "name": "rrrrrrrr",
       "description": "rrrrr",
       "date_create": "30.12.2021",
-      "date_change": "30.12.2021",
-      "date_deadline": "23.12.2021",
+      "date_change": "10.01.2022",
+      "date_deadline": "20.01.2022",
       "user_id": 1,
       "id": 50,
       "status": false,
@@ -129,7 +129,7 @@
       "date_deadline": "09.01.2022",
       "user_id": 1,
       "id": 51,
-      "status": "Не выполнено",
+      "status": false,
       "archive": true
     },
     {
@@ -141,7 +141,7 @@
       "date_deadline": "08.01.2022",
       "user_id": 1,
       "id": 52,
-      "status": "Не выполнено",
+      "status": false,
       "archive": false
     },
     {
@@ -157,11 +157,11 @@
       "archive": false
     },
     {
-      "category": "Покупки",
+      "category": "Спорт",
       "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.kvcasdmcПехов \"Искры и ветер\"",
       "description": "ОПИСАНИЕ",
       "date_create": "06.01.2022",
-      "date_change": "06.01.2022",
+      "date_change": "10.01.2022",
       "date_deadline": "06.02.2022",
       "user_id": 1,
       "id": 54,
@@ -177,7 +177,7 @@
       "date_deadline": "06.02.2022",
       "user_id": 2,
       "id": 55,
-      "status": "Не выполнено",
+      "status": false,
       "archive": true
     },
     {
@@ -200,7 +200,7 @@
       "date_change": "06.01.2022",
       "date_deadline": "25.01.2022",
       "user_id": 2,
-      "status": "Не выполнено",
+      "status": false,
       "archive": false,
       "id": 58
     },
@@ -212,7 +212,7 @@
       "date_change": "06.01.2022",
       "date_deadline": "30.01.2022",
       "user_id": 2,
-      "status": "Не выполнено",
+      "status": false,
       "archive": true,
       "id": 59
     },
@@ -224,7 +224,7 @@
       "date_change": "06.01.2022",
       "date_deadline": "05.02.2022",
       "user_id": 2,
-      "status": "Не выполнено",
+      "status": true,
       "archive": false,
       "id": 60
     },
@@ -236,7 +236,7 @@
       "date_change": "06.01.2022",
       "date_deadline": "16.01.2022",
       "user_id": 2,
-      "status": "Не выполнено",
+      "status": false,
       "archive": false,
       "id": 61
     },
@@ -265,18 +265,6 @@
       "id": 63
     },
     {
-      "category": "Здоровье",
-      "name": "НОВЫЙ",
-      "description": "****************************************",
-      "date_create": "09.01.2022",
-      "date_change": "09.01.2022",
-      "date_deadline": "15.01.2022",
-      "user_id": 1,
-      "status": "Не выполнено",
-      "archive": false,
-      "id": 64
-    },
-    {
       "category": "Работа",
       "name": "777777",
       "description": "777777",
@@ -299,6 +287,42 @@
       "status": true,
       "archive": false,
       "id": 66
+    },
+    {
+      "category": "Напоминания",
+      "name": "Раз два три",
+      "description": "четыре пять",
+      "date_create": "10.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "11.01.2022",
+      "user_id": 2,
+      "status": false,
+      "archive": false,
+      "id": 67
+    },
+    {
+      "category": "Покупки",
+      "name": "dddddd",
+      "description": "ОПИСАНИЕ",
+      "date_create": "10.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "14.01.2022",
+      "user_id": 2,
+      "status": false,
+      "archive": false,
+      "id": 68
+    },
+    {
+      "category": "Общая заметка",
+      "name": "Статус true or false",
+      "description": "Проверка статуса",
+      "date_create": "10.01.2022",
+      "date_change": "10.01.2022",
+      "date_deadline": "14.01.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 69
     }
   ]
 }

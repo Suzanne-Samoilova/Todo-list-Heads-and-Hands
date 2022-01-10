@@ -51,9 +51,9 @@ function TableFilters() {
     function handleSortingStatus(e: any) {
         let status = e.target.value;
         if (status === 'Не выполнено') {
-            dispatch(filterStatusTaskAction({statusTask: 'Не выполнено'}));
+            dispatch(filterStatusTaskAction({statusTask: false}));
         } else if (status === 'Выполнено') {
-            dispatch(filterStatusTaskAction({statusTask: 'Выполнено'}));
+            dispatch(filterStatusTaskAction({statusTask: true}));
         } else {
             dispatch(filterStatusTaskAction({statusTask: null}));
         }
@@ -91,7 +91,7 @@ function TableFilters() {
                     onChange={handleSortingStatus}>
                 {selectSortingStatus.map((item) => (
                     <option key={item.id}
-                            selected={store.getState().todo.statusTask && store.getState().todo.statusTask === item.name}
+                            // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === item.name}
                     >
                         {item.name}
                     </option>
