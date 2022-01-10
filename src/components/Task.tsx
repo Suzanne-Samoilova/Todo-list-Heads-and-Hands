@@ -10,6 +10,8 @@ import locale from "antd/es/date-picker/locale/ru_RU";
 import {DatePicker} from "antd";
 import moment from "moment";
 import {add, parse} from 'date-fns';
+import DetailPage from "./DetailPage";
+import {push} from "connected-react-router";
 
 
 function Task(props: any) {
@@ -126,16 +128,21 @@ function Task(props: any) {
         let deadlineIsNear = () => {
             const criticalDate = parse(dateDeadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
-            return criticalDate <= redDate
+            return criticalDate <= redDate;
         }
-        let className =  props.status ? "tasks__item_completed" : "tasks__item"
-        className += deadlineIsNear() ? " tasks__item_red": ""
-        return className
+        let className =  props.status ? "tasks__item_completed" : "tasks__item";
+        className += deadlineIsNear() ? " tasks__item_red" : "";
+        return className;
+    }
+
+    function handleGoDetailPage() {
+        const taskId = props.id;
+        dispatch(push(`${taskId}`));
     }
 
     return (
         <>
-            <li className={taskClassNameSelector()}>
+            <li className={taskClassNameSelector()} onClick={handleGoDetailPage}>
                 <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>

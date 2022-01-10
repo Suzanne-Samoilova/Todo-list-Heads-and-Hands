@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {loginAction} from "../store/reducerAuth";
+import {loginAction, logoutAction} from "../store/reducerAuth";
 import { push } from "connected-react-router";
+import ForgotPassword from "./ForgotPassword";
 
 
 function Auth() {
@@ -88,6 +89,14 @@ function Auth() {
             );
     }
 
+    function handleGoRegistration() {
+        dispatch(push(`registration`));
+    }
+
+    function handleGoForgotPassword() {
+        dispatch(push(`forgot-password`));
+    }
+
 
     return (
         <div className="auth">
@@ -120,14 +129,15 @@ function Auth() {
 
                     <button className="authorization__button-save"
                             type="submit"
-                            disabled={buttonDisabled}
-                    >Войти</button>
+                            disabled={buttonDisabled}>Войти</button>
                 </form>
 
-                <button className="registration">Зарегистрироваться</button>
+                <button className="registration"
+                        onClick={handleGoRegistration}>Зарегистрироваться</button>
             </div>
 
-            <button className="forgot-password">Забыли пароль?</button>
+            <button className="forgot-password"
+                    onClick={handleGoForgotPassword}>Забыли пароль?</button>
         </div>
     );
 }

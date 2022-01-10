@@ -60,6 +60,41 @@ function TableFilters() {
         dispatch(filtersTasks());
     }
 
+    // function matchingFilterStatus(item: any) {
+    //     // store.getState().todo.statusTask && store.getState().todo.statusTask === item.name
+    //
+    //     if (store.getState().todo.statusTask === true) {
+    //         return store.getState().todo.statusTask && ('Выполнено' === item.name);
+    //
+    //     } else if (store.getState().todo.statusTask === false) {
+    //         return store.getState().todo.statusTask && ('Не выполнено' === item.name);
+    //
+    //     } else if (store.getState().todo.statusTask === null) {
+    //         return store.getState().todo.statusTask && ('Любой статус' === item.name);
+    //     }
+    // }
+
+    // const matchingFilterStatus = [
+    //     {
+    //         // id: 1,
+    //         "Любой статус": null
+    //     },
+    //     {
+    //         // id: 2,
+    //         "Не выполнено": false
+    //     },
+    //     {
+    //         // id: 3,
+    //         "Выполнено": true
+    //     }
+    // ]
+
+    const matchingFilterStatus = {
+            "Любой статус": null,
+            "Не выполнено": false,
+            "Выполнено": true
+    }
+
 
     return (
         <div className="table-filters">
@@ -92,6 +127,10 @@ function TableFilters() {
                 {selectSortingStatus.map((item) => (
                     <option key={item.id}
                             // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === item.name}
+
+                            // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === matchingFilterStatus.map((item) => (store.getState().todo.statusTask in item))}
+                            // selected={store.getState().todo.statusTask === matchingFilterStatus.get(item.name)}
+
                     >
                         {item.name}
                     </option>
