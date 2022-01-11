@@ -57,42 +57,39 @@ function Todo() {
         <>
             <section className="todo">
 
-            <Header/>
+                <Header/>
 
-            <h2 className="todo__title">Список задач:</h2>
-            <div className="todo__box-buttons">
-                <div className="todo__box-buttons-left">
-                    <button className="todo__button-add"
-                            aria-label="Добавить новый таск"
-                            type="button"
-                            onClick={handleAddNewTask}>Добавить
-                    </button>
-                    <button className="todo__button-add"
-                            onClick={handleDeleteButton}>Удалить выбранное
-                    </button>
+                <h2 className="todo__title">Список задач:</h2>
+                <div className="todo__box-buttons">
+                    <div className="todo__box-buttons-left">
+                        <button className="todo__button-add"
+                                aria-label="Добавить новый таск"
+                                type="button"
+                                onClick={handleAddNewTask}>Добавить</button>
+                        <button className="todo__button-add"
+                                onClick={handleDeleteButton}>Удалить выбранное</button>
+                    </div>
                 </div>
-            </div>
 
-            <TableFilters/>
+                <TableFilters/>
 
-            <TableHeader/>
+                <TableHeader/>
 
-            <ul className="tasks">
-                {todo.map((todoItem: any) => (
-                    <Task key={todoItem.id}
-                        {...todoItem}/>
-                ))}
-            </ul>
+                <ul className="tasks">
+                    {todo.map((todoItem: any) => (
+                        <Task key={todoItem.id}
+                            {...todoItem}/>
+                    ))}
+                </ul>
 
-            <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
-                <button className="todo__button-left"
-                        onClick={handlePreviousPage}
-                        disabled={store.getState().todo.currentPage <= 1}/>
-
-                <button className="todo__button-right"
-                        onClick={handleNextPage}
-                        disabled={store.getState().todo.todo.length < LIMIT_PAGINATE_TODO_LIST}/>
-            </div>
+                <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
+                    <button className="todo__button-left"
+                            onClick={handlePreviousPage}
+                            disabled={store.getState().todo.currentPage <= 1}/>
+                    <button className="todo__button-right"
+                            onClick={handleNextPage}
+                            disabled={store.getState().todo.todo.length < LIMIT_PAGINATE_TODO_LIST}/>
+                </div>
             </section>
 
             {isAddNewTaskPopupOpen && <PopupNewTask

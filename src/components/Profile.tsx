@@ -5,11 +5,12 @@ function Profile() {
 
 
     return (
-        <section>
+        <section className="todo">
             <Header/>
-            <h1 style={{marginLeft: "350px", marginTop: "150px"}}>
-                ПРОФИЛЬ
-            </h1>
+            <h1 className="todo__title">Профиль</h1>
+
+
+
         </section>
     )
 }

@@ -46,8 +46,8 @@ function Auth() {
         setEmail(emailForValidation);
         setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
 
-        console.log("handleEmail: pass err = ", passwordErrors.length, " +++ ", "err = ", errs,
-            " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs));
+        // console.log("handleEmail: pass err = ", passwordErrors.length, " +++ ", "err = ", errs,
+        //     " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs));
     }
 
 
@@ -63,8 +63,8 @@ function Auth() {
         setPassword(passwordForValidation);
         setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
 
-        console.log("handlePassword: pass err = ", errs, " +++ ", "err = ", emailErrors,
-            " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs));
+        // console.log("handlePassword: pass err = ", errs, " +++ ", "err = ", emailErrors,
+        //     " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs));
     }
 
 

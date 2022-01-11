@@ -245,8 +245,8 @@
       "name": "dfgdgdfgdfgdfg",
       "description": "****************************************",
       "date_create": "07.01.2022",
-      "date_change": "07.01.2022",
-      "date_deadline": "07.01.2022",
+      "date_change": "11.01.2022",
+      "date_deadline": "14.01.2022",
       "user_id": 1,
       "status": false,
       "archive": false,
@@ -265,18 +265,6 @@
       "id": 63
     },
     {
-      "category": "Работа",
-      "name": "777777",
-      "description": "777777",
-      "date_create": "10.01.2022",
-      "date_change": "10.01.2022",
-      "date_deadline": "13.01.2022",
-      "user_id": 1,
-      "status": true,
-      "archive": false,
-      "id": 65
-    },
-    {
       "category": "Напоминания",
       "name": "Проверить статус таски",
       "description": "выполнено или нет",
@@ -285,7 +273,7 @@
       "date_deadline": "16.01.2022",
       "user_id": 1,
       "status": true,
-      "archive": false,
+      "archive": true,
       "id": 66
     },
     {
@@ -335,6 +323,18 @@
       "status": true,
       "archive": false,
       "id": 70
+    },
+    {
+      "category": "Напоминания",
+      "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.k",
+      "description": "Тестовый тест тестович",
+      "date_create": "11.01.2022",
+      "date_change": "11.01.2022",
+      "date_deadline": "04.02.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 72
     }
   ]
 }

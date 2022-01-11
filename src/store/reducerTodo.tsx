@@ -24,6 +24,11 @@ const FILTER_STATUS = "FILTER_STATUS";
 
 export const reducerTodo = (state:any = defaultState, action: any) => {
     switch (action.type) {
+        case GET_TODO:
+            return {...state,
+                todo: action.payload.todo
+            }
+
         // нажал галочку одной таски
         case SELECT_TASK:
             return {...state,
@@ -39,11 +44,6 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
         case UNSELECT_TASK:
             return {...state,
                 selectedTasks: state.selectedTasks.filter((id: number) => action.payload.id !== id)
-            }
-
-        case GET_TODO:
-            return {...state,
-                todo: action.payload.todo
             }
 
         case INCREMENT_PAGE:

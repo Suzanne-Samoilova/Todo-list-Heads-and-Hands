@@ -9,7 +9,7 @@ import PopupWithForm from "./PopupWithForm";
 import { DatePicker } from 'antd';
 import 'antd/dist/antd.css';
 import 'moment/locale/ru';
-import locale from 'antd/es/date-picker/locale/ru_RU'
+import locale from 'antd/es/date-picker/locale/ru_RU';
 
 function PopupNewTask(props: any) {
     const dispatch = useDispatch();
@@ -67,8 +67,7 @@ function PopupNewTask(props: any) {
                        buttonText="Создать"
                        isOpen={props.isOpen}
                        onClose={props.onClose}
-                       onSubmit={handleSubmitCreateTask}
-        >
+                       onSubmit={handleSubmitCreateTask}>
             <p className="popup__task-name">Выберите категорию:</p>
             <select className="popup__input-text"
                     value={category}
@@ -80,29 +79,26 @@ function PopupNewTask(props: any) {
                     </option>
                 ))}
             </select>
-
             <p className="popup__task-name">Название:</p>
-            <input className="popup__input-text" id=""
+            <input className="popup__input-text"
                    type="text"
                    name="task-name"
                    placeholder="Введите название таска"
                    value={name}
                    onChange={handleNameChange}
-                   required
-            />
-
+                   required/>
             <p className="popup__task-name">Описание:</p>
-            <input className="popup__input-text" id=""
+            <input className="popup__input-text"
                    type="text"
                    name="task-description"
                    placeholder="Введите описание таска"
                    value={description}
                    onChange={handleDescriptionChange}
-                required
-            />
-
+                   required/>
             <p className="popup__task-name">Крайний срок исполнения:</p>
-            <DatePicker onChange={handleDateDeadlineChange} format={dateFormat} locale={locale}/>
+            <DatePicker onChange={handleDateDeadlineChange}
+                        format={dateFormat}
+                        locale={locale}/>
         </PopupWithForm>
     );
 }

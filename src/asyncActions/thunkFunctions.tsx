@@ -1,7 +1,8 @@
 import axios from "axios";
-import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import store from "../store/configureStore";
+import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
+import {getDetailTaskAction} from "../store/reducerDetailPage";
 
 
 // запрос из Todo
@@ -13,7 +14,6 @@ export const getTodo = () => {
 
         axios.get(`http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}`)
             .then(resp => {
-                // console.log(resp.data, 'ТЕСТ асинхронного запроса из ТУДУ');
                 dispatch(getTodoAction({todo: resp.data}));
             })
             .catch(error =>
@@ -80,6 +80,30 @@ export const changeStatusArchive = (id: any, statusArchive: boolean) => {
             .then(resp => {
                 console.log('сработал запрос архив');
                 dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error))
+    }
+}
+
+
+export const getDetailTask = (taskId: any) => {
+    return function (dispatch: any) {
+        axios.get(`http://localhost:3001/todo/${taskId}`)
+            .then(resp => {
+                console.log('сработал запрос таски');
+
+                dispatch(getDetailTaskAction({
+                    id: resp.data.id,
+                    category: resp.data.category,
+                    name: resp.data.name,
+                    description: resp.data.description,
+                    date_create: resp.data.date_create,
+                    date_change: resp.data.date_change,
+                    date_deadline: resp.data.date_deadline,
+                    status: resp.data.status,
+                    archive: resp.data.archive
+                }));
             })
             .catch(error =>
                 console.log('error:', error))

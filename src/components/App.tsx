@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
 import { Route, Switch } from 'react-router';
-import Auth from "./Auth";
-import Todo from "./Todo";
 import {useSelector} from "react-redux";
 import {TRootState} from "../index";
+import Auth from "./Auth";
+import Todo from "./Todo";
 import Archive from "./Archive";
 import Profile from "./Profile";
 import Registration from "./Registration";
@@ -17,6 +17,7 @@ function App() {
     return (
         <div className="App">
             <Switch>
+
                 <Route path="/auth">
                     <Auth />
                 </Route>
@@ -44,12 +45,10 @@ function App() {
                     <ForgotPassword />
                 </Route>
 
-                {/*<Route path=`/${props.id}`>*/}
-                <Route path="/detail">
+                {isAuthorized &&
+                <Route path="/:id">
                     <DetailPage />
-                </Route>
-
-
+                </Route>}
 
             </Switch>
         </div>

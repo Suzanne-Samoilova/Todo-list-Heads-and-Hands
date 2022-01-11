@@ -10,8 +10,8 @@ import locale from "antd/es/date-picker/locale/ru_RU";
 import {DatePicker} from "antd";
 import moment from "moment";
 import {add, parse} from 'date-fns';
-import DetailPage from "./DetailPage";
 import {push} from "connected-react-router";
+import PopupConfirmDelete from "./PopupConfirmDelete";
 
 
 function Task(props: any) {
@@ -104,19 +104,6 @@ function Task(props: any) {
         handleClosePopupChangeTask();
     }
 
-    // сабмит попапа Удалить таск
-    function handleSubmitDeleteTask(e: any) {
-        e.preventDefault();
-        axios.delete(`http://localhost:3001/todo/${props.id}`)
-            .then(resp => {
-                dispatch(filtersTasks());
-            })
-            .catch(error =>
-                console.log('error:', error));
-        console.log('SUBMIT Удалить сработал!');
-        handleClosePopupDeleteTask();
-    }
-
     function handleArchiveTask() {
         const id = props.id;
         console.log('сработала функция по клику', id);
@@ -142,7 +129,9 @@ function Task(props: any) {
 
     return (
         <>
-            <li className={taskClassNameSelector()} onClick={handleGoDetailPage}>
+            <li className={taskClassNameSelector()}
+                onClick={handleGoDetailPage}
+            >
                 <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -164,21 +153,11 @@ function Task(props: any) {
             </li>
 
             {/*попап Хотите удалить?*/}
-            <PopupWithForm name="confirm_delete"
-                           title="Хотите удалить?"
-                           buttonText="Да"
-                           isOpen={isOpenPopupDeleteTask}
-                           onClose={handleClosePopupDeleteTask}
-                           onSubmit={handleSubmitDeleteTask}
-            >
-                <p style={{maxWidth: "300px", margin: "5px auto 0", textAlign: "center", overflow: "hidden", textOverflow: "ellipsis",
-                    whiteSpace: "nowrap", fontSize: "18px"}}>"{props.name}"</p>
-                <button className="popup__button-save popup__button-cancel"
-                        type="button"
-                        aria-label="Отмена"
-                        onClick={handleClosePopupDeleteTask}>Нет
-                </button>
-            </PopupWithForm>
+            {isOpenPopupDeleteTask && <PopupConfirmDelete
+                isOpen={isOpenPopupDeleteTask}
+                onClose={handleClosePopupDeleteTask}
+                name={props.name}
+                id={props.id}/>}
 
             {/*попап Изменить таск*/}
             <PopupWithForm name="change-task"

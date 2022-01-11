@@ -5,11 +5,9 @@ function Archive() {
 
 
     return (
-        <section>
+        <section className="todo">
             <Header/>
-            <h1 style={{marginLeft: "350px", marginTop: "150px"}}>
-                АРХИВ
-            </h1>
+            <h1 className="todo__title">Архив</h1>
         </section>
     )
 }
