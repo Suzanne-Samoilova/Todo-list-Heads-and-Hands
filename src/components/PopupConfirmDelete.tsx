@@ -2,8 +2,8 @@ import PopupWithForm from "./PopupWithForm";
 import React from "react";
 import {push} from "connected-react-router";
 import {useDispatch} from "react-redux";
-
 import {deleteTask} from "../asyncActions/thunkFunctions";
+
 
 function PopupConfirmDelete(props: any) {
     const dispatch = useDispatch();

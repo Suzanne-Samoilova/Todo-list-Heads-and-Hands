@@ -82,8 +82,7 @@ function PopupChangeTask(props: any) {
             <DatePicker onChange={handleChangeDateDeadline}
                         format={dateFormat}
                         locale={locale}
-                        value={moment(dateDeadline, dateFormat)}
-            />
+                        value={moment(dateDeadline, dateFormat)}/>
         </PopupWithForm>
     );
 }

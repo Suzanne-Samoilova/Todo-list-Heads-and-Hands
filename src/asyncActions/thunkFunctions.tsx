@@ -1,12 +1,37 @@
 import axios from "axios";
 import store from "../store/configureStore";
 import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
-import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 import {getDetailTaskAction} from "../store/reducerDetailPage";
+import {loginAction} from "../store/reducerAuth";
+import {push} from "connected-react-router";
+import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
 
-// запрос из Todo
-// асинхронная функция
+export const authorization = (email: any, password: any, setErrorAuth: any) => {
+    return function (dispatch: any) {
+
+        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
+            .then(resp => {
+                if (resp.data.length) {
+                    const userId = resp.data[0].id;
+                    dispatch(loginAction({userId: userId}));
+                    console.log(resp, "Юзер найден!");
+                    dispatch(push(`/`))
+                } else {
+                    console.log(resp, "Такого юзера нет!");
+                    let errAuth = [];
+                    errAuth.push("Email или пароль введены неправильно.")
+                    setErrorAuth(errAuth);
+                }
+            })
+            .catch(error =>
+                console.log('error:', error)
+            );
+
+    }
+}
+
+
 export const getTodo = () => {
     return function (dispatch: any) {
         const userId = store.getState().auth.userId;

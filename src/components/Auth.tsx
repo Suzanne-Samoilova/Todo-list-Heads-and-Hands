@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {loginAction, logoutAction} from "../store/reducerAuth";
 import { push } from "connected-react-router";
 import ForgotPassword from "./ForgotPassword";
+import {authorization} from "../asyncActions/thunkFunctions";
 
 
 function Auth() {
@@ -45,9 +46,6 @@ function Auth() {
         setEmailErrors(errs);
         setEmail(emailForValidation);
         setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
-
-        // console.log("handleEmail: pass err = ", passwordErrors.length, " +++ ", "err = ", errs,
-        //     " +++ ", "btnDis = ", Boolean(passwordErrors) || Boolean(errs));
     }
 
 
@@ -62,31 +60,12 @@ function Auth() {
         setPasswordErrors(errs);
         setPassword(passwordForValidation);
         setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
-
-        // console.log("handlePassword: pass err = ", errs, " +++ ", "err = ", emailErrors,
-        //     " +++ ", "btnDis = ", Boolean(emailErrors) || Boolean(errs));
     }
 
 
     function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
-            .then(resp => {
-                if (resp.data.length) {
-                    const userId = resp.data[0].id;
-                    dispatch(loginAction({userId: userId}));
-                    console.log(resp, "Юзер найден!");
-                    dispatch(push(`/`))
-                } else {
-                    console.log(resp, "Такого юзера нет!");
-                    let errAuth = [];
-                    errAuth.push("Email или пароль введены неправильно.")
-                    setErrorAuth(errAuth);
-                }
-            })
-            .catch(error =>
-                console.log('error:', error)
-            );
+        dispatch(authorization(email, password, setErrorAuth));
     }
 
     function handleGoRegistration() {
@@ -101,32 +80,26 @@ function Auth() {
     return (
         <div className="auth">
             <div className="authorization">
-                <h2 className="authorization__title">
-                    Авторизация
-                </h2>
-                <form className="authorization__form" onSubmit={handleSubmit}>
+                <h2 className="authorization__title">Авторизация</h2>
+                <form className="authorization__form"
+                      onSubmit={handleSubmit}>
                     <p className="authorization__input-title">E-mail:</p>
                     <input className="authorization__form-input" id="email"
                            type="email"
                            name="email"
                            placeholder="Введите адрес эл.почты"
                            required
-                           onChange={handleEmail}
-                    />
+                           onChange={handleEmail}/>
                     <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
-
                     <p className="authorization__input-title">Пароль:</p>
                     <input className="authorization__form-input" id="password"
                            type="text"
                            name="password"
                            placeholder="Введите пароль"
                            required
-                           onChange={handlePassword}
-                    />
+                           onChange={handlePassword}/>
                     <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
-
                     <span className="authorization__form-error" id="password-error">{errorAuth}</span>
-
                     <button className="authorization__button-save"
                             type="submit"
                             disabled={buttonDisabled}>Войти</button>

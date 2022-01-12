@@ -116,7 +116,6 @@ function Task(props: any) {
                 id={props.id}
                 name={props.name}/>}
 
-
             {/*попап Изменить таск*/}
             {isChangeTaskPopupOpen && <PopupChangeTask
                 isOpen={isChangeTaskPopupOpen}
