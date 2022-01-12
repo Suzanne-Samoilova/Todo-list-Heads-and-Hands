@@ -1,8 +1,9 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
+import {push} from "connected-react-router";
 import {useDispatch} from "react-redux";
-import {filtersTasks} from "../asyncActions/thunkFunctions";
-import axios from "axios";
+
+import {deleteTask} from "../asyncActions/thunkFunctions";
 
 function PopupConfirmDelete(props: any) {
     const dispatch = useDispatch();
@@ -10,14 +11,10 @@ function PopupConfirmDelete(props: any) {
     // сабмит попапа Удалить таск
     function handleSubmitDeleteTask(e: any) {
         e.preventDefault();
-        axios.delete(`http://localhost:3001/todo/${props.id}`)
-            .then(resp => {
-                dispatch(filtersTasks());
-            })
-            .catch(error =>
-                console.log('error:', error));
-        console.log('SUBMIT Удалить сработал!');
+        const taskId = props.id;
+        dispatch(deleteTask(taskId));
         props.onClose();
+        dispatch(push(`/`));
     }
 
 

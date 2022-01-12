@@ -21,8 +21,8 @@ export const getTodo = () => {
     }
 }
 
+
 // удаление нескольких Tasks
-// асинхронная функция
 export const deleteMultipleTask = () => {
     return function (dispatch: any) {
         let promises = store.getState().todo.selectedTasks.map(
@@ -34,6 +34,7 @@ export const deleteMultipleTask = () => {
         })
     }
 }
+
 
 // фильтр туду
 export const filtersTasks = () => {
@@ -72,9 +73,20 @@ export const filtersTasks = () => {
     }
 }
 
-export const changeStatusArchive = (id: any, statusArchive: boolean) => {
-        console.log("id:", id, "statusArchive:", statusArchive);
 
+export const changeStatusTask = (taskId: any, taskStatus: any) => {
+    return function (dispatch: any) {
+        axios.patch(`http://localhost:3001/todo/${taskId}`, {"status": !taskStatus})
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error))
+    }
+}
+
+
+export const changeStatusArchive = (id: any, statusArchive: boolean) => {
     return function (dispatch: any) {
         axios.patch(`http://localhost:3001/todo/${id}`, {"archive": statusArchive})
             .then(resp => {
@@ -91,8 +103,6 @@ export const getDetailTask = (taskId: any) => {
     return function (dispatch: any) {
         axios.get(`http://localhost:3001/todo/${taskId}`)
             .then(resp => {
-                console.log('сработал запрос таски');
-
                 dispatch(getDetailTaskAction({
                     id: resp.data.id,
                     category: resp.data.category,
@@ -109,3 +119,35 @@ export const getDetailTask = (taskId: any) => {
                 console.log('error:', error))
     }
 }
+
+
+export const changeTask = (taskId: any, category: any, name: any, description: any, dateNow: any, dateDeadline: any) => {
+    return function (dispatch: any) {
+        axios.patch(`http://localhost:3001/todo/${taskId}`, {
+            "category": category,
+            "name": name,
+            "description": description,
+            "date_change": dateNow,
+            "date_deadline": dateDeadline
+        })
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error));
+    }
+}
+
+
+export const deleteTask = (taskId: any) => {
+    return function (dispatch: any) {
+        axios.delete(`http://localhost:3001/todo/${taskId}`)
+            .then(resp => {
+                dispatch(filtersTasks());
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('SUBMIT Удалить сработал!');
+    }
+}
+

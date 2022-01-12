@@ -110,14 +110,14 @@
     },
     {
       "category": "Общая заметка",
-      "name": "rrrrrrrr",
+      "name": "RRRRRRRRRRRRRRRRRRRRR",
       "description": "rrrrr",
       "date_create": "30.12.2021",
-      "date_change": "10.01.2022",
+      "date_change": "12.01.2022",
       "date_deadline": "20.01.2022",
       "user_id": 1,
       "id": 50,
-      "status": true,
+      "status": false,
       "archive": false
     },
     {
@@ -157,18 +157,6 @@
       "archive": false
     },
     {
-      "category": "Спорт",
-      "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.kvcasdmcПехов \"Искры и ветер\"",
-      "description": "ОПИСАНИЕ",
-      "date_create": "06.01.2022",
-      "date_change": "10.01.2022",
-      "date_deadline": "06.02.2022",
-      "user_id": 1,
-      "id": 54,
-      "archive": false,
-      "status": false
-    },
-    {
       "category": "Покупки",
       "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.kvcasdmcПехов \"Искры и ветер\"",
       "description": "****************************************",
@@ -179,18 +167,6 @@
       "id": 55,
       "status": false,
       "archive": true
-    },
-    {
-      "category": "Покупки",
-      "name": "dddddd",
-      "description": "****************************************",
-      "date_create": "06.01.2022",
-      "date_change": "06.01.2022",
-      "date_deadline": "03.02.2022",
-      "user_id": 1,
-      "id": 56,
-      "status": true,
-      "archive": false
     },
     {
       "category": "Здоровье",
@@ -301,11 +277,11 @@
       "id": 68
     },
     {
-      "category": "Общая заметка",
+      "category": "Работа",
       "name": "Статус true or false",
       "description": "Проверка статуса",
       "date_create": "10.01.2022",
-      "date_change": "10.01.2022",
+      "date_change": "12.01.2022",
       "date_deadline": "14.01.2022",
       "user_id": 1,
       "status": false,
@@ -325,16 +301,40 @@
       "id": 70
     },
     {
-      "category": "Напоминания",
-      "name": "dsafnlaksfnaksdmf.aslkmdc.klsdmc.ds.vknsd.k",
-      "description": "Тестовый тест тестович",
+      "category": "Книги",
+      "name": "Тестовый тест тестович",
+      "description": "Тестовый тест тестович  88888888888888888888",
       "date_create": "11.01.2022",
-      "date_change": "11.01.2022",
+      "date_change": "12.01.2022",
       "date_deadline": "04.02.2022",
+      "user_id": 1,
+      "status": true,
+      "archive": true,
+      "id": 72
+    },
+    {
+      "category": "Здоровье",
+      "name": "Здоровье",
+      "description": "Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет Здоровье есть или нет ",
+      "date_create": "12.01.2022",
+      "date_change": "12.01.2022",
+      "date_deadline": "06.02.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": true,
+      "id": 73
+    },
+    {
+      "category": "Покупки",
+      "name": "dfgdgdfgdfgdfg",
+      "description": "******* ********************** ***********",
+      "date_create": "12.01.2022",
+      "date_change": "12.01.2022",
+      "date_deadline": "27.01.2022",
       "user_id": 1,
       "status": false,
       "archive": false,
-      "id": 72
+      "id": 74
     }
   ]
 }

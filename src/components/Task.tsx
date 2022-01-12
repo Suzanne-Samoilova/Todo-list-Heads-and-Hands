@@ -1,29 +1,17 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {changeStatusArchive, filtersTasks} from "../asyncActions/thunkFunctions";
-import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
-import PopupWithForm from "./PopupWithForm";
-import axios from "axios";
-import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
-import {listCategories} from "../utils/listCategories";
-import locale from "antd/es/date-picker/locale/ru_RU";
-import {DatePicker} from "antd";
-import moment from "moment";
 import {add, parse} from 'date-fns';
 import {push} from "connected-react-router";
+
+import {changeStatusArchive, changeStatusTask} from "../asyncActions/thunkFunctions";
+import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
 import PopupConfirmDelete from "./PopupConfirmDelete";
+import PopupChangeTask from "./PopupChangeTask";
 
 
 function Task(props: any) {
     const dispatch = useDispatch();
 
-    // Дата изменения
-    const dateNow = getDateNowByDDmmyyyy();
-
-    const [category, setCategory] = React.useState(props.category);
-    const [name, setName] = React.useState(props.name);
-    const [description, setDescription] = React.useState(props.description);
-    const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
     // попап Изменить таск
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
     // попап Хотите удалить?
@@ -49,33 +37,16 @@ function Task(props: any) {
         setIsOpenPopupDeleteTask(false);
     }
 
-    function handleChangeCategory(e: any) {
-        setCategory(e.target.value);
-    }
 
-    function handleChangeName(e: any) {
-        setName(e.target.value);
-    }
-
-    function handleChangeDescription(e: any) {
-        setDescription(e.target.value);
-    }
-
-    function handleChangeDateDeadline(date: any, dateString: string) {
-        setDateDeadline(dateString);
-    }
-
-    // для смены статуса Выполнено
+    // для смены статуса Выполнено/Не выполнено
     const handleChange = (e: any) => {
         e.stopPropagation();
+        const taskId = props.id;
+        const taskStatus = props.status;
         // отослать статус таски
-        axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": !props.status})
-            .then(resp => {
-                dispatch(filtersTasks());
-            })
-            .catch(error =>
-                console.log('error:', error))
+        dispatch(changeStatusTask(taskId, taskStatus));
     }
+
 
     const handleSelect = (e: any) => {
         e.stopPropagation();
@@ -89,23 +60,6 @@ function Task(props: any) {
         }
     }
 
-    // сабмит попапа Изменить таск
-    function handleSubmitChangeTask(e: any) {
-        e.preventDefault();
-        axios.patch(`http://localhost:3001/todo/${props.id}`, {
-                "category": category,
-                "name": name,
-                "description": description,
-                "date_change": dateNow,
-                "date_deadline": dateDeadline
-            })
-            .then(resp => {
-                dispatch(filtersTasks());
-            })
-            .catch(error =>
-                console.log('error:', error));
-        handleClosePopupChangeTask();
-    }
 
     function handleArchiveTask(e: any) {
         e.stopPropagation();
@@ -113,10 +67,11 @@ function Task(props: any) {
         dispatch(changeStatusArchive(id, true));
     }
 
-
+    // ПРОВЕРИТЬ dateDeadline !!!
     function taskClassNameSelector() {
         let deadlineIsNear = () => {
-            const criticalDate = parse(dateDeadline, 'dd.MM.yyyy', new Date());
+            // const criticalDate = parse(dateDeadline, 'dd.MM.yyyy', new Date());
+            const criticalDate = parse(props.date_deadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
             return criticalDate <= redDate;
         }
@@ -133,8 +88,7 @@ function Task(props: any) {
     return (
         <>
             <li className={taskClassNameSelector()}
-                onClick={handleGoDetailPage}
-            >
+                onClick={handleGoDetailPage}>
                 <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
                 <p className="tasks__item-title">{props.name}</p>
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
@@ -159,53 +113,20 @@ function Task(props: any) {
             {isOpenPopupDeleteTask && <PopupConfirmDelete
                 isOpen={isOpenPopupDeleteTask}
                 onClose={handleClosePopupDeleteTask}
-                name={props.name}
-                id={props.id}/>}
+                id={props.id}
+                name={props.name}/>}
+
 
             {/*попап Изменить таск*/}
-            <PopupWithForm name="change-task"
-                           title="Изменить таск"
-                           buttonText="Изменить"
-                           isOpen={isChangeTaskPopupOpen}
-                           onClose={handleClosePopupChangeTask}
-                           onSubmit={handleSubmitChangeTask}
-            >
-                <p style={{maxWidth: "300px", margin: "5px auto 0", textAlign: "center", overflow: "hidden", textOverflow: "ellipsis",
-                    whiteSpace: "nowrap", fontSize: "18px"}}>"{props.name}"</p>
-                <p className="popup__task-name">Выберите категорию:</p>
-                <select className="popup__input-text"
-                        value={category}
-                        onChange={handleChangeCategory}>
-                    {listCategories.map((item) => (
-                        <option key={item.id}>
-                            {item.name}
-                        </option>
-                    ))}
-                </select>
-                <p className="popup__task-name">Название:</p>
-                <input className="popup__input-text"
-                       type="text"
-                       name="task-name"
-                       placeholder="Введите название таска"
-                       required
-                       onChange={handleChangeName}
-                       value={name}
-                />
-                <p className="popup__task-name">Описание:</p>
-                <input className="popup__input-text"
-                       type="text"
-                       name="task-description"
-                       placeholder="Введите описание таска"
-                       required
-                       onChange={handleChangeDescription}
-                       value={description}
-                />
-                <p className="popup__task-name">Крайний срок исполнения:</p>
-                <DatePicker onChange={handleChangeDateDeadline}
-                            format={dateFormat}
-                            locale={locale}
-                            value={moment(dateDeadline, dateFormat)}/>
-            </PopupWithForm>
+            {isChangeTaskPopupOpen && <PopupChangeTask
+                isOpen={isChangeTaskPopupOpen}
+                onClose={handleClosePopupChangeTask}
+                id={props.id}
+                category={props.category}
+                name={props.name}
+                description={props.description}
+                dateDeadline={props.dateDeadline}
+            />}
         </>
     );
 }

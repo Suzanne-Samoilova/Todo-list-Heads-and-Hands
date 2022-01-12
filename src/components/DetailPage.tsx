@@ -3,7 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 
 import Header from "./Header";
-import {getDetailTask} from "../asyncActions/thunkFunctions";
+import {changeStatusArchive, changeStatusTask, getDetailTask} from "../asyncActions/thunkFunctions";
+import PopupConfirmDelete from "./PopupConfirmDelete";
+import PopupChangeTask from "./PopupChangeTask";
+import {push} from "connected-react-router";
 
 
 function DetailPage() {
@@ -15,6 +18,44 @@ function DetailPage() {
     useEffect(()=> {
         dispatch(getDetailTask(id));
     },[dispatch])
+
+    // попап Изменить таск
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
+    // попап Хотите удалить?
+    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
+
+    // попап Изменить таск
+    function handleOpenPopupChangeTask() {
+        setIsChangeTaskPopupOpen(true);
+    }
+
+    function handleClosePopupChangeTask() {
+        setIsChangeTaskPopupOpen(false);
+    }
+
+    // попап Хотите удалить?
+    function handleOpenPopupDeleteTask() {
+        setIsOpenPopupDeleteTask(true);
+    }
+
+    function handleClosePopupDeleteTask() {
+        setIsOpenPopupDeleteTask(false);
+    }
+
+    // для смены статуса Выполнено/Не выполнено
+    const handleChange = () => {
+        const taskStatus = task.status;
+        // отослать статус таски
+        dispatch(changeStatusTask(id, taskStatus));
+
+        // Надо перерисовывать !!!
+        // dispatch(getDetailTask(id));
+    }
+
+    function handleArchiveTask(e: any) {
+        dispatch(changeStatusArchive(id, true));
+        dispatch(push(`/`));
+    }
 
 
     return (
@@ -40,9 +81,8 @@ function DetailPage() {
                     fontSize: "14px", borderRadius: "4px", margin: "0 150px 0 0"}}>
                     <div style={{display: "flex", flexDirection: "column", minWidth: "600px", height: "150px"}}>
                         <p style={{fontWeight: "500", fontSize: "15px", margin: "0"}}>{task.name}</p>
-                        <p style={{margin: "0"}}>{task.description}</p>
+                        <p style={{margin: "10px 0 0", overflow: "hidden", textOverflow: "ellipsis"}}>{task.description}</p>
                     </div>
-
 
                     <div style={{display: "flex", flexDirection: "column"}}>
                         <div style={{display: "flex", flexDirection: "column", margin: "0"}}>
@@ -52,29 +92,37 @@ function DetailPage() {
                             <p style={{margin: "0"}}>{task.date_deadline}</p>
                         </div>
 
-
                         <div style={{display: "flex", flexDirection: "row", justifyContent: "center",
                             marginTop: "20px"}}>
                             <button className="tasks__button-delete"
-                                    // onClick={handleChange}
-                            >
-                                {task.status ? 'Не выполнено' : 'Выполнено'}
-                            </button>
+                                    onClick={handleChange}>{task.status ? 'Не выполнено' : 'Выполнено'}</button>
                             <button className="tasks__button-archive"
-                                    // onClick={handleOpenPopupChangeTask}
-                            >Изменить</button>
+                                    onClick={handleOpenPopupChangeTask}>Изменить</button>
                             <button className="tasks__button-archive"
-                                    // onClick={handleOpenPopupDeleteTask}
-                            >Удалить</button>
+                                    onClick={handleOpenPopupDeleteTask}>Удалить</button>
                             <button className="tasks__button-archive"
-                                    // onClick={handleArchiveTask}
-                            >Отложить</button>
+                                    onClick={handleArchiveTask}>Отложить</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {/*попап Хотите удалить?*/}
+            {isOpenPopupDeleteTask && <PopupConfirmDelete
+                isOpen={isOpenPopupDeleteTask}
+                onClose={handleClosePopupDeleteTask}
+                id={task.id}
+                name={task.name}/>}
 
+            {/*/!*попап Изменить таск*!/*/}
+            {isChangeTaskPopupOpen && <PopupChangeTask
+                isOpen={isChangeTaskPopupOpen}
+                onClose={handleClosePopupChangeTask}
+                id={task.id}
+                category={task.category}
+                name={task.name}
+                description={task.description}
+                dateDeadline={task.dateDeadline}/>}
         </section>
     );
 }
