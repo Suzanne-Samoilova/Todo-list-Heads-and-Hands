@@ -30,7 +30,8 @@ function Task(props: any) {
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
 
     // попап Изменить таск
-    function handleOpenPopupChangeTask() {
+    function handleOpenPopupChangeTask(e: any) {
+        e.stopPropagation();
         setIsChangeTaskPopupOpen(true);
     }
 
@@ -39,7 +40,8 @@ function Task(props: any) {
     }
 
     // попап Хотите удалить?
-    function handleOpenPopupDeleteTask() {
+    function handleOpenPopupDeleteTask(e: any) {
+        e.stopPropagation();
         setIsOpenPopupDeleteTask(true);
     }
 
@@ -64,7 +66,8 @@ function Task(props: any) {
     }
 
     // для смены статуса Выполнено
-    const handleChange = () => {
+    const handleChange = (e: any) => {
+        e.stopPropagation();
         // отослать статус таски
         axios.patch(`http://localhost:3001/todo/${props.id}`, {"status": !props.status})
             .then(resp => {
@@ -74,8 +77,9 @@ function Task(props: any) {
                 console.log('error:', error))
     }
 
-    const handleSelect = (event: any) => {
-        const checked = event.target.checked;
+    const handleSelect = (e: any) => {
+        e.stopPropagation();
+        const checked = e.target.checked;
         const taskId = props.id;
         // отослать статус таски
         if (checked) {
@@ -100,13 +104,12 @@ function Task(props: any) {
             })
             .catch(error =>
                 console.log('error:', error));
-        console.log('SUBMIT Изменить сработал!');
         handleClosePopupChangeTask();
     }
 
-    function handleArchiveTask() {
+    function handleArchiveTask(e: any) {
+        e.stopPropagation();
         const id = props.id;
-        console.log('сработала функция по клику', id);
         dispatch(changeStatusArchive(id, true));
     }
 
