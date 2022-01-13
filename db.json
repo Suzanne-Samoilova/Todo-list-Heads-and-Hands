@@ -93,7 +93,7 @@
       "date_deadline": "25.01.2022",
       "user_id": 1,
       "id": 42,
-      "status": false,
+      "status": true,
       "archive": false
     },
     {
@@ -335,6 +335,42 @@
       "status": false,
       "archive": false,
       "id": 74
+    },
+    {
+      "category": "Здоровье",
+      "name": "dddddd",
+      "description": "ОПИСАНИЕ",
+      "date_create": "13.01.2022",
+      "date_change": "13.01.2022",
+      "date_deadline": "28.01.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": true,
+      "id": 76
+    },
+    {
+      "category": "Спорт",
+      "name": "НОВЫЙ",
+      "description": "ОПИСАНИЕ",
+      "date_create": "13.01.2022",
+      "date_change": "13.01.2022",
+      "date_deadline": "22.01.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 77
+    },
+    {
+      "category": "Общая заметка",
+      "name": "88888888888888888888888888888",
+      "description": "888888888888888888",
+      "date_create": "13.01.2022",
+      "date_change": "13.01.2022",
+      "date_deadline": "08.01.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 78
     }
   ]
 }

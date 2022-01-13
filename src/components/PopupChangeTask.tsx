@@ -78,7 +78,7 @@ function PopupChangeTask(props: any) {
                    required
                    onChange={handleChangeDescription}
                    value={description}/>
-            <p className="popup__task-name">Крайний срок исполнения:</p>
+            <p className="popup__task-name" style={{marginBottom: "10px"}}>Крайний срок исполнения:</p>
             <DatePicker onChange={handleChangeDateDeadline}
                         format={dateFormat}
                         locale={locale}
