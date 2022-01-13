@@ -57,7 +57,6 @@ export const filtersTasks = () => {
     return function (dispatch: any) {
         axios.get(url)
             .then(resp => {
-                console.log(resp.data, 'ТЕСТ фильтра');
                 dispatch(getTodoAction({todo: resp.data}));
             })
             .catch(error =>
@@ -81,7 +80,6 @@ export const createTask = (userId: any, category: any, name: any, description: a
                 "archive": false
             })
             .then(resp => {
-                console.log('Ответ после POST-запроса', resp)
                 dispatch(filtersTasks());
             })
             .catch(error =>

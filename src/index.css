@@ -39,7 +39,7 @@
 @import url(./blocks/tasks/__item-title/tasks__item-title.css);
 @import url(./blocks/tasks/__date/tasks__date.css);
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);
-@import url(./blocks/tasks/__button-archive/tasks__button-archive.css);
+@import url(./blocks/tasks/__button-change/tasks__button-change.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
 @import url(./blocks/tasks/__item/_red/tasks__item_red.css);
 
@@ -48,6 +48,7 @@
 @import url(./blocks/popup/__container/popup__container.css);
 @import url(./blocks/popup/__button-close/popup__button-close.css);
 @import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__name/popup__name.css);
 @import url(./blocks/popup/__form/popup__form.css);
 @import url(./blocks/popup/__task-name/popup__task-name.css);
 @import url(./blocks/popup/__input-text/popup__input-text.css);

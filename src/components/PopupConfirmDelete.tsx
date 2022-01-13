@@ -25,8 +25,7 @@ function PopupConfirmDelete(props: any) {
                        isOpen={props.isOpen}
                        onClose={props.onClose}
                        onSubmit={handleSubmitDeleteTask}>
-            <p style={{maxWidth: "300px", margin: "5px auto 0", textAlign: "center", overflow: "hidden", textOverflow: "ellipsis",
-                whiteSpace: "nowrap", fontSize: "18px"}}>"{props.name}"</p>
+            <p className="popup__name">"{props.name}"</p>
             <button className="popup__button-save popup__button-cancel"
                     type="button"
                     aria-label="Отмена"

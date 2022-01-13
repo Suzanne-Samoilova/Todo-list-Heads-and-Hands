@@ -1,11 +1,11 @@
-.tasks__button-archive {
+.tasks__button-change {
     margin-right: 10px;
     border: none;
     border-radius: 4px;
     background-color: #e5e5e5;
 }
 
-.tasks__button-archive:hover {
+.tasks__button-change:hover {
     cursor: pointer;
     opacity: 0.8;
 }

@@ -96,11 +96,11 @@ function DetailPage() {
                             marginTop: "20px"}}>
                             <button className="tasks__button-delete"
                                     onClick={handleChange}>{task.status ? 'Не выполнено' : 'Выполнено'}</button>
-                            <button className="tasks__button-archive"
+                            <button className="tasks__button-change"
                                     onClick={handleOpenPopupChangeTask}>Изменить</button>
-                            <button className="tasks__button-archive"
+                            <button className="tasks__button-change"
                                     onClick={handleOpenPopupDeleteTask}>Удалить</button>
-                            <button className="tasks__button-archive"
+                            <button className="tasks__button-change"
                                     onClick={handleArchiveTask}>Отложить</button>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ function DetailPage() {
                 category={task.category}
                 name={task.name}
                 description={task.description}
-                dateDeadline={task.dateDeadline}/>}
+                date_deadline={task.date_deadline}/>}
         </section>
     );
 }

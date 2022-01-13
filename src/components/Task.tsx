@@ -107,11 +107,11 @@ function Task(props: any) {
                 <div style={{width: "370px", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <button className="tasks__button-delete"
                             onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
-                    <button className="tasks__button-archive"
+                    <button className="tasks__button-change"
                             onClick={handleOpenPopupChangeTask}>Изменить</button>
-                    <button className="tasks__button-archive"
+                    <button className="tasks__button-change"
                             onClick={handleOpenPopupDeleteTask}>Удалить</button>
-                    <button className="tasks__button-archive"
+                    <button className="tasks__button-change"
                             onClick={handleArchiveTask}>Отложить</button>
                 </div>
             </li>
@@ -131,7 +131,7 @@ function Task(props: any) {
                 category={props.category}
                 name={props.name}
                 description={props.description}
-                dateDeadline={props.dateDeadline}
+                date_deadline={props.date_deadline}
             />}
         </>
     );
