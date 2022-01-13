@@ -15,6 +15,7 @@ function TableHeader() {
                 <li className="table-header__dates">Дата последнего изменения:</li>
                 <li className="table-header__dates">Крайний срок:</li>
             </div>
+
         </ul>
     );
 }

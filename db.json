@@ -3,12 +3,18 @@
     {
       "id": 1,
       "email": "suz@ivi.ru",
-      "password": "1111"
+      "password": "1111",
+      "name": "",
+      "date_of_birth": "",
+      "city": ""
     },
     {
       "id": 2,
       "email": "vasya@ivi.ru",
-      "password": "2222"
+      "password": "2222",
+      "name": "",
+      "date_of_birth": "",
+      "city": ""
     }
   ],
   "todo": [
@@ -253,18 +259,6 @@
       "id": 66
     },
     {
-      "category": "Напоминания",
-      "name": "Раз два три",
-      "description": "четыре пять",
-      "date_create": "10.01.2022",
-      "date_change": "10.01.2022",
-      "date_deadline": "11.01.2022",
-      "user_id": 2,
-      "status": false,
-      "archive": false,
-      "id": 67
-    },
-    {
       "category": "Покупки",
       "name": "dddddd",
       "description": "ОПИСАНИЕ",
@@ -272,7 +266,7 @@
       "date_change": "10.01.2022",
       "date_deadline": "14.01.2022",
       "user_id": 2,
-      "status": false,
+      "status": true,
       "archive": false,
       "id": 68
     },
@@ -371,6 +365,18 @@
       "status": false,
       "archive": false,
       "id": 78
+    },
+    {
+      "category": "Работа",
+      "name": "88888888888888888888888888888",
+      "description": "888888888888888888",
+      "date_create": "13.01.2022",
+      "date_change": "13.01.2022",
+      "date_deadline": "28.01.2022",
+      "user_id": 2,
+      "status": false,
+      "archive": false,
+      "id": 79
     }
   ]
 }

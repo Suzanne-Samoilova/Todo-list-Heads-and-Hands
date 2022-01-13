@@ -3,8 +3,8 @@ import {useDispatch} from "react-redux";
 import {add, parse} from 'date-fns';
 import {push} from "connected-react-router";
 
-import {changeStatusArchive, changeStatusTask} from "../asyncActions/thunkFunctions";
 import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
+import {changeStatusArchive, changeStatusTask} from "../asyncActions/thunkFunctions";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 
@@ -52,7 +52,7 @@ function Task(props: any) {
         e.stopPropagation();
         const checked = e.target.checked;
         const taskId = props.id;
-        // отослать статус таски
+        // отослать статус нескольких тасок
         if (checked) {
             dispatch(selectTaskAction({id: taskId}))
         } else {
@@ -67,6 +67,7 @@ function Task(props: any) {
         dispatch(changeStatusArchive(id, true));
     }
 
+
     // ПРОВЕРИТЬ dateDeadline !!!
     function taskClassNameSelector() {
         let deadlineIsNear = () => {
@@ -80,23 +81,29 @@ function Task(props: any) {
         return className;
     }
 
+
     function handleGoDetailPage() {
         const taskId = props.id;
         dispatch(push(`${taskId}`));
     }
 
+
     return (
         <>
             <li className={taskClassNameSelector()}
                 onClick={handleGoDetailPage}>
+
                 <input className="tasks__checkbox" type="checkbox" onClick={handleSelect}/>
+
                 <p className="tasks__item-title">{props.name}</p>
+
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                     <p style={{width: "100px", font: "inherit", margin: "0"}}>{props.category}</p>
                     <p className="tasks__date">{props.date_create}</p>
                     <p className="tasks__date">{props.date_change}</p>
                     <p className="tasks__date">{props.date_deadline}</p>
                 </div>
+
                 <div style={{width: "370px", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <button className="tasks__button-delete"
                             onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>

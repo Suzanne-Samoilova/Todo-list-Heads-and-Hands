@@ -1,15 +1,15 @@
-import {listCategories} from "../utils/listCategories";
 import React from "react";
 import store from "../store/configureStore";
+import {listCategories} from "../utils/listCategories";
 import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
-import axios from "axios";
-import {filtersTasks} from "../asyncActions/thunkFunctions";
+import {createTask} from "../asyncActions/thunkFunctions";
 import {useDispatch} from "react-redux";
 import PopupWithForm from "./PopupWithForm";
 import { DatePicker } from 'antd';
 import 'antd/dist/antd.css';
 import 'moment/locale/ru';
 import locale from 'antd/es/date-picker/locale/ru_RU';
+
 
 function PopupNewTask(props: any) {
     const dispatch = useDispatch();
@@ -19,7 +19,6 @@ function PopupNewTask(props: any) {
     const [description, setDescription] = React.useState("");
     const [date_deadline, setDate_deadline] = React.useState("");
 
-    // забрать из формы
     function handleCategoryChange(e: any) {
         setCategory(e.target.value);
     }
@@ -40,24 +39,7 @@ function PopupNewTask(props: any) {
         e.preventDefault();
         const userId = store.getState().auth.userId;
         const dateNow = getDateNowByDDmmyyyy();
-        axios.post(`http://localhost:3001/todo/`,
-            {
-                "category": category,
-                "name": name,
-                "description": description,
-                "date_create": dateNow,
-                "date_change": dateNow,
-                "date_deadline": date_deadline,
-                "user_id": userId,
-                "status": false,
-                "archive": false
-            })
-            .then(resp => {
-                console.log('Ответ после POST-запроса', resp)
-                dispatch(filtersTasks());
-            })
-            .catch(error =>
-                console.log('error:', error));
+        dispatch(createTask(userId, category, name, description, dateNow, date_deadline));
         props.onClose();
     }
 
@@ -68,6 +50,7 @@ function PopupNewTask(props: any) {
                        isOpen={props.isOpen}
                        onClose={props.onClose}
                        onSubmit={handleSubmitCreateTask}>
+
             <p className="popup__task-name">Выберите категорию:</p>
             <select className="popup__input-text"
                     value={category}
@@ -79,6 +62,7 @@ function PopupNewTask(props: any) {
                     </option>
                 ))}
             </select>
+
             <p className="popup__task-name">Название:</p>
             <input className="popup__input-text"
                    type="text"
@@ -87,6 +71,7 @@ function PopupNewTask(props: any) {
                    value={name}
                    onChange={handleNameChange}
                    required/>
+
             <p className="popup__task-name">Описание:</p>
             <input className="popup__input-text"
                    type="text"
@@ -95,6 +80,7 @@ function PopupNewTask(props: any) {
                    value={description}
                    onChange={handleDescriptionChange}
                    required/>
+
             <p className="popup__task-name" style={{marginBottom: "10px"}}>Крайний срок исполнения:</p>
             <DatePicker onChange={handleDateDeadlineChange}
                         format={dateFormat}

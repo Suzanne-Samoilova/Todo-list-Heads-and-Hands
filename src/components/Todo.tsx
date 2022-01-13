@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import Task from "./Task";
-import {deleteMultipleTask, filtersTasks} from "../asyncActions/thunkFunctions";
-import TableHeader from "./TableHeader";
-import PopupNewTask from "./PopupNewTask";
-import Header from "./Header";
-import {decrementPageAction, incrementPageAction} from "../store/reducerTodo";
 import store from "../store/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+
+import {deleteMultipleTask, filtersTasks} from "../asyncActions/thunkFunctions";
+import {decrementPageAction, incrementPageAction} from "../store/reducerTodo";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
+import Header from "./Header";
 import TableFilters from "./TableFilters";
+import TableHeader from "./TableHeader";
+import Task from "./Task";
+import PopupNewTask from "./PopupNewTask";
 
 
 function Todo() {
     const dispatch = useDispatch();
-    const getTodoList = (state: any) => state.todo.todo;
 
+    const getTodoList = (state: any) => state.todo.todo;
     const todo = useSelector(getTodoList);
 
     // загрузить список тудушек и отрисовать
     useEffect(()=> {
         dispatch(filtersTasks());
-        // dispatch(getTodo());
     },[dispatch])
 
     // попап новый таск
@@ -60,6 +60,7 @@ function Todo() {
                 <Header/>
 
                 <h2 className="todo__title">Список задач:</h2>
+
                 <div className="todo__box-buttons">
                     <div className="todo__box-buttons-left">
                         <button className="todo__button-add"

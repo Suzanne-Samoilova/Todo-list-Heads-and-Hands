@@ -83,6 +83,7 @@ function Auth() {
                 <h2 className="authorization__title">Авторизация</h2>
                 <form className="authorization__form"
                       onSubmit={handleSubmit}>
+
                     <p className="authorization__input-title">E-mail:</p>
                     <input className="authorization__form-input" id="email"
                            type="email"
@@ -91,6 +92,7 @@ function Auth() {
                            required
                            onChange={handleEmail}/>
                     <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
+
                     <p className="authorization__input-title">Пароль:</p>
                     <input className="authorization__form-input" id="password"
                            type="text"
@@ -100,6 +102,7 @@ function Auth() {
                            onChange={handlePassword}/>
                     <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
                     <span className="authorization__form-error" id="password-error">{errorAuth}</span>
+
                     <button className="authorization__button-save"
                             type="submit"
                             disabled={buttonDisabled}>Войти</button>

@@ -7,7 +7,7 @@ import {DatePicker} from "antd";
 function PopupChangeProfile(props: any) {
     function handleSubmitChangeProfile() {
 
-        // сменить пароль
+        // сменить данные профиля
         props.onClose();
     }
 

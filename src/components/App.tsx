@@ -11,7 +11,7 @@ import Registration from "./Registration";
 import ForgotPassword from "./ForgotPassword";
 import DetailPage from "./DetailPage";
 
-function App(props: any) {
+function App() {
     const isAuthorized = useSelector((state: TRootState)=> state.auth.isAuthorized )
 
     return (

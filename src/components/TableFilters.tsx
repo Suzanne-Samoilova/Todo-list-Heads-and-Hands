@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
+import store from "../store/configureStore";
 import {
     filterNameTaskAction,
     sortingNameTaskAction,
@@ -7,7 +8,6 @@ import {
     filterStatusTaskAction,
 } from "../store/reducerTodo";
 import {filtersTasks} from "../asyncActions/thunkFunctions";
-import store from "../store/configureStore";
 import {listCategoriesForFilter} from "../utils/listCategoriesForFilter";
 import {selectSortingName, selectSortingStatus} from "../utils/listSelectsForFilter";
 
@@ -25,6 +25,7 @@ function TableFilters() {
         dispatch(filtersTasks());
     }
 
+
     function handleSortingName(e: any) {
         let sortNameTask = e.target.value;
         // if (status in ['Не выполнено', 'Выполнено']) {
@@ -38,6 +39,7 @@ function TableFilters() {
         dispatch(filtersTasks());
     }
 
+
     function handleSortingCategory(e: any) {
         let category = e.target.value;
         if (category === 'Любая категория') {
@@ -47,6 +49,7 @@ function TableFilters() {
         }
         dispatch(filtersTasks());
     }
+
 
     function handleSortingStatus(e: any) {
         let status = e.target.value;
@@ -59,6 +62,7 @@ function TableFilters() {
         }
         dispatch(filtersTasks());
     }
+
 
     // function matchingFilterStatus(item: any) {
     //     // store.getState().todo.statusTask && store.getState().todo.statusTask === item.name
