@@ -1,15 +1,25 @@
 import React from "react";
-import axios from "axios";
-import {useDispatch} from "react-redux";
-import {loginAction, logoutAction} from "../store/reducerAuth";
+import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import ForgotPassword from "./ForgotPassword";
-import {authorization} from "../asyncActions/thunkFunctions";
+
+import { authorization } from "../asyncActions/thunkFunctions";
 
 
 function Auth() {
     // для стора
     const dispatch = useDispatch();
+
+    // для авторизации
+    const [email, setEmail] = React.useState<string>('');
+    const [password, setPassword] = React.useState<string>('');
+
+    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
+    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
+
+    // статус кнопки сабмита
+    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
+    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
+
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
@@ -19,17 +29,6 @@ function Auth() {
             );
     };
 
-    // для авторизации
-    const [email, setEmail] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
-
-    // статус кнопки сабмита
-    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
-
-    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
-
-    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
 
     const handleEmail = function (e:React.ChangeEvent<HTMLInputElement>) {
         let emailForValidation = e.target.value;

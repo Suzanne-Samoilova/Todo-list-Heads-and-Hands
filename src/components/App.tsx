@@ -1,8 +1,9 @@
 import React from 'react';
-import '../App.css';
+import { useSelector } from "react-redux";
 import { Route, Switch } from 'react-router';
-import {useSelector} from "react-redux";
-import {TRootState} from "../index";
+import { TRootState } from "../index";
+import '../App.css';
+
 import Auth from "./Auth";
 import Todo from "./Todo";
 import Archive from "./Archive";
@@ -10,6 +11,7 @@ import Profile from "./Profile";
 import Registration from "./Registration";
 import ForgotPassword from "./ForgotPassword";
 import DetailPage from "./DetailPage";
+
 
 function App() {
     const isAuthorized = useSelector((state: TRootState)=> state.auth.isAuthorized )

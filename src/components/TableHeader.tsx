@@ -1,10 +1,8 @@
 import React from "react";
 
 function TableHeader() {
-
     return (
         <ul className="table-header">
-
             <div className="table-header__box-name">
                 <li className="table-header__name">Название:</li>
             </div>
@@ -15,7 +13,6 @@ function TableHeader() {
                 <li className="table-header__dates">Дата последнего изменения:</li>
                 <li className="table-header__dates">Крайний срок:</li>
             </div>
-
         </ul>
     );
 }

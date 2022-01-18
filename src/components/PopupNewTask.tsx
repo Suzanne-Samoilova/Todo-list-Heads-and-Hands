@@ -1,18 +1,21 @@
 import React from "react";
-import store from "../store/configureStore";
-import {listCategories} from "../utils/listCategories";
-import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
-import {createTask} from "../asyncActions/thunkFunctions";
-import {useDispatch} from "react-redux";
-import PopupWithForm from "./PopupWithForm";
+import { useDispatch, useSelector } from "react-redux";
+import { TRootState } from "../index";
+
+import { listCategories } from "../utils/listCategories";
 import { DatePicker } from 'antd';
-import 'antd/dist/antd.css';
+import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
+import { createTask } from "../asyncActions/thunkFunctions";
 import 'moment/locale/ru';
 import locale from 'antd/es/date-picker/locale/ru_RU';
+import PopupWithForm from "./PopupWithForm";
+import 'antd/dist/antd.css';
 
 
 function PopupNewTask(props: any) {
     const dispatch = useDispatch();
+
+    const authState = useSelector((state: TRootState) => state.auth);
 
     const [category, setCategory] = React.useState("Общая заметка");
     const [name, setName] = React.useState("");
@@ -35,13 +38,15 @@ function PopupNewTask(props: any) {
         setDate_deadline(dateString);
     }
 
+
     function handleSubmitCreateTask(e: any) {
         e.preventDefault();
-        const userId = store.getState().auth.userId;
+        const userId = authState.userId;
         const dateNow = getDateNowByDDmmyyyy();
         dispatch(createTask(userId, category, name, description, dateNow, date_deadline));
         props.onClose();
     }
+
 
     return (
         <PopupWithForm name="add-new-task"

@@ -5,6 +5,7 @@ import {getDetailTaskAction} from "../store/reducerDetailPage";
 import {loginAction} from "../store/reducerAuth";
 import {push} from "connected-react-router";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
+import {getProfileAction} from "../store/reducerProfile";
 
 
 export const authorization = (email: any, password: any, setErrorAuth: any) => {
@@ -92,7 +93,9 @@ export const createTask = (userId: any, category: any, name: any, description: a
 export const deleteMultipleTask = () => {
     return function (dispatch: any) {
         let promises = store.getState().todo.selectedTasks.map(
-            (taskId:number) => {return axios.delete(`http://localhost:3001/todo/${taskId}`)}
+            (taskId:number) => {
+                return axios.delete(`http://localhost:3001/todo/${taskId}`)
+            }
         )
         Promise.all(promises).then(resp => {
             dispatch(clearSelectedTasksAction());
@@ -176,5 +179,46 @@ export const deleteTask = (taskId: any) => {
             .catch(error =>
                 console.log('error:', error));
         console.log('SUBMIT Удалить сработал!');
+    }
+}
+
+
+export const getProfile = () => {
+    const userId = store.getState().auth.userId;
+    return function (dispatch: any) {
+        axios.get(`http://localhost:3001/users/${userId}`)
+            .then(resp => {
+                const profile = resp.data;
+
+                dispatch(getProfileAction({
+                    email: profile.email,
+                    password: profile.password,
+                    name: profile.name,
+                    date_of_birth: profile.date_of_birth,
+                    city: profile.city,
+                }));
+
+            })
+            .catch(error =>
+                console.log('error:', error));
+        console.log('Получили данные пользователя');
+    }
+}
+
+
+export const changeProfile = (name: any, dateOfBirth: any, city: any, email: any) => {
+    const userId = store.getState().auth.userId;
+    return function (dispatch: any) {
+        axios.patch(`http://localhost:3001/users/${userId}`, {
+            "name": name,
+            "date_of_birth": dateOfBirth,
+            "city": city,
+            "email": email,
+        })
+            .then(resp => {
+                dispatch(getProfile());
+            })
+            .catch(error =>
+                console.log('error:', error));
     }
 }

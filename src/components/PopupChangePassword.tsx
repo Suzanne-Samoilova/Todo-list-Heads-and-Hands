@@ -4,7 +4,6 @@ import PopupWithForm from "./PopupWithForm";
 
 function PopupChangePassword(props: any) {
     function handleSubmitChangePassword() {
-
         // сменить пароль
         props.onClose();
     }

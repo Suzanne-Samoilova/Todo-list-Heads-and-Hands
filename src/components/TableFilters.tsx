@@ -1,19 +1,23 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import store from "../store/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { TRootState } from "../index";
+
 import {
     filterNameTaskAction,
     sortingNameTaskAction,
     filterCategoryTaskAction,
     filterStatusTaskAction,
 } from "../store/reducerTodo";
-import {filtersTasks} from "../asyncActions/thunkFunctions";
-import {listCategoriesForFilter} from "../utils/listCategoriesForFilter";
-import {selectSortingName, selectSortingStatus} from "../utils/listSelectsForFilter";
+import { filtersTasks } from "../asyncActions/thunkFunctions";
+import { listCategoriesForFilter } from "../utils/listCategoriesForFilter";
+import { selectSortingName, selectSortingStatus } from "../utils/listSelectsForFilter";
 
 
 function TableFilters() {
     const dispatch = useDispatch();
+
+    const todo = useSelector((state: TRootState) => state.todo);
+
 
     function handleFilterName(e: any) {
         let filterName = e.target.value;
@@ -28,7 +32,6 @@ function TableFilters() {
 
     function handleSortingName(e: any) {
         let sortNameTask = e.target.value;
-        // if (status in ['Не выполнено', 'Выполнено']) {
             if (sortNameTask === 'По возрастанию') {
             dispatch(sortingNameTaskAction({sortNameTask: 'По возрастанию'}));
         } else if (sortNameTask === 'По убыванию') {
@@ -63,40 +66,12 @@ function TableFilters() {
         dispatch(filtersTasks());
     }
 
-
-    // function matchingFilterStatus(item: any) {
-    //     // store.getState().todo.statusTask && store.getState().todo.statusTask === item.name
-    //
-    //     if (store.getState().todo.statusTask === true) {
-    //         return store.getState().todo.statusTask && ('Выполнено' === item.name);
-    //
-    //     } else if (store.getState().todo.statusTask === false) {
-    //         return store.getState().todo.statusTask && ('Не выполнено' === item.name);
-    //
-    //     } else if (store.getState().todo.statusTask === null) {
-    //         return store.getState().todo.statusTask && ('Любой статус' === item.name);
-    //     }
-    // }
-
-    // const matchingFilterStatus = [
-    //     {
-    //         // id: 1,
-    //         "Любой статус": null
-    //     },
-    //     {
-    //         // id: 2,
-    //         "Не выполнено": false
-    //     },
-    //     {
-    //         // id: 3,
-    //         "Выполнено": true
-    //     }
-    // ]
-
-    const matchingFilterStatus = {
-            "Любой статус": null,
-            "Не выполнено": false,
-            "Выполнено": true
+    function selectFilterStatus(item: any) {
+        if (todo.statusTask === item.status) {
+            return true
+        } else {
+            return false
+        }
     }
 
 
@@ -110,7 +85,7 @@ function TableFilters() {
                     onChange={handleSortingName}>
                 {selectSortingName.map((item) => (
                     <option key={item.id}
-                            selected={store.getState().todo.sortNameTask && store.getState().todo.sortNameTask === item.name}>
+                            selected={todo.sortNameTask && todo.sortNameTask === item.name}>
                         {item.name}
                     </option>
                 ))}
@@ -120,7 +95,7 @@ function TableFilters() {
                     onChange={handleSortingCategory}>
                 {listCategoriesForFilter.map((item) => (
                     <option key={item.id}
-                            selected={store.getState().todo.categoryTask && store.getState().todo.categoryTask === item.name}>
+                            selected={todo.categoryTask && todo.categoryTask === item.name}>
                         {item.name}
                     </option>
                 ))}
@@ -130,11 +105,8 @@ function TableFilters() {
                     onChange={handleSortingStatus}>
                 {selectSortingStatus.map((item) => (
                     <option key={item.id}
-                            // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === item.name}
-
-                            // selected={store.getState().todo.statusTask && store.getState().todo.statusTask === matchingFilterStatus.map((item) => (store.getState().todo.statusTask in item))}
-                            // selected={store.getState().todo.statusTask === matchingFilterStatus.get(item.name)}
-
+                            // selected={todo.statusTask && todo.statusTask === item.status}
+                            selected={selectFilterStatus(item)}
                     >
                         {item.name}
                     </option>

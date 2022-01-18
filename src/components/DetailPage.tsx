@@ -1,23 +1,26 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { push } from "connected-react-router";
+import { TRootState } from "../index";
 
+import { changeStatusArchive, changeStatusTask, getDetailTask } from "../asyncActions/thunkFunctions";
 import Header from "./Header";
-import {changeStatusArchive, changeStatusTask, getDetailTask} from "../asyncActions/thunkFunctions";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
-import {push} from "connected-react-router";
 
 
 function DetailPage() {
     const dispatch = useDispatch();
-    const { id } = useParams<{ id: string }>();
-    const taskDetailState = (state: any) => state.detail;
-    const task = useSelector(taskDetailState);
+    const { id } = useParams <{ id: string }>();
+
+    const task = useSelector((state: TRootState) => state.detail);
+
 
     useEffect(()=> {
         dispatch(getDetailTask(id));
     },[dispatch])
+
 
     // попап Изменить таск
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
@@ -42,6 +45,7 @@ function DetailPage() {
         setIsOpenPopupDeleteTask(false);
     }
 
+
     // для смены статуса Выполнено/Не выполнено
     const handleChange = () => {
         const taskStatus = task.status;
@@ -51,6 +55,7 @@ function DetailPage() {
         // Надо перерисовывать !!!
         // dispatch(getDetailTask(id));
     }
+
 
     function handleArchiveTask(e: any) {
         dispatch(changeStatusArchive(id, true));

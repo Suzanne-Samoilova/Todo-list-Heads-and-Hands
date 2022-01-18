@@ -16,14 +16,17 @@ export const  selectSortingName = [
 export const selectSortingStatus = [
     {
         id: 1,
-        name: 'Любой статус'
+        name: 'Любой статус',
+        status: null
     },
     {
         id: 2,
-        name: 'Выполнено'
+        name: 'Выполнено',
+        status: true
     },
     {
         id: 3,
-        name: 'Не выполнено'
+        name: 'Не выполнено',
+        status: false
     }
 ]

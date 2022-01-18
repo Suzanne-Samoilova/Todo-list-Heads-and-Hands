@@ -1,10 +1,10 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import {add, parse} from 'date-fns';
-import {push} from "connected-react-router";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
+import { add, parse } from 'date-fns';
 
-import {selectTaskAction, unselectTaskAction} from "../store/reducerTodo";
-import {changeStatusArchive, changeStatusTask} from "../asyncActions/thunkFunctions";
+import { selectTaskAction, unselectTaskAction } from "../store/reducerTodo";
+import { changeStatusArchive, changeStatusTask } from "../asyncActions/thunkFunctions";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 
@@ -71,7 +71,6 @@ function Task(props: any) {
     // ПРОВЕРИТЬ dateDeadline !!!
     function taskClassNameSelector() {
         let deadlineIsNear = () => {
-            // const criticalDate = parse(dateDeadline, 'dd.MM.yyyy', new Date());
             const criticalDate = parse(props.date_deadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
             return criticalDate <= redDate;

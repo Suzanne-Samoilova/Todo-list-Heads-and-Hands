@@ -4,16 +4,16 @@
       "id": 1,
       "email": "suz@ivi.ru",
       "password": "1111",
-      "name": "",
-      "date_of_birth": "",
-      "city": ""
+      "name": "Маша",
+      "date_of_birth": "01.01.2000",
+      "city": "Балашиха"
     },
     {
       "id": 2,
       "email": "vasya@ivi.ru",
       "password": "2222",
       "name": "",
-      "date_of_birth": "",
+      "date_of_birth": "01.01.2000",
       "city": ""
     }
   ],
@@ -71,8 +71,8 @@
       "name": "НОВЫЙ",
       "description": "ОПИСАНИЕ",
       "date_create": "26.12.2021",
-      "date_change": "13.01.2022",
-      "date_deadline": "17.12.2021",
+      "date_change": "17.01.2022",
+      "date_deadline": "28.01.2022",
       "user_id": 1,
       "id": 38,
       "status": false,
@@ -103,24 +103,12 @@
       "archive": false
     },
     {
-      "category": "Напоминания",
-      "name": "Старый",
-      "description": "ОПИСАНИЕ старый",
-      "date_create": "28.12.2021",
-      "date_change": "06.01.2022",
-      "date_deadline": "21.01.2022",
-      "user_id": 2,
-      "id": 47,
-      "status": false,
-      "archive": false
-    },
-    {
       "category": "Общая заметка",
-      "name": "RRRRRRRRRRRRRRRRRRRRR",
+      "name": "еееееееееееееееееееееееееееее",
       "description": "rrrrr",
       "date_create": "30.12.2021",
-      "date_change": "12.01.2022",
-      "date_deadline": "20.01.2022",
+      "date_change": "18.01.2022",
+      "date_deadline": "06.02.2022",
       "user_id": 1,
       "id": 50,
       "status": false,
@@ -147,7 +135,7 @@
       "date_deadline": "08.01.2022",
       "user_id": 1,
       "id": 52,
-      "status": true,
+      "status": false,
       "archive": false
     },
     {
@@ -159,7 +147,7 @@
       "date_deadline": "14.01.2022",
       "user_id": 1,
       "id": 53,
-      "status": false,
+      "status": true,
       "archive": false
     },
     {
@@ -320,10 +308,10 @@
     },
     {
       "category": "Покупки",
-      "name": "dfgdgdfgdfgdfg",
-      "description": "******* ********************** ***********",
+      "name": "Новое название",
+      "description": "гпшкпшокаку",
       "date_create": "12.01.2022",
-      "date_change": "13.01.2022",
+      "date_change": "18.01.2022",
       "date_deadline": "04.02.2022",
       "user_id": 1,
       "status": false,
@@ -347,24 +335,12 @@
       "name": "НОВЫЙ",
       "description": "ОПИСАНИЕ",
       "date_create": "13.01.2022",
-      "date_change": "13.01.2022",
-      "date_deadline": "22.01.2022",
+      "date_change": "17.01.2022",
+      "date_deadline": "04.02.2022",
       "user_id": 1,
-      "status": false,
+      "status": true,
       "archive": false,
       "id": 77
-    },
-    {
-      "category": "Общая заметка",
-      "name": "88888888888888888888888888888",
-      "description": "888888888888888888",
-      "date_create": "13.01.2022",
-      "date_change": "13.01.2022",
-      "date_deadline": "16.01.2022",
-      "user_id": 1,
-      "status": false,
-      "archive": false,
-      "id": 78
     },
     {
       "category": "Книги",
@@ -377,6 +353,18 @@
       "status": false,
       "archive": false,
       "id": 80
+    },
+    {
+      "category": "Спорт",
+      "name": "Похудеть",
+      "description": "Много бегать",
+      "date_create": "18.01.2022",
+      "date_change": "18.01.2022",
+      "date_deadline": "05.02.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 81
     }
   ]
 }

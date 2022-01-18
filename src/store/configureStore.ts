@@ -1,13 +1,12 @@
-import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from 'history'
 import { applyMiddleware, createStore } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
+import { composeWithDevTools } from "redux-devtools-extension";
 import createRootReducer from "./reducers";
 
 
 export const history = createBrowserHistory();
-
 
 function configureStore(preloadedState?: any) {
     const store = createStore(
@@ -22,7 +21,7 @@ function configureStore(preloadedState?: any) {
     )
 
     return store
-};
+}
 
 const store = configureStore();
 export default store;

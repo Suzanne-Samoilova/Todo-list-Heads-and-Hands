@@ -1,5 +1,7 @@
-function PopupWithForm(props: any) {
+import React from "react";
 
+
+function PopupWithForm(props: any) {
     return (
         <div className={`popup popup_type_${props.name} ${props.isOpen ? 'popup_opened' : null}`}>
             <div className="popup__container">

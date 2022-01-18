@@ -1,13 +1,14 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
-import {listCategories} from "../utils/listCategories";
-import { DatePicker } from 'antd';
-import {dateFormat, getDateNowByDDmmyyyy} from "../utils/dateHelper";
-import locale from 'antd/es/date-picker/locale/ru_RU';
+import { listCategories } from "../utils/listCategories";
 import moment from "moment";
-import {changeTask} from "../asyncActions/thunkFunctions";
+import { DatePicker } from 'antd';
+import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
+import locale from 'antd/es/date-picker/locale/ru_RU';
+import { changeTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
+
 
 function PopupChangeTask(props: any) {
     const dispatch = useDispatch();
@@ -18,7 +19,6 @@ function PopupChangeTask(props: any) {
     const [name, setName] = React.useState(props.name);
     const [description, setDescription] = React.useState(props.description);
     const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
-
 
     function handleChangeCategory(e: any) {
         setCategory(e.target.value);
@@ -36,6 +36,7 @@ function PopupChangeTask(props: any) {
         setDateDeadline(dateString);
     }
 
+
     // сабмит попапа Изменить таск
     function handleSubmitChangeTask(e: any) {
         e.preventDefault();
@@ -43,6 +44,7 @@ function PopupChangeTask(props: any) {
         dispatch(changeTask(taskId, category, name, description, dateNow, dateDeadline));
         props.onClose();
     }
+
 
     return (
         <PopupWithForm name="change-task"

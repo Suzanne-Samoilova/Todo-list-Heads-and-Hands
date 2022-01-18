@@ -1,17 +1,23 @@
-import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TRootState } from "../index";
+
+import { getProfile } from "../asyncActions/thunkFunctions";
+import avatar from "../images/no-avatar.png";
 import Header from "./Header";
 import PopupChangeProfile from "./PopupChangeProfile";
 import PopupChangePassword from "./PopupChangePassword";
-import avatar from "../images/no-avatar.png";
 
 
 function Profile() {
     const dispatch = useDispatch();
 
+    const profileState = (state: TRootState) => state.profile;
+    const userProfile = useSelector(profileState);
+
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
-        // dispatch(запрос данных());
+        dispatch(getProfile());
     },[dispatch])
 
     const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(false);
@@ -53,22 +59,22 @@ function Profile() {
                     padding: "30px", marginLeft: "20px"}}>
                     <div style={{display: "flex", flexDirection: "row"}}>
                         <p style={{minWidth: "100px"}}>Имя:</p>
-                        <p style={{marginLeft: "20px"}}>name</p>
+                        <p style={{marginLeft: "20px"}}>{userProfile.name}</p>
                     </div>
 
                     <div style={{display: "flex", flexDirection: "row"}}>
                         <p style={{minWidth: "100px"}}>Дата рождения:</p>
-                        <p style={{marginLeft: "20px"}}>date_of_birth</p>
+                        <p style={{marginLeft: "20px"}}>{userProfile.date_of_birth}</p>
                     </div>
 
                     <div style={{display: "flex", flexDirection: "row"}}>
                         <p style={{minWidth: "100px"}}>Город:</p>
-                        <p style={{marginLeft: "20px"}}>city</p>
+                        <p style={{marginLeft: "20px"}}>{userProfile.city}</p>
                     </div>
 
                     <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>email:</p>
-                        <p style={{marginLeft: "20px"}}>email</p>
+                        <p style={{minWidth: "100px"}}>Эл.почта:</p>
+                        <p style={{marginLeft: "20px"}}>{userProfile.email}</p>
                     </div>
 
                     <div style={{display: "flex", flexDirection: "row"}}>
@@ -88,7 +94,11 @@ function Profile() {
 
             {isOpenPopupChangeProfile && <PopupChangeProfile
                 isOpen={isOpenPopupChangeProfile}
-                onClose={handleClosePopupChangeProfile}/>}
+                onClose={handleClosePopupChangeProfile}
+                name={userProfile.name}
+                dateOfBirth={userProfile.date_of_birth}
+                city={userProfile.city}
+                email={userProfile.email}/>}
 
             {isOpenPopupChangePassword && <PopupChangePassword
                 isOpen={isOpenPopupChangePassword}

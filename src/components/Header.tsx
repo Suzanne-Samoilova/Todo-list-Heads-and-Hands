@@ -1,9 +1,10 @@
 import React from "react";
-import {push} from "connected-react-router";
-import {useDispatch} from "react-redux";
-import {logoutAction} from "../store/reducerAuth";
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../store/reducerAuth";
 
-function Header(props: any) {
+
+function Header() {
     const dispatch = useDispatch();
 
     function handleGoTodo() {
@@ -32,6 +33,7 @@ function Header(props: any) {
                 <button className="todo__button-add"
                         onClick={handleGoArchive}>Архив</button>
             </div>
+
             <div>
                 <button className="todo__button-add"
                         onClick={handleGoProfile}>Профиль</button>
