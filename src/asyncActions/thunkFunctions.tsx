@@ -110,6 +110,7 @@ export const changeStatusTask = (taskId: any, taskStatus: any) => {
         axios.patch(`http://localhost:3001/todo/${taskId}`, {"status": !taskStatus})
             .then(resp => {
                 dispatch(filtersTasks());
+                dispatch(getDetailTask(taskId));
             })
             .catch(error =>
                 console.log('error:', error))
@@ -163,6 +164,7 @@ export const changeTask = (taskId: any, category: any, name: any, description: a
         })
             .then(resp => {
                 dispatch(filtersTasks());
+                dispatch(getDetailTask(taskId));
             })
             .catch(error =>
                 console.log('error:', error));

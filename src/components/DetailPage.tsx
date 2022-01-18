@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { push } from "connected-react-router";
 import { TRootState } from "../index";
 
-import { changeStatusArchive, changeStatusTask, getDetailTask } from "../asyncActions/thunkFunctions";
+import {changeStatusArchive, changeStatusTask, getDetailTask} from "../asyncActions/thunkFunctions";
 import Header from "./Header";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
@@ -19,7 +19,7 @@ function DetailPage() {
 
     useEffect(()=> {
         dispatch(getDetailTask(id));
-    },[dispatch])
+    },[dispatch, id])
 
 
     // попап Изменить таск
@@ -49,15 +49,11 @@ function DetailPage() {
     // для смены статуса Выполнено/Не выполнено
     const handleChange = () => {
         const taskStatus = task.status;
-        // отослать статус таски
         dispatch(changeStatusTask(id, taskStatus));
-
-        // Надо перерисовывать !!!
-        // dispatch(getDetailTask(id));
     }
 
 
-    function handleArchiveTask(e: any) {
+    function handleArchiveTask() {
         dispatch(changeStatusArchive(id, true));
         dispatch(push(`/`));
     }
@@ -127,7 +123,8 @@ function DetailPage() {
                 category={task.category}
                 name={task.name}
                 description={task.description}
-                date_deadline={task.date_deadline}/>}
+                date_deadline={task.date_deadline}
+            />}
         </section>
     );
 }

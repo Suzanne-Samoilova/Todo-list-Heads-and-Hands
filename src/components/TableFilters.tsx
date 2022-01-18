@@ -66,14 +66,6 @@ function TableFilters() {
         dispatch(filtersTasks());
     }
 
-    function selectFilterStatus(item: any) {
-        if (todo.statusTask === item.status) {
-            return true
-        } else {
-            return false
-        }
-    }
-
 
     return (
         <div className="table-filters">
@@ -105,9 +97,7 @@ function TableFilters() {
                     onChange={handleSortingStatus}>
                 {selectSortingStatus.map((item) => (
                     <option key={item.id}
-                            // selected={todo.statusTask && todo.statusTask === item.status}
-                            selected={selectFilterStatus(item)}
-                    >
+                            selected={todo.statusTask === item.status}>
                         {item.name}
                     </option>
                 ))}
