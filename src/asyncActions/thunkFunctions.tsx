@@ -1,12 +1,12 @@
 import axios from "axios";
-import store from "../store/configureStore";
-
 import {push} from "connected-react-router";
+
 import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import {getDetailTaskAction} from "../store/reducerDetailPage";
 import {loginAction} from "../store/reducerAuth";
 import {getProfileAction} from "../store/reducerProfile";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
+
 
 export const authorization = (email: any, password: any, setErrorAuth: any) => {
     return function (dispatch: any) {
@@ -19,6 +19,7 @@ export const authorization = (email: any, password: any, setErrorAuth: any) => {
                 } else {
                     let errAuth = [];
                     errAuth.push("Email или пароль введены неправильно.")
+                    console.log('errAuth:', errAuth);
                     setErrorAuth(errAuth);
                 }
             })
@@ -31,32 +32,29 @@ export const authorization = (email: any, password: any, setErrorAuth: any) => {
 
 // фильтр туду
 export const filtersTasks = () => {
-    const userId = store.getState().auth.userId;
-    const currentPage = store.getState().todo.currentPage;
+    return function (dispatch: any, getState: any) {
+        const userId = getState().auth.userId;
+        const { currentPage,
+            nameTask,
+            sortNameTask,
+            categoryTask,
+            statusTask } = getState().todo;
 
-    const nameTask = store.getState().todo.nameTask;
-    const sortNameTask = store.getState().todo.sortNameTask;
-    const categoryTask = store.getState().todo.categoryTask;
-    const statusTask = store.getState().todo.statusTask;
+        // в отображении тасков туду фильтр архива всегда false
+        const statusArchive = false;
 
-    // в отображении тасков туду фильтр архива всегда false
-    const statusArchive = false;
+        let url = `http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
 
-    let url = `http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
+        if (sortNameTask === 'По возрастанию') {
+            url = url + `&_sort=name&_order=asc`;
+        } else if (sortNameTask === 'По убыванию') {
+            url = url + `&_sort=name&_order=desc`;
+        }
 
-    if (nameTask !== null) url = url + `&name=${nameTask}`;
+        if (nameTask !== null) url = url + `&name=${nameTask}`;
+        if (categoryTask !== null) url = url + `&category=${categoryTask}`;
+        if (statusTask !== null) url = url + `&status=${statusTask}`;
 
-    if (sortNameTask === 'По возрастанию') {
-        url = url + `&_sort=name&_order=asc`;
-    } else if (sortNameTask === 'По убыванию') {
-        url = url + `&_sort=name&_order=desc`;
-    }
-
-    if (categoryTask !== null) url = url + `&category=${categoryTask}`;
-
-    if (statusTask !== null) url = url + `&status=${statusTask}`;
-
-    return function (dispatch: any) {
         axios.get(url)
             .then(resp => {
                 dispatch(getTodoAction({todo: resp.data}));
@@ -92,16 +90,16 @@ export const createTask = (userId: any, category: any, name: any, description: a
 
 // удаление нескольких Tasks
 export const deleteMultipleTask = () => {
-    return function (dispatch: any) {
-        let promises = store.getState().todo.selectedTasks.map(
+    return function (dispatch: any, getState: any) {
+        let promises = getState().todo.selectedTasks.map(
             (taskId:number) => {
                 return axios.delete(`http://localhost:3001/todo/${taskId}`)
             }
-        )
+        );
         Promise.all(promises).then(resp => {
             dispatch(clearSelectedTasksAction());
             dispatch(filtersTasks());
-        })
+        });
     }
 }
 
@@ -123,7 +121,6 @@ export const changeStatusArchive = (id: any, statusArchive: boolean) => {
     return function (dispatch: any) {
         axios.patch(`http://localhost:3001/todo/${id}`, {"archive": statusArchive})
             .then(resp => {
-                console.log('сработал запрос архив');
                 dispatch(filtersTasks());
             })
             .catch(error =>
@@ -181,14 +178,13 @@ export const deleteTask = (taskId: any) => {
             })
             .catch(error =>
                 console.log('error:', error));
-        console.log('SUBMIT Удалить сработал!');
     }
 }
 
 
 export const getProfile = () => {
-    const userId = store.getState().auth.userId;
-    return function (dispatch: any) {
+    return function (dispatch: any, getState: any) {
+        const userId = getState().auth.userId;
         axios.get(`http://localhost:3001/users/${userId}`)
             .then(resp => {
                 const profile = resp.data;
@@ -209,15 +205,28 @@ export const getProfile = () => {
 }
 
 
-export const changeProfile = (name: any, dateOfBirth: any, city: any, email: any) => {
-    const userId = store.getState().auth.userId;
-    return function (dispatch: any) {
+export const changeProfileData = (name: any, dateOfBirth: any, city: any, email: any) => {
+    return function (dispatch: any, getState: any) {
+        const userId = getState().auth.userId;
         axios.patch(`http://localhost:3001/users/${userId}`, {
             "name": name,
             "date_of_birth": dateOfBirth,
             "city": city,
             "email": email,
         })
+            .then(resp => {
+                dispatch(getProfile());
+            })
+            .catch(error =>
+                console.log('error:', error));
+    }
+}
+
+
+export const changeProfilePassword = (password: any) => {
+    return function (dispatch: any, getState: any) {
+        const userId = getState().auth.userId;
+        axios.patch(`http://localhost:3001/users/${userId}`, { "password": password })
             .then(resp => {
                 dispatch(getProfile());
             })

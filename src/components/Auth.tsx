@@ -1,12 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-
 import { authorization } from "../asyncActions/thunkFunctions";
 
 
 function Auth() {
-    // для стора
     const dispatch = useDispatch();
 
     // для авторизации
@@ -30,7 +28,7 @@ function Auth() {
     };
 
 
-    const handleEmail = function (e:React.ChangeEvent<HTMLInputElement>) {
+    const handleEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
         let emailForValidation = e.target.value;
         let errs = [];
 

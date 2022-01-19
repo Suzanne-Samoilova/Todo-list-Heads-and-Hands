@@ -12,9 +12,9 @@
       "id": 2,
       "email": "vasya@ivi.ru",
       "password": "2222",
-      "name": "",
+      "name": "Василий",
       "date_of_birth": "01.01.2000",
-      "city": ""
+      "city": "Лондон"
     }
   ],
   "todo": [
@@ -251,7 +251,7 @@
       "name": "Статус true or false",
       "description": "Проверка статуса",
       "date_create": "10.01.2022",
-      "date_change": "12.01.2022",
+      "date_change": "19.01.2022",
       "date_deadline": "14.01.2022",
       "user_id": 1,
       "status": false,
@@ -319,11 +319,11 @@
       "id": 76
     },
     {
-      "category": "Спорт",
-      "name": "НОВЫЙ",
-      "description": "ОПИСАНИЕ",
+      "category": "Покупки",
+      "name": "НОВЫЙ НОВЫЙ НОВЫЙ ",
+      "description": "ОПИСАНИЕ ОПИСАНИЕ ОПИСАНИЕ ",
       "date_create": "13.01.2022",
-      "date_change": "17.01.2022",
+      "date_change": "19.01.2022",
       "date_deadline": "04.02.2022",
       "user_id": 1,
       "status": true,
@@ -345,9 +345,9 @@
     {
       "category": "Спорт",
       "name": "Похудеть",
-      "description": "Много бегать",
+      "description": "Много бегать. Еще больше",
       "date_create": "18.01.2022",
-      "date_change": "18.01.2022",
+      "date_change": "19.01.2022",
       "date_deadline": "05.02.2022",
       "user_id": 1,
       "status": false,

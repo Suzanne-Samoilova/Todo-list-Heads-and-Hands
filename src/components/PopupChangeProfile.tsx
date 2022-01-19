@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { changeProfile } from "../asyncActions/thunkFunctions";
+import { changeProfileData } from "../asyncActions/thunkFunctions";
 import moment from "moment";
 import { dateFormat } from "../utils/dateHelper";
 import { DatePicker } from "antd";
@@ -36,7 +36,7 @@ function PopupChangeProfile(props: any) {
 
     function handleSubmitChangeProfile(e: any) {
         e.preventDefault();
-        dispatch(changeProfile(name, dateOfBirth, city, email));
+        dispatch(changeProfileData(name, dateOfBirth, city, email));
         props.onClose();
     }
 

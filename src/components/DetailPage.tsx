@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { push } from "connected-react-router";
-import { TRootState } from "../index";
 
+import {selectorDetailState} from "../store/selectorsState";
 import {changeStatusArchive, changeStatusTask, getDetailTask} from "../asyncActions/thunkFunctions";
 import Header from "./Header";
 import PopupConfirmDelete from "./PopupConfirmDelete";
@@ -13,8 +13,7 @@ import PopupChangeTask from "./PopupChangeTask";
 function DetailPage() {
     const dispatch = useDispatch();
     const { id } = useParams <{ id: string }>();
-
-    const task = useSelector((state: TRootState) => state.detail);
+    const task = useSelector(selectorDetailState);
 
 
     useEffect(()=> {

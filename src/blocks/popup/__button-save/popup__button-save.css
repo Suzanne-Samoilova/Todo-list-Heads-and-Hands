@@ -20,6 +20,13 @@
     padding: 0;
 }
 
+.popup__button-save:disabled {
+    border: 1px solid #000;
+    background-color: #c0c0c0;
+    opacity: 70%;
+    pointer-events: none;
+}
+
 .popup__button-save:hover {
     cursor: pointer;
     opacity: 0.8;

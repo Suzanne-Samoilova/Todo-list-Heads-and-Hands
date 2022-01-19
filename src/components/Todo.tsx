@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { TRootState } from "../index";
 
+import { selectorTodoState } from "../store/selectorsState";
 import { deleteMultipleTask, filtersTasks } from "../asyncActions/thunkFunctions";
 import { decrementPageAction, incrementPageAction } from "../store/reducerTodo";
 import { LIMIT_PAGINATE_TODO_LIST } from "../constants";
@@ -14,8 +14,7 @@ import PopupNewTask from "./PopupNewTask";
 
 function Todo() {
     const dispatch = useDispatch();
-
-    const todoState = useSelector((state: TRootState) => state.todo);
+    const todoState = useSelector(selectorTodoState);
 
 
     // загрузить список тудушек и отрисовать

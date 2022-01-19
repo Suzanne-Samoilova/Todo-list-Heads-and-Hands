@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TRootState } from "../index";
 
+import { selectorTodoState } from "../store/selectorsState";
 import {
     filterNameTaskAction,
     sortingNameTaskAction,
@@ -15,8 +15,7 @@ import { selectSortingName, selectSortingStatus } from "../utils/listSelectsForF
 
 function TableFilters() {
     const dispatch = useDispatch();
-
-    const todo = useSelector((state: TRootState) => state.todo);
+    const todo = useSelector(selectorTodoState);
 
 
     function handleFilterName(e: any) {

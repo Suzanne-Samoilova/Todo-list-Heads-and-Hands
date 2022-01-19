@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TRootState } from "../index";
 
 import { listCategories } from "../utils/listCategories";
 import { DatePicker } from 'antd';
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
+import {selectorAuthState} from "../store/selectorsState";
 import { createTask } from "../asyncActions/thunkFunctions";
 import 'moment/locale/ru';
 import locale from 'antd/es/date-picker/locale/ru_RU';
@@ -15,7 +15,7 @@ import 'antd/dist/antd.css';
 function PopupNewTask(props: any) {
     const dispatch = useDispatch();
 
-    const authState = useSelector((state: TRootState) => state.auth);
+    const authState = useSelector(selectorAuthState);
 
     const [category, setCategory] = React.useState("Общая заметка");
     const [name, setName] = React.useState("");

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TRootState } from "../index";
 
+import { selectorProfileState } from "../store/selectorsState";
 import { getProfile } from "../asyncActions/thunkFunctions";
 import avatar from "../images/no-avatar.png";
 import Header from "./Header";
@@ -11,8 +11,7 @@ import PopupChangePassword from "./PopupChangePassword";
 
 function Profile() {
     const dispatch = useDispatch();
-
-    const userProfile = useSelector((state: TRootState) => state.profile);
+    const userProfile = useSelector(selectorProfileState);
 
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
