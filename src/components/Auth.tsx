@@ -46,7 +46,7 @@ function Auth() {
     }
 
 
-    const handlePassword = function (e:React.ChangeEvent<HTMLInputElement>) {
+    const handlePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
         let passwordForValidation = e.target.value;
         let errs = [];
 
@@ -60,7 +60,7 @@ function Auth() {
     }
 
 
-    function handleSubmit(e:React.ChangeEvent<HTMLFormElement>) {
+    function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         dispatch(authorization(email, password, setErrorAuth));
     }

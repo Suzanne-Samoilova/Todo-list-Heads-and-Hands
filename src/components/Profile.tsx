@@ -46,7 +46,7 @@ function Profile() {
 
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
 
-                <div style={{display: "flex", flexDirection: "column", backgroundColor: "#f5f7f9", borderRadius: "4px",
+                <div style={{display: "flex", flexDirection: "column", backgroundColor: "#c8c9cb", borderRadius: "4px",
                     padding: "30px", maxWidth: "200px"}}>
                     <img style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}}
                          src={avatar}
