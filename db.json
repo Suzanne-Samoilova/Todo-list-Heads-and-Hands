@@ -13,8 +13,8 @@
       "email": "vasya@ivi.ru",
       "password": "2222",
       "name": "Василий",
-      "date_of_birth": "01.01.2000",
-      "city": "Лондон"
+      "date_of_birth": "10.03.1996",
+      "city": "Балашиха"
     }
   ],
   "todo": [
@@ -185,18 +185,6 @@
       "status": true,
       "archive": false,
       "id": 60
-    },
-    {
-      "category": "Общая заметка",
-      "name": "Тест",
-      "description": "Тестовый тест тестович",
-      "date_create": "06.01.2022",
-      "date_change": "06.01.2022",
-      "date_deadline": "16.01.2022",
-      "user_id": 2,
-      "status": false,
-      "archive": false,
-      "id": 61
     },
     {
       "category": "Покупки",

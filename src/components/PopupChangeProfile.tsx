@@ -21,8 +21,8 @@ function PopupChangeProfile(props: any) {
         setName(e.target.value);
     }
 
-    function handleChangeDateOfBirth(e: any) {
-        setDateOfBirth(e.target.value);
+    function handleChangeDateOfBirth(date: any, dateString: string) {
+        setDateOfBirth(dateString);
     }
 
     function handleChangeCity(e: any) {
@@ -59,7 +59,7 @@ function PopupChangeProfile(props: any) {
 
             <p className="popup__task-name">Email:</p>
             <input className="popup__input-text"
-                   type="text"
+                   type="email"
                    name="profile-email"
                    placeholder="Введите email"
                    required
