@@ -12,8 +12,7 @@ import PopupChangePassword from "./PopupChangePassword";
 function Profile() {
     const dispatch = useDispatch();
 
-    const profileState = (state: TRootState) => state.profile;
-    const userProfile = useSelector(profileState);
+    const userProfile = useSelector((state: TRootState) => state.profile);
 
     // загрузить данные профиля и отрисовать
     useEffect(()=> {

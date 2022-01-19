@@ -6,7 +6,7 @@ import moment from "moment";
 import { DatePicker } from 'antd';
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
 import locale from 'antd/es/date-picker/locale/ru_RU';
-import {changeTask} from "../asyncActions/thunkFunctions";
+import { changeTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
 
 

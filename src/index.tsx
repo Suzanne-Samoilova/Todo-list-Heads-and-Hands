@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import { Provider } from "react-redux";
 import store, { history } from "./store/configureStore";
-import {ConnectedRouter} from "connected-react-router";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import App from './components/App';
+import './index.css';
+
 
 export type TRootState = ReturnType<typeof store.getState>
 
-
 ReactDOM.render(
-    <Provider store = {store}>
+    <Provider store={store}>
         <ConnectedRouter history={history}>
             <React.StrictMode>
                 <App />

@@ -1,12 +1,12 @@
 import axios from "axios";
 import store from "../store/configureStore";
+
+import {push} from "connected-react-router";
 import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import {getDetailTaskAction} from "../store/reducerDetailPage";
 import {loginAction} from "../store/reducerAuth";
-import {push} from "connected-react-router";
-import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 import {getProfileAction} from "../store/reducerProfile";
-
+import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
 export const authorization = (email: any, password: any, setErrorAuth: any) => {
     return function (dispatch: any) {
@@ -38,6 +38,7 @@ export const filtersTasks = () => {
     const sortNameTask = store.getState().todo.sortNameTask;
     const categoryTask = store.getState().todo.categoryTask;
     const statusTask = store.getState().todo.statusTask;
+
     // в отображении тасков туду фильтр архива всегда false
     const statusArchive = false;
 
