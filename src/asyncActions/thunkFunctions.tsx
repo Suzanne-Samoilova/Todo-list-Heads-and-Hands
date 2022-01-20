@@ -14,12 +14,18 @@ export const authorization = (email: any, password: any, setErrorAuth: any) => {
             .then(resp => {
                 if (resp.data.length) {
                     const userId = resp.data[0].id;
-                    dispatch(loginAction({userId: userId}));
-                    dispatch(push(`/`))
+                    const userName = resp.data[0].name;
+                    dispatch(loginAction({userId: userId, userName: userName}));
+                    // dispatch(getProfile());
+                    if (userName) {
+                        dispatch(push(`/`));
+                    } else {
+                        dispatch(push(`profile`));
+                    }
+
                 } else {
                     let errAuth = [];
                     errAuth.push("Email или пароль введены неправильно.")
-                    console.log('errAuth:', errAuth);
                     setErrorAuth(errAuth);
                 }
             })
@@ -263,7 +269,7 @@ export const addNewProfile = (email: any, password: any) => {
                 "email": email,
                 "password": password,
                 "name": "",
-                "date_of_birth": "",
+                "date_of_birth": "01.01.2000",
                 "city": ""
             })
             .then(resp => {

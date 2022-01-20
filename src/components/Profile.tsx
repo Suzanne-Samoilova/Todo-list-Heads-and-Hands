@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectorProfileState } from "../store/selectorsState";
+import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
 import { getProfile } from "../asyncActions/thunkFunctions";
 import avatar from "../images/no-avatar.png";
 import Header from "./Header";
@@ -12,14 +12,17 @@ import PopupChangePassword from "./PopupChangePassword";
 function Profile() {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
+    const userName = useSelector(selectorAuthState);
+    const noName = userName.userName;
 
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
         dispatch(getProfile());
     },[dispatch])
 
-    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(false);
+    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!noName);
     const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = React.useState(false);
+
 
     function handleOpenPopupChangeProfile() {
         setIsOpenPopupChangeProfile(true);
@@ -40,7 +43,9 @@ function Profile() {
 
     return (
         <section className="todo">
-            <Header/>
+
+            {noName &&
+            <Header/>}
 
             <h1 className="todo__title">Профиль</h1>
 

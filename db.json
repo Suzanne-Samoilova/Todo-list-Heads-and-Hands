@@ -20,7 +20,7 @@
       "email": "petya@ivi.ru",
       "password": "11ddDD*",
       "name": "",
-      "date_of_birth": "",
+      "date_of_birth": "01.01.2000",
       "city": "",
       "id": 3
     },
@@ -28,7 +28,7 @@
       "email": "123123@ivi.ru",
       "password": "DDdd7&",
       "name": "",
-      "date_of_birth": "",
+      "date_of_birth": "01.01.2000",
       "city": "",
       "id": 4
     },
@@ -36,9 +36,17 @@
       "email": "kfhaksfh@ivi.ru",
       "password": "DDdd4%",
       "name": "",
-      "date_of_birth": "",
+      "date_of_birth": "01.01.2000",
       "city": "",
       "id": 5
+    },
+    {
+      "email": "korova@ivi.ru",
+      "password": "DDdd4*",
+      "name": "",
+      "date_of_birth": "01.01.2000",
+      "city": "",
+      "id": 6
     }
   ],
   "todo": [

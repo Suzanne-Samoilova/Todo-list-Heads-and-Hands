@@ -1,0 +1,19 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+    color: #4f5355;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 0 0 17px;
+}
+
+@media screen and (min-width: 880px) {
+    .title {
+        flex-direction: row;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 22px;
+    }
+}

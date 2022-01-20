@@ -3,7 +3,7 @@
     border-radius: 4px;
     width: 200px;
     min-height: 46px;
-    color: #111;
+    color: #000;
     background-color: #ffdd2d;
     font: inherit;
     font-style: normal;
@@ -22,9 +22,7 @@
 }
 
 .authorization__button-save:disabled {
-    border: 1px solid #000;
-    background-color: #c0c0c0;
-    opacity: 70%;
+    opacity: 0.56;
     pointer-events: none;
 }
 

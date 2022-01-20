@@ -4,7 +4,7 @@ function ForgotPassword() {
 
 
     return (
-        <section>
+        <section className="todo">
             <h1 style={{marginLeft: "350px", marginTop: "150px"}}>
                 ЗАБЫЛ ПАРОЛЬ
             </h1>

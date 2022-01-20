@@ -40,6 +40,7 @@ function PopupChangeProfile(props: any) {
         props.onClose();
     }
 
+
     return (
         <PopupWithForm name="change_profile"
                        title="Изменить профиль"

@@ -1,7 +1,7 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import {addNewProfile, getEmail} from "../asyncActions/thunkFunctions";
-import {push} from "connected-react-router";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
+import { getEmail } from "../asyncActions/thunkFunctions";
 
 
 function Registration() {
@@ -71,66 +71,64 @@ function Registration() {
 
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-
         let errs: any[] = [];
-
         dispatch(getEmail(email, password, errs, setProfileErrors));
-        //
-        // if (dispatch(getEmail(email))) {
-        //     errs.push("Пользователь с таким email уже существует!");
-        //     // очистить поля ввода !
-        // } else {
-        //     dispatch(addNewProfile(email, password));
-        //     dispatch(push(`auth`));
-        // }
+    }
 
-        // setProfileErrors(errs);
 
-        // делаю get-запрос на поиск введенного email
-        // if (если ответ что такой email найден) {
-        //     то пуш ошибку "Пользователь с таким email уже существует"
-        //     очистить поля ввода
-        //     } else {
-        //     dispatch(отправить post-запрос на создание юзера с указанными данными(почта, пароль));
-        //     переход на '/auth'
-        // }
+    function handleGoAuth() {
+        dispatch(push(`auth`));
+    }
 
+    function handleGoForgotPassword() {
+        dispatch(push(`forgot-password`));
     }
 
 
     return (
         <section className="todo">
-            <div className="auth authorization">
-                <h2 className="authorization__title">Регистрация</h2>
-                <form className="authorization__form"
-                      onSubmit={handleSubmit}>
+            <div className="auth">
+                <div className="authorization">
+                    <h2 className="authorization__title">Регистрация</h2>
 
-                <span className="authorization__form-error" id="password-error">{profileErrors}</span>
+                    <form className="authorization__form"
+                          onSubmit={handleSubmit}>
+                        <span className="authorization__form-error" id="password-error">{profileErrors}</span>
 
-                    <p className="authorization__input-title">E-mail:</p>
-                    <input className="authorization__form-input" id="email"
-                           type="email"
-                           name="email"
-                           placeholder="Введите адрес эл.почты"
-                           required
-                           value={email}
-                           onChange={handleChangeEmail}/>
-                    <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
+                        <p className="authorization__input-title">E-mail:</p>
+                        <input className="authorization__form-input" id="email"
+                               type="email"
+                               name="email"
+                               placeholder="Введите адрес эл.почты"
+                               required
+                               value={email}
+                               onChange={handleChangeEmail}/>
+                        <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
 
-                    <p className="authorization__input-title">Пароль:</p>
-                    <input className="authorization__form-input" id="password"
-                           type="text"
-                           name="password"
-                           placeholder="Введите пароль"
-                           required
-                           value={password}
-                           onChange={handleChangePassword}/>
-                    <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
+                        <p className="authorization__input-title">Пароль:</p>
+                        <input className="authorization__form-input" id="password"
+                               type="text"
+                               name="password"
+                               placeholder="Введите пароль"
+                               required
+                               value={password}
+                               onChange={handleChangePassword}/>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
 
-                    <button className="authorization__button-save"
-                            type="submit"
-                            disabled={buttonDisabled}>Зарегистрироваться</button>
-                </form>
+                        <button className="authorization__button-save"
+                                type="submit"
+                                disabled={buttonDisabled}>Зарегистрироваться</button>
+                    </form>
+
+                    <p className="title" id="password-error">Уже зарегистрированы?
+                        <button className="title__button"
+                                onClick={handleGoAuth}>Авторизоваться</button>
+                    </p>
+
+                </div>
+
+                <button className="forgot-password"
+                        onClick={handleGoForgotPassword}>Забыли пароль?</button>
             </div>
         </section>
     );

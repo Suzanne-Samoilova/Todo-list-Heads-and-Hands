@@ -1,6 +1,6 @@
 .popup__button-save {
     border: none;
-    border-radius: 2px;
+    border-radius: 4px;
     width: 238px;
     min-height: 46px;
     color: #000;
@@ -21,9 +21,7 @@
 }
 
 .popup__button-save:disabled {
-    border: 1px solid #000;
-    background-color: #c0c0c0;
-    opacity: 70%;
+    opacity: 0.56;
     pointer-events: none;
 }
 

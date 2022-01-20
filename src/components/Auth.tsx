@@ -75,43 +75,45 @@ function Auth() {
 
 
     return (
-        <div className="auth">
-            <div className="authorization">
-                <h2 className="authorization__title">Авторизация</h2>
-                <form className="authorization__form"
-                      onSubmit={handleSubmit}>
+        <section className="todo">
+            <div className="auth">
+                <div className="authorization">
+                    <h2 className="authorization__title">Авторизация</h2>
+                    <form className="authorization__form"
+                          onSubmit={handleSubmit}>
 
-                    <p className="authorization__input-title">E-mail:</p>
-                    <input className="authorization__form-input" id="email"
-                           type="email"
-                           name="email"
-                           placeholder="Введите адрес эл.почты"
-                           required
-                           onChange={handleEmail}/>
-                    <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
+                        <p className="authorization__input-title">E-mail:</p>
+                        <input className="authorization__form-input" id="email"
+                               type="email"
+                               name="email"
+                               placeholder="Введите адрес эл.почты"
+                               required
+                               onChange={handleEmail}/>
+                        <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
 
-                    <p className="authorization__input-title">Пароль:</p>
-                    <input className="authorization__form-input" id="password"
-                           type="text"
-                           name="password"
-                           placeholder="Введите пароль"
-                           required
-                           onChange={handlePassword}/>
-                    <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
-                    <span className="authorization__form-error" id="password-error">{errorAuth}</span>
+                        <p className="authorization__input-title">Пароль:</p>
+                        <input className="authorization__form-input" id="password"
+                               type="text"
+                               name="password"
+                               placeholder="Введите пароль"
+                               required
+                               onChange={handlePassword}/>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
+                        <span className="authorization__form-error" id="password-error">{errorAuth}</span>
 
-                    <button className="authorization__button-save"
-                            type="submit"
-                            disabled={buttonDisabled}>Войти</button>
-                </form>
+                        <button className="authorization__button-save"
+                                type="submit"
+                                disabled={buttonDisabled}>Войти</button>
+                    </form>
 
-                <button className="registration"
-                        onClick={handleGoRegistration}>Зарегистрироваться</button>
+                    <button className="registration"
+                            onClick={handleGoRegistration}>Зарегистрироваться</button>
+                </div>
+
+                <button className="forgot-password"
+                        onClick={handleGoForgotPassword}>Забыли пароль?</button>
             </div>
-
-            <button className="forgot-password"
-                    onClick={handleGoForgotPassword}>Забыли пароль?</button>
-        </div>
+        </section>
     );
 }
 

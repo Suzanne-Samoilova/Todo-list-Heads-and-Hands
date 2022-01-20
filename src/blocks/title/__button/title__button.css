@@ -1,0 +1,14 @@
+.title__button {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 880px) {
+    .title__button {
+        padding-left: 5px;
+    }
+}
