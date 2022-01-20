@@ -47,7 +47,7 @@ function Profile() {
             {noName &&
             <Header/>}
 
-            <h1 className="todo__title">Профиль</h1>
+            <h1 className="todo__title">{noName ? 'Профиль' : 'Заполните все поля'}</h1>
 
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
 

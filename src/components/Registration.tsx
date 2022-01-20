@@ -16,7 +16,6 @@ function Registration() {
 
     const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
 
-    // Регулярка для пароля
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
             .toLowerCase()
