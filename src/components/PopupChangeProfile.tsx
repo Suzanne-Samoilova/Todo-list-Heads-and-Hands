@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import { changeProfileData } from "../asyncActions/thunkFunctions";
 import moment from "moment";
@@ -7,10 +7,13 @@ import { dateFormat } from "../utils/dateHelper";
 import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import PopupWithForm from "./PopupWithForm";
+import {selectorAuthState} from "../store/selectorsState";
 
 
 function PopupChangeProfile(props: any) {
     const dispatch = useDispatch();
+    const userName = useSelector(selectorAuthState);
+    const noName = userName.userName;
 
     const [name, setName] = React.useState(props.name);
     const [dateOfBirth, setDateOfBirth] = React.useState(props.dateOfBirth);
@@ -43,7 +46,7 @@ function PopupChangeProfile(props: any) {
 
     return (
         <PopupWithForm name="change_profile"
-                       title="Изменить профиль"
+                       title={noName ? 'Изменить профиль' : 'Заполните все поля'}
                        buttonText="Изменить"
                        isOpen={props.isOpen}
                        onClose={props.onClose}

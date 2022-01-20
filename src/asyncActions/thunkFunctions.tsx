@@ -8,7 +8,7 @@ import {getProfileAction} from "../store/reducerProfile";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
 
 
-export const authorization = (email: any, password: any, setErrorAuth: any) => {
+export const authorization = (email: any, password: any, setAuthErrors: any) => {
     return function (dispatch: any) {
         axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
             .then(resp => {
@@ -26,7 +26,7 @@ export const authorization = (email: any, password: any, setErrorAuth: any) => {
                 } else {
                     let errAuth = [];
                     errAuth.push("Email или пароль введены неправильно.")
-                    setErrorAuth(errAuth);
+                    setAuthErrors(errAuth);
                 }
             })
             .catch(error =>

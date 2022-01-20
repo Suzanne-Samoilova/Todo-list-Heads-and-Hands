@@ -7,16 +7,14 @@ import { authorization } from "../asyncActions/thunkFunctions";
 function Auth() {
     const dispatch = useDispatch();
 
-    // для авторизации
     const [email, setEmail] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
 
     const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
     const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
+    const [authErrors, setAuthErrors] = React.useState<string[]>([" "]);
 
-    // статус кнопки сабмита
     const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
-    const [errorAuth, setErrorAuth] = React.useState<string[]>([" "]);
 
 
     const validateEmail = (rawEmail: any) => {
@@ -62,7 +60,7 @@ function Auth() {
 
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        dispatch(authorization(email, password, setErrorAuth));
+        dispatch(authorization(email, password, setAuthErrors));
     }
 
     function handleGoRegistration() {
@@ -99,7 +97,7 @@ function Auth() {
                                required
                                onChange={handlePassword}/>
                         <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
-                        <span className="authorization__form-error" id="password-error">{errorAuth}</span>
+                        <span className="authorization__form-error" id="password-error">{authErrors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"
