@@ -15,6 +15,30 @@
       "name": "Василий",
       "date_of_birth": "10.03.1996",
       "city": "Балашиха"
+    },
+    {
+      "email": "petya@ivi.ru",
+      "password": "11ddDD*",
+      "name": "",
+      "date_of_birth": "",
+      "city": "",
+      "id": 3
+    },
+    {
+      "email": "123123@ivi.ru",
+      "password": "DDdd7&",
+      "name": "",
+      "date_of_birth": "",
+      "city": "",
+      "id": 4
+    },
+    {
+      "email": "kfhaksfh@ivi.ru",
+      "password": "DDdd4%",
+      "name": "",
+      "date_of_birth": "",
+      "city": "",
+      "id": 5
     }
   ],
   "todo": [

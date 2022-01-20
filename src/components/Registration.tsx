@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import {authorization} from "../asyncActions/thunkFunctions";
+import {addNewProfile, getEmail} from "../asyncActions/thunkFunctions";
+import {push} from "connected-react-router";
 
 
 function Registration() {
@@ -11,6 +12,7 @@ function Registration() {
 
     const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
     const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
+    const [profileErrors, setProfileErrors] = React.useState<string[]>([" "]);
 
     const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
 
@@ -70,6 +72,20 @@ function Registration() {
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
+        let errs: any[] = [];
+
+        dispatch(getEmail(email, password, errs, setProfileErrors));
+        //
+        // if (dispatch(getEmail(email))) {
+        //     errs.push("Пользователь с таким email уже существует!");
+        //     // очистить поля ввода !
+        // } else {
+        //     dispatch(addNewProfile(email, password));
+        //     dispatch(push(`auth`));
+        // }
+
+        // setProfileErrors(errs);
+
         // делаю get-запрос на поиск введенного email
         // if (если ответ что такой email найден) {
         //     то пуш ошибку "Пользователь с таким email уже существует"
@@ -87,8 +103,9 @@ function Registration() {
             <div className="auth authorization">
                 <h2 className="authorization__title">Регистрация</h2>
                 <form className="authorization__form"
-                      onSubmit={handleSubmit}
-                >
+                      onSubmit={handleSubmit}>
+
+                <span className="authorization__form-error" id="password-error">{profileErrors}</span>
 
                     <p className="authorization__input-title">E-mail:</p>
                     <input className="authorization__form-input" id="email"

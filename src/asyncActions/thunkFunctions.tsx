@@ -234,3 +234,42 @@ export const changeProfilePassword = (password: any) => {
                 console.log('error:', error));
     }
 }
+
+
+export const getEmail = (email: any, password: any, errs: any[], setProfileErrors: any) => {
+    return function (dispatch: any) {
+        axios.get(`http://localhost:3001/users?email=${email}`)
+            .then(resp => {
+                if (resp.data.length) {
+                    errs.push("Пользователь с таким email уже существует!");
+                    setProfileErrors(errs);
+                    // очистить поля ввода
+                } else {
+                    dispatch(addNewProfile(email, password));
+                    dispatch(push(`auth`));
+                }
+            })
+            .catch(error =>
+                console.log('error:', error)
+            );
+    }
+}
+
+
+export const addNewProfile = (email: any, password: any) => {
+    return function () {
+        axios.post(`http://localhost:3001/users/`,
+            {
+                "email": email,
+                "password": password,
+                "name": "",
+                "date_of_birth": "",
+                "city": ""
+            })
+            .then(resp => {
+                console.log('Пользователь успешно зарегистрирован!');
+            })
+            .catch(error =>
+                console.log('error:', error));
+    }
+}
