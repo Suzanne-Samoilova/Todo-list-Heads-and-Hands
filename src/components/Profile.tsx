@@ -13,15 +13,14 @@ function Profile() {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
     const userName = useSelector(selectorAuthState);
-    const noName = userName.userName;
 
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
         dispatch(getProfile());
-    },[dispatch])
+    },[])
 
 
-    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!noName);
+    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!userName.userName);
     const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = React.useState(false);
 
 
@@ -45,10 +44,10 @@ function Profile() {
     return (
         <section className="todo">
 
-            {noName &&
+            {userProfile.name &&
             <Header/>}
 
-            <h1 className="todo__title">{noName ? 'Профиль' : 'Заполните все поля'}</h1>
+            <h1 className="todo__title">{userProfile.name ? 'Профиль' : 'Заполните все поля'}</h1>
 
             <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
 
@@ -99,10 +98,7 @@ function Profile() {
             {isOpenPopupChangeProfile && <PopupChangeProfile
                 isOpen={isOpenPopupChangeProfile}
                 onClose={handleClosePopupChangeProfile}
-                name={userProfile.name}
-                dateOfBirth={userProfile.date_of_birth}
-                city={userProfile.city}
-                email={userProfile.email}/>}
+            />}
 
             {isOpenPopupChangePassword && <PopupChangePassword
                 isOpen={isOpenPopupChangePassword}

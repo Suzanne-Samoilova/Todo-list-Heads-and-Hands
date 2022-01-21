@@ -1,0 +1,9 @@
+.detail-task__details {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #f5f7f9;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 0 150px 0 0;
+}

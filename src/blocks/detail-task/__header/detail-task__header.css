@@ -1,0 +1,12 @@
+.detail-task__header {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    border-radius: 4px;
+    background-color: #c8c9cb;
+    list-style-type: none;
+    font-style: inherit;
+    font-size: 14px;
+    padding: 10px 15px;
+    margin: 0 10px 0 150px;
+}

@@ -1,0 +1,6 @@
+.detail-task__details-text {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    min-width: 600px;
+}

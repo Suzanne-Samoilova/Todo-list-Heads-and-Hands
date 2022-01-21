@@ -13,10 +13,13 @@ export const authorization = (email: any, password: any, setAuthErrors: any) => 
         axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
             .then(resp => {
                 if (resp.data.length) {
-                    const userId = resp.data[0].id;
+                    // const userId = resp.data[0].id;
                     const userName = resp.data[0].name;
-                    dispatch(loginAction({userId: userId, userName: userName}));
-                    // dispatch(getProfile());
+                    dispatch(loginAction({
+                        userId: resp.data[0].id,
+                        userName: resp.data[0].name
+                    }));
+
                     if (userName) {
                         dispatch(push(`/`));
                     } else {
@@ -85,7 +88,7 @@ export const createTask = (userId: any, category: any, name: any, description: a
                 "status": false,
                 "archive": false
             })
-            .then(resp => {
+            .then(() => {
                 dispatch(filtersTasks());
             })
             .catch(error =>
@@ -202,7 +205,6 @@ export const getProfile = () => {
                     date_of_birth: profile.date_of_birth,
                     city: profile.city,
                 }));
-
             })
             .catch(error =>
                 console.log('error:', error));

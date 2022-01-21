@@ -1,3 +1,5 @@
 .table-filters__input-name {
     width: 100%;
+    border-radius: 4px;
+    border: 1px solid #7b7b7b;
 }

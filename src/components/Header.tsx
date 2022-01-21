@@ -2,6 +2,7 @@ import React from "react";
 import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../store/reducerAuth";
+import {clearProfileAction} from "../store/reducerProfile";
 
 
 function Header() {
@@ -20,6 +21,7 @@ function Header() {
     }
 
     function handleGoExit() {
+        dispatch(clearProfileAction());
         dispatch(logoutAction({}));
         dispatch(push(`auth`));
     }

@@ -2,7 +2,7 @@
 const defaultState = {
     isAuthorized: false,
     userId: undefined,
-    userName: undefined
+    userName: undefined,
 }
 
 const LOGIN = "LOGIN";

@@ -14,7 +14,6 @@ import DetailPage from "./DetailPage";
 
 
 function App() {
-    // пустое ли поле с именем?
     const isAuthorized = useSelector((state: TRootState)=> state.auth.isAuthorized )
 
     return (

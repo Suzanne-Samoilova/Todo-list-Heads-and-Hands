@@ -57,3 +57,14 @@
 
 @import url(./blocks/title/title.css);
 @import url(./blocks/title/__button/title__button.css);
+
+@import url(./blocks/detail-task/detail-task.css);
+@import url(./blocks/detail-task/__header/detail-task__header.css);
+@import url(./blocks/detail-task/__header-name/detail-task__header-name.css);
+@import url(./blocks/detail-task/__item/detail-task__item.css);
+@import url(./blocks/detail-task/__item-with-margin-top/detail-task__item-with-margin-top.css);
+@import url(./blocks/detail-task/__details/detail-task__details.css);
+@import url(./blocks/detail-task/__details-text/detail-task__details-text.css);
+@import url(./blocks/detail-task/__details-name/detail-task__details-name.css);
+@import url(./blocks/detail-task/__details-description/detail-task__details-description.css);
+
