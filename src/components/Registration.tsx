@@ -35,13 +35,14 @@ function Registration() {
 
     const handleChangeEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
         let emailForValidation = e.target.value;
+        setProfileErrors([]);
         let errs = [];
 
         if (emailForValidation.length === 0) {
             errs.push("Email не может быть пустым.")
         }
 
-        if (!validateEmail(emailForValidation)) {
+        if ((!validateEmail(emailForValidation)) && (emailForValidation.length !== 0)) {
             errs.push("Email введен неверно.")
         }
 
@@ -49,6 +50,7 @@ function Registration() {
         setEmail(emailForValidation);
         setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
     }
+
 
     const handleChangePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
         let passwordForValidation = e.target.value;
@@ -58,7 +60,7 @@ function Registration() {
             errs.push("Пароль не может быть пустым.")
         }
 
-        if (!validatePassword(passwordForValidation)) {
+        if ((!validatePassword(passwordForValidation)) && (passwordForValidation.length !== 0)) {
             errs.push("Пароль должен содержать цифры, буквы (в том числе и заглавную) и хотя бы один из символов !@$%^&*()_+")
         }
 
@@ -73,7 +75,6 @@ function Registration() {
         let errs: any[] = [];
         dispatch(getEmail(email, password, errs, setProfileErrors));
     }
-
 
     function handleGoAuth() {
         dispatch(push(`auth`));
@@ -102,7 +103,7 @@ function Registration() {
                                required
                                value={email}
                                onChange={handleChangeEmail}/>
-                        <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
+                        <span className="authorization__form-error" id="email-error">{emailErrors}</span>
 
                         <p className="authorization__input-title">Пароль:</p>
                         <input className="authorization__form-input" id="password"
@@ -112,7 +113,7 @@ function Registration() {
                                required
                                value={password}
                                onChange={handleChangePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"

@@ -5,7 +5,7 @@ import {DatePicker} from "antd";
 import {dateFormat} from "../utils/dateHelper";
 import moment from "moment";
 import locale from "antd/es/date-picker/locale/ru_RU";
-import {getUser} from "../asyncActions/thunkFunctions";
+import {getUserPasswordRecovery} from "../asyncActions/thunkFunctions";
 
 
 function ForgotPassword() {
@@ -87,7 +87,7 @@ function ForgotPassword() {
 
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        dispatch(getUser(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
+        dispatch(getUserPasswordRecovery(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
     }
 
     function handleGoAuth() {

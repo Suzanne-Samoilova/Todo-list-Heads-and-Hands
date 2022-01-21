@@ -28,13 +28,14 @@ function Auth() {
 
     const handleEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
         let emailForValidation = e.target.value;
+        setAuthErrors([]);
         let errs = [];
 
         if (emailForValidation.length === 0) {
             errs.push("Email не может быть пустым.")
         }
 
-        if (!validateEmail(emailForValidation)) {
+        if ((!validateEmail(emailForValidation)) && (emailForValidation.length !== 0)) {
             errs.push("Email введен неверно.")
         }
 
@@ -46,6 +47,7 @@ function Auth() {
 
     const handlePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
         let passwordForValidation = e.target.value;
+        setAuthErrors([]);
         let errs = [];
 
         if (passwordForValidation.length === 0) {

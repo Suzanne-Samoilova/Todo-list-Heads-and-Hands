@@ -20,6 +20,7 @@ function Profile() {
         dispatch(getProfile());
     },[dispatch])
 
+
     const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!noName);
     const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = React.useState(false);
 

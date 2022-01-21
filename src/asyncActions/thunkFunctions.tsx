@@ -281,9 +281,7 @@ export const addNewProfile = (email: any, password: any) => {
 }
 
 
-
-
-export const getUser = (email: any, password: any, dateOfBirth: any, setForgotPasswordErrors: any, setDateOfBirthErrors: any) => {
+export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any, setForgotPasswordErrors: any, setDateOfBirthErrors: any) => {
     return function (dispatch: any) {
         axios.get(`http://localhost:3001/users?email=${email}`)
             .then(resp => {
