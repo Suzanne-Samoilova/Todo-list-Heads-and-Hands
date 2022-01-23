@@ -10,6 +10,8 @@ import 'moment/locale/ru';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import PopupWithForm from "./PopupWithForm";
 import 'antd/dist/antd.css';
+import {add, parse} from "date-fns";
+import moment from "moment";
 
 
 function PopupNewTask(props: any) {
@@ -43,7 +45,15 @@ function PopupNewTask(props: any) {
         e.preventDefault();
         const userId = authState.userId;
         const dateNow = getDateNowByDDmmyyyy();
-        dispatch(createTask(userId, category, name, description, dateNow, date_deadline));
+
+        let deadline = moment(add(Date.now(), {days: 5})).format('DD.MM.YYYY');
+
+        if (date_deadline.length === 0) {
+            dispatch(createTask(userId, category, name, description, dateNow, deadline))
+        } else {
+            dispatch(createTask(userId, category, name, description, dateNow, date_deadline))
+        }
+
         props.onClose();
     }
 

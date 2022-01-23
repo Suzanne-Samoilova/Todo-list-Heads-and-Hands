@@ -68,13 +68,13 @@ function Task(props: any) {
     }
 
 
-    // ПРОВЕРИТЬ dateDeadline !!!
     function taskClassNameSelector() {
         let deadlineIsNear = () => {
             const criticalDate = parse(props.date_deadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
             return criticalDate <= redDate;
         }
+
         let className =  props.status ? "tasks__item_completed" : "tasks__item";
         className += deadlineIsNear() ? " tasks__item_red" : "";
         return className;

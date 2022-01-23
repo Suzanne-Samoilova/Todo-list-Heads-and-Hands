@@ -105,9 +105,9 @@ export const deleteMultipleTask = () => {
                 return axios.delete(`http://localhost:3001/todo/${taskId}`)
             }
         );
+
         Promise.all(promises).then(resp => {
             dispatch(clearSelectedTasksAction());
-            dispatch(filtersTasks());
         });
     }
 }
