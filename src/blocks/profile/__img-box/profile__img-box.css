@@ -1,0 +1,7 @@
+.profile__img-box {
+    display: flex;
+    max-width: 200px;
+    background-color: #c8c9cb;
+    border-radius: 4px;
+    padding: 30px;
+}

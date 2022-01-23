@@ -49,46 +49,44 @@ function Profile() {
 
             <h1 className="todo__title">{userProfile.name ? 'Профиль' : 'Заполните все поля'}</h1>
 
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+            <div className="profile">
 
-                <div style={{display: "flex", flexDirection: "column", backgroundColor: "#c8c9cb", borderRadius: "4px",
-                    padding: "30px", maxWidth: "200px"}}>
-                    <img style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}}
+                <div className="profile__img-box">
+                    <img className="profile__img"
                          src={avatar}
                          alt="Изображение профиля"/>
                 </div>
 
-                <div style={{display: "flex", flexDirection: "column", backgroundColor: "#f5f7f9", borderRadius: "4px",
-                    padding: "30px", marginLeft: "20px"}}>
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>Имя:</p>
-                        <p style={{marginLeft: "20px"}}>{userProfile.name}</p>
+                <div className="profile__info">
+                    <div className="profile__box">
+                        <p className="profile__title">Имя:</p>
+                        <p className="profile__description">{userProfile.name}</p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>Дата рождения:</p>
-                        <p style={{marginLeft: "20px"}}>{userProfile.date_of_birth}</p>
+                    <div className="profile__box">
+                        <p className="profile__title">Дата рождения:</p>
+                        <p className="profile__title-text">{userProfile.date_of_birth}</p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>Город:</p>
-                        <p style={{marginLeft: "20px"}}>{userProfile.city}</p>
+                    <div className="profile__box">
+                        <p className="profile__title">Город:</p>
+                        <p className="profile__title-text">{userProfile.city}</p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>Эл.почта:</p>
-                        <p style={{marginLeft: "20px"}}>{userProfile.email}</p>
+                    <div className="profile__box">
+                        <p className="profile__title">Эл.почта:</p>
+                        <p className="profile__title-text">{userProfile.email}</p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "row"}}>
-                        <p style={{minWidth: "100px"}}>Пароль:</p>
-                        <p style={{marginLeft: "20px"}}>
+                    <div className="profile__box">
+                        <p className="profile__title">Пароль:</p>
+                        <p className="profile__title-text">
                             <button className="tasks__button-change"
                             onClick={handleOpenPopupChangePassword}>Сменить пароль</button>
                         </p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "10px"}}>
+                    <div className="profile__box profile__button">
                         <button className="todo__button-add"
                                 onClick={handleOpenPopupChangeProfile}>Изменить данные</button>
                     </div>

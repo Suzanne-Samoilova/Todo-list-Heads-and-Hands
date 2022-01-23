@@ -15,18 +15,13 @@ function DetailPage() {
     const { id } = useParams <{ id: string }>();
     const task = useSelector(selectorDetailState);
 
-
     useEffect(()=> {
         dispatch(getDetailTask(id));
     },[dispatch, id])
 
-
-    // попап Изменить таск
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-    // попап Хотите удалить?
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
 
-    // попап Изменить таск
     function handleOpenPopupChangeTask() {
         setIsChangeTaskPopupOpen(true);
     }
@@ -35,7 +30,6 @@ function DetailPage() {
         setIsChangeTaskPopupOpen(false);
     }
 
-    // попап Хотите удалить?
     function handleOpenPopupDeleteTask() {
         setIsOpenPopupDeleteTask(true);
     }
@@ -44,13 +38,11 @@ function DetailPage() {
         setIsOpenPopupDeleteTask(false);
     }
 
-
     // для смены статуса Выполнено/Не выполнено
     const handleChange = () => {
         const taskStatus = task.status;
         dispatch(changeStatusTask(id, taskStatus));
     }
-
 
     function handleArchiveTask() {
         dispatch(changeStatusArchive(id, true));
@@ -69,10 +61,10 @@ function DetailPage() {
                 <ul className="detail-task__header">
                     <li className="detail-task__header-name">Название и описание:</li>
                     <li className="detail-task__item">Категория:</li>
-                    <li className="detail-task__item-with-margin-top">Дата создания:</li>
+                    <li className="detail-task__item detail-task__item-with-margin-top">Дата создания:</li>
                     <li className="detail-task__item">Дата последнего изменения:</li>
                     <li className="detail-task__item">Крайний срок:</li>
-                    <li className="detail-task__item-with-margin-top">Действия:</li>
+                    <li className="detail-task__item detail-task__item-with-margin-top">Действия:</li>
                 </ul>
 
                 <div className="detail-task__details">
@@ -81,16 +73,15 @@ function DetailPage() {
                         <p className="detail-task__details-description">{task.description}</p>
                     </div>
 
-                    <div style={{display: "flex", flexDirection: "column"}}>
-                        <div style={{display: "flex", flexDirection: "column", margin: "0"}}>
+                    <div className="detail-task__details-box">
+                        <div className="detail-task__details-box">
                             <p className="detail-task__item">{task.category}</p>
-                            <p className="detail-task__item-with-margin-top">{task.date_create}</p>
+                            <p className="detail-task__item detail-task__item-with-margin-top">{task.date_create}</p>
                             <p className="detail-task__item">{task.date_change}</p>
                             <p className="detail-task__item">{task.date_deadline}</p>
                         </div>
 
-                        <div style={{display: "flex", flexDirection: "row", justifyContent: "center",
-                            marginTop: "20px"}}>
+                        <div className="detail-task__details-buttons">
                             <button className="tasks__button-delete"
                                     onClick={handleChange}>{task.status ? 'Не выполнено' : 'Выполнено'}</button>
                             <button className="tasks__button-change"
@@ -119,8 +110,7 @@ function DetailPage() {
                 category={task.category}
                 name={task.name}
                 description={task.description}
-                date_deadline={task.date_deadline}
-            />}
+                date_deadline={task.date_deadline}/>}
         </section>
     );
 }

@@ -16,16 +16,14 @@ function Todo() {
     const dispatch = useDispatch();
     const todoState = useSelector(selectorTodoState);
 
-
     // загрузить список тудушек и отрисовать
     useEffect(()=> {
         dispatch(filtersTasks());
-    },[dispatch])
+    },[])
 
-    // попап новый таск
+
     const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
 
-    // открыть попап новый таск
     function handleAddNewTask() {
         setIsAddNewTaskPopupOpen(true);
     }
@@ -82,7 +80,7 @@ function Todo() {
                     ))}
                 </ul>
 
-                <div style={{display: "flex", flexDirection:  "row", margin: "0 150px 20px", justifyContent: "flex-end"}}>
+                <div className="todo__box-buttons todo__box-buttons-right">
                     <button className="todo__button-left"
                             onClick={handlePreviousPage}
                             disabled={todoState.currentPage <= 1}/>

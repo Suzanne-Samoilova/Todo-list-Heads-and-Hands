@@ -1,3 +1,5 @@
 .detail-task__details-name {
-/*style={{fontWeight: "500", fontSize: "15px", margin: "0"}}*/
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
 }

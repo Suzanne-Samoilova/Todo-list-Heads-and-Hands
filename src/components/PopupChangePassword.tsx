@@ -27,7 +27,7 @@ function PopupChangePassword(props: any) {
             errs.push("Пароль не может быть пустым.")
         }
 
-        if (userProfile.password !== oldPasswordForValidation) {
+        if ((userProfile.password !== oldPasswordForValidation) && (oldPasswordForValidation.length !== 0)) {
             errs.push("Неверный старый пароль.")
         }
 
@@ -45,6 +45,14 @@ function PopupChangePassword(props: any) {
             errs.push("Пароль не может быть пустым.")
         }
 
+        if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0)) {
+            errs.push("Новый пароль и повтор пароля не совпадают.")
+        }
+
+        if ((repeatNewPassword === newPasswordForValidation) && (repeatNewPassword.length !== 0)) {
+            setErrorRepeatPassword([]);
+        }
+
         setErrorNewPassword(errs);
         setNewPassword(newPasswordForValidation);
         setButtonDisabled(Boolean(errorOldPassword.length) || Boolean(errs.length) || Boolean(errorRepeatPassword.length));
@@ -59,8 +67,12 @@ function PopupChangePassword(props: any) {
             errs.push("Пароль не может быть пустым.")
         }
 
-        if (newPassword !== repeatNewPasswordForValidation) {
+        if ((newPassword !== repeatNewPasswordForValidation) && (repeatNewPasswordForValidation.length !== 0)) {
             errs.push("Новый пароль и повтор пароля не совпадают.")
+        }
+
+        if ((newPassword === repeatNewPasswordForValidation) && (newPassword.length !== 0)) {
+            setErrorNewPassword([]);
         }
 
         setErrorRepeatPassword(errs);

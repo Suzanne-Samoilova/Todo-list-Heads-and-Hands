@@ -1,3 +1,5 @@
 .detail-task__details-description {
-/*style={{margin: "10px 0 0", overflow: "hidden", textOverflow: "ellipsis"}}*/
+    margin: 10px 0 0;
+    overflow: auto;
+    text-overflow: ellipsis;
 }

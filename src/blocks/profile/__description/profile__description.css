@@ -1,0 +1,7 @@
+.profile__description {
+    max-width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 20px;
+}

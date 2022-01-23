@@ -1,7 +1,7 @@
 .tasks__date {
-    font-style: inherit;
-    font-size: 13px;
-    margin: 0 5px;
     width: 93px;
+    font-size: 13px;
+    font-style: inherit;
     text-align: center;
+    margin: 0 5px;
 }

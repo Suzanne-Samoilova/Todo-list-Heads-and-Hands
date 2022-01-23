@@ -95,7 +95,7 @@ function PopupChangeProfile(props: any) {
                    value={city}
                    onChange={handleChangeCity}/>
 
-            <p className="popup__task-name" style={{marginBottom: "10px"}}>Дата рождения:</p>
+            <p className="popup__task-name popup__task-datepicker">Дата рождения:</p>
             <DatePicker format={dateFormat}
                         locale={locale}
                         value={moment(dateOfBirth, dateFormat)}

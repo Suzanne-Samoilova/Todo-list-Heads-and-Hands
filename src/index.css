@@ -7,6 +7,7 @@
 @import url(./blocks/authorization/__button-save/authorization__button-save.css);
 @import url(./blocks/authorization/__form-input/authorization__form-input.css);
 @import url(./blocks/authorization/__form-error/authorization__form-error.css);
+@import url(./blocks/authorization/__form-error-birth/authorization__form-error-birth.css);
 
 @import url(./blocks/registration/registration.css);
 
@@ -29,6 +30,7 @@
 @import url(./blocks/todo/__title/todo__title.css);
 @import url(./blocks/todo/__box-buttons/todo__box-buttons.css);
 @import url(./blocks/todo/__box-buttons-left/todo__box-buttons-left.css);
+@import url(./blocks/todo/__box-buttons-right/todo__box-buttons-right.css);
 @import url(./blocks/todo/__button-add/todo__button-add.css);
 @import url(./blocks/todo/__button-left/todo__button-left.css);
 @import url(./blocks/todo/__button-right/todo__button-right.css);
@@ -37,7 +39,10 @@
 @import url(./blocks/tasks/__item/tasks__item.css);
 @import url(./blocks/tasks/__checkbox/tasks__checkbox.css);
 @import url(./blocks/tasks/__item-title/tasks__item-title.css);
+@import url(./blocks/tasks/__box/tasks__box.css);
+@import url(./blocks/tasks/__category/tasks__category.css);
 @import url(./blocks/tasks/__date/tasks__date.css);
+@import url(./blocks/tasks/__box-buttons/tasks__box-buttons.css);
 @import url(./blocks/tasks/__button-delete/tasks__button-delete.css);
 @import url(./blocks/tasks/__button-change/tasks__button-change.css);
 @import url(./blocks/tasks/__item/_completed/tasks__item_completed.css);
@@ -51,6 +56,7 @@
 @import url(./blocks/popup/__name/popup__name.css);
 @import url(./blocks/popup/__form/popup__form.css);
 @import url(./blocks/popup/__task-name/popup__task-name.css);
+@import url(./blocks/popup/__task-datepicker/popup__task-datepicker.css);
 @import url(./blocks/popup/__input-text/popup__input-text.css);
 @import url(./blocks/popup/__button-save/popup__button-save.css);
 @import url(./blocks/popup/__button-cancel/popup__button-cancel.css);
@@ -67,4 +73,16 @@
 @import url(./blocks/detail-task/__details-text/detail-task__details-text.css);
 @import url(./blocks/detail-task/__details-name/detail-task__details-name.css);
 @import url(./blocks/detail-task/__details-description/detail-task__details-description.css);
+@import url(./blocks/detail-task/__details-box/detail-task__details-box.css);
+@import url(./blocks/detail-task/__details-buttons/detail-task__details-buttons.css);
+
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__img-box/profile__img-box.css);
+@import url(./blocks/profile/__img/profile__img.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__box/profile__box.css);
+@import url(./blocks/profile/__title/profile__title.css);
+@import url(./blocks/profile/__description/profile__description.css);
+@import url(./blocks/profile/__title-text/profile__title-text.css);
+@import url(./blocks/profile/__button/profile__button.css);
 

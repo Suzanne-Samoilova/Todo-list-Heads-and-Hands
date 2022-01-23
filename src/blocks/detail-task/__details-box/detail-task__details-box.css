@@ -1,0 +1,4 @@
+.detail-task__details-box {
+    display: flex;
+    flex-direction: column;
+}

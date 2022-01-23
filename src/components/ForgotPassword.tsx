@@ -105,7 +105,7 @@ function ForgotPassword() {
                 <div className="authorization">
                     <h2 className="authorization__title">Восстановление пароля</h2>
 
-                    <form className="authorization__form" style={{alignItems: "stretch"}}
+                    <form className="authorization__form"
                           onSubmit={handleSubmit}>
                         <span className="authorization__form-error">{forgotPasswordErrors}</span>
 
@@ -124,7 +124,7 @@ function ForgotPassword() {
                                     locale={locale}
                                     value={moment(dateOfBirth, dateFormat)}
                                     onChange={handleChangeDateOfBirth}/>
-                        <span className="authorization__form-error" style={{marginTop: "5px"}}>{dateOfBirthErrors}</span>
+                        <span className="authorization__form-error authorization__form-error-birth">{dateOfBirthErrors}</span>
 
                         <p className="authorization__input-title">Новый пароль:</p>
                         <input className="authorization__form-input"
