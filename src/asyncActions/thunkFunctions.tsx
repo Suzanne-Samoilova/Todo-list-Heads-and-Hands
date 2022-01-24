@@ -208,7 +208,6 @@ export const getProfile = () => {
             })
             .catch(error =>
                 console.log('error:', error));
-        console.log('Получили данные пользователя');
     }
 }
 
@@ -244,17 +243,17 @@ export const changeProfilePassword = (password: any) => {
 }
 
 
-export const getEmail = (email: any, password: any, errs: any[], setProfileErrors: any) => {
+export const checkEmail = (email: any, password: any, errs: any[], setProfileErrors: any, setEmail: any, setPassword: any) => {
     return function (dispatch: any) {
         axios.get(`http://localhost:3001/users?email=${email}`)
             .then(resp => {
                 if (resp.data.length) {
                     errs.push("Пользователь с таким email уже существует!");
                     setProfileErrors(errs);
-                    // очистить поля ввода
+                    setEmail('');
+                    setPassword('');
                 } else {
                     dispatch(addNewProfile(email, password));
-                    dispatch(push(`auth`));
                 }
             })
             .catch(error =>
@@ -265,17 +264,17 @@ export const getEmail = (email: any, password: any, errs: any[], setProfileError
 
 
 export const addNewProfile = (email: any, password: any) => {
-    return function () {
+    return function (dispatch: any) {
         axios.post(`http://localhost:3001/users/`,
             {
                 "email": email,
                 "password": password,
                 "name": "",
-                "date_of_birth": "01.01.2000",
+                "date_of_birth": "01.01.2001",
                 "city": ""
             })
             .then(resp => {
-                console.log('Пользователь успешно зарегистрирован!');
+                dispatch(push(`auth`));
             })
             .catch(error =>
                 console.log('error:', error));

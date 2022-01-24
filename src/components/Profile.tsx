@@ -17,7 +17,7 @@ function Profile() {
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
         dispatch(getProfile());
-    },[])
+    },[dispatch])
 
 
     const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!userName.userName);

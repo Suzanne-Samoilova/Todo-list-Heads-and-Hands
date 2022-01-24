@@ -29,7 +29,6 @@ function PopupChangeProfile(props: any) {
 
 
     React.useEffect(() => {
-        console.log('profile', userProfile)
         if (userProfile?.email) {
             fillForm();
         }
@@ -40,16 +39,16 @@ function PopupChangeProfile(props: any) {
         setName(e.target.value);
     }
 
-    function handleChangeDateOfBirth(date: any, dateString: string) {
-        setDateOfBirth(dateString);
+    function handleChangeEmail(e: any) {
+        setEmail(e.target.value);
     }
 
     function handleChangeCity(e: any) {
         setCity(e.target.value);
     }
 
-    function handleChangeEmail(e: any) {
-        setEmail(e.target.value);
+    function handleChangeDateOfBirth(date: any, dateString: string) {
+        setDateOfBirth(dateString);
     }
 
 

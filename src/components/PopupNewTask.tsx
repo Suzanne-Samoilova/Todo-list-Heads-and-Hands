@@ -10,7 +10,7 @@ import 'moment/locale/ru';
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import PopupWithForm from "./PopupWithForm";
 import 'antd/dist/antd.css';
-import {add, parse} from "date-fns";
+import {add} from "date-fns";
 import moment from "moment";
 
 

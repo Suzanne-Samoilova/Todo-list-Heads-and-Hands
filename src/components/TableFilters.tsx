@@ -76,7 +76,8 @@ function TableFilters() {
                     onChange={handleSortingName}>
                 {selectSortingName.map((item) => (
                     <option key={item.id}
-                            selected={todo.sortNameTask && todo.sortNameTask === item.name}>
+                            selected={todo.sortNameTask && todo.sortNameTask === item.name}
+                    >
                         {item.name}
                     </option>
                 ))}

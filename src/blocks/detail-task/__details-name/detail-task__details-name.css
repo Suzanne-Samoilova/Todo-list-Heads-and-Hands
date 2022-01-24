@@ -1,5 +1,9 @@
 .detail-task__details-name {
     font-size: 15px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 3px;
     margin: 0;
 }

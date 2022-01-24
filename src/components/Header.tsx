@@ -2,7 +2,7 @@ import React from "react";
 import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../store/reducerAuth";
-import {clearProfileAction} from "../store/reducerProfile";
+import { clearProfileAction } from "../store/reducerProfile";
 
 
 function Header() {
@@ -29,14 +29,14 @@ function Header() {
 
     return (
         <div className="header">
-            <div>
+            <div className="header__box">
                 <button className="todo__button-add"
                         onClick={handleGoTodo}>Список задач</button>
                 <button className="todo__button-add"
                         onClick={handleGoArchive}>Архив</button>
             </div>
 
-            <div>
+            <div className="header__box">
                 <button className="todo__button-add"
                         onClick={handleGoProfile}>Профиль</button>
                 <button className="todo__button-add"

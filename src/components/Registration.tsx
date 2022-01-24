@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { getEmail } from "../asyncActions/thunkFunctions";
+import { checkEmail } from "../asyncActions/thunkFunctions";
 
 
 function Registration() {
@@ -28,7 +28,7 @@ function Registration() {
         return String(rawPassword)
             .toLowerCase()
             .match(
-                /(?=.*[!@$%^&*()_+])(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`\[\]]))(?=[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`\[\]a-zA-Z0-9]{6,}/
+                /(?=.*[!@$%^&*()_+\-\])(?=[#$-/:-?{-~!"^_`[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`[\]]))(?=[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]{6,}/
             );
     };
 
@@ -61,7 +61,7 @@ function Registration() {
         }
 
         if ((!validatePassword(passwordForValidation)) && (passwordForValidation.length !== 0)) {
-            errs.push("Пароль должен содержать цифры, буквы (в том числе и заглавную) и хотя бы один из символов !@$%^&*()_+")
+            errs.push("Пароль должен содержать цифры, буквы (в том числе и заглавную) и хотя бы один из символов !@$%^&*()_+-")
         }
 
         setPasswordErrors(errs);
@@ -73,7 +73,7 @@ function Registration() {
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         let errs: any[] = [];
-        dispatch(getEmail(email, password, errs, setProfileErrors));
+        dispatch(checkEmail(email, password, errs, setProfileErrors, setEmail, setPassword));
     }
 
     function handleGoAuth() {

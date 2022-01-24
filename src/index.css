@@ -14,6 +14,7 @@
 @import url(./blocks/forgot-password/forgot-password.css);
 
 @import url(./blocks/header/header.css);
+@import url(./blocks/header/__box/header__box.css);
 
 @import url(./blocks/table-filters/table-filters.css);
 @import url(./blocks/table-filters/__input-name/table-filters__input-name.css);

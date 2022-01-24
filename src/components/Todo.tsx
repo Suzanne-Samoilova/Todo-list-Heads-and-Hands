@@ -19,7 +19,7 @@ function Todo() {
     // загрузить список тудушек и отрисовать
     useEffect(()=> {
         dispatch(filtersTasks());
-    },[])
+    },[dispatch])
 
 
     const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
