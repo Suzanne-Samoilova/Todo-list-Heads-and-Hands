@@ -9,7 +9,7 @@ import {
 } from "../constants/errorsText";
 
 
-function PopupChangePassword(props: any) {
+const PopupChangePassword = (props: any) => {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
 

@@ -15,7 +15,7 @@ import {
 import {regexpEmail, regexpPassword} from "../constants/regExp";
 
 
-function ForgotPassword() {
+const ForgotPassword = () => {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState<string>('');

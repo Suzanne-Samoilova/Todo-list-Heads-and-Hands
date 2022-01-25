@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { add, parse } from 'date-fns';
@@ -9,11 +9,11 @@ import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 
 
-function Task(props: any) {
+const Task = (props: any) => {
     const dispatch = useDispatch();
 
-    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = useState(false);
+    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = useState(false);
 
 
     function handleOpenPopupChangeTask(e: any) {

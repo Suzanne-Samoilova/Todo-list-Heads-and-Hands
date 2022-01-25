@@ -1,6 +1,7 @@
 import React from "react";
 
-function TableHeader() {
+
+const TableHeader = () => {
     return (
         <ul className="table-header">
             <div className="table-header__box-name">

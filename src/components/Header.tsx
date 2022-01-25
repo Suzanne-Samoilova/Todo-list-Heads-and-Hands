@@ -5,7 +5,7 @@ import { logoutAction } from "../store/reducerAuth";
 import { clearProfileAction } from "../store/reducerProfile";
 
 
-function Header() {
+const Header = () => {
     const dispatch = useDispatch();
 
     function handleGoTodo() {

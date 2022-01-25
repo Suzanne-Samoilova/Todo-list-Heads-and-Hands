@@ -13,7 +13,7 @@ import { listCategoriesForFilter } from "../constants/listCategoriesForFilter";
 import { selectSortingName, selectSortingStatus } from "../constants/listSelectsForFilter";
 
 
-function TableFilters() {
+const TableFilters = () => {
     const dispatch = useDispatch();
     const todo = useSelector(selectorTodoState);
 

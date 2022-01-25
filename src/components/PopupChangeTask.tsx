@@ -10,7 +10,7 @@ import { changeTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
 
 
-function PopupChangeTask(props: any) {
+const PopupChangeTask = (props: any) => {
     const dispatch = useDispatch();
     const dateNow = getDateNowByDDmmyyyy();
 

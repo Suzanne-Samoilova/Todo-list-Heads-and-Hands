@@ -10,7 +10,7 @@ import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 
 
-function DetailPage() {
+const DetailPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams <{ id: string }>();
     const task = useSelector(selectorDetailState);

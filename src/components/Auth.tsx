@@ -9,8 +9,7 @@ import {
 } from "../constants/errorsText";
 import {regexpEmail} from "../constants/regExp";
 
-
-function Auth() {
+const Auth = () => {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState<string>('');

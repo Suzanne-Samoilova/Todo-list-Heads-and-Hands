@@ -10,7 +10,7 @@ import PopupWithForm from "./PopupWithForm";
 import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
 
 
-function PopupChangeProfile(props: any) {
+const PopupChangeProfile = (props: any) => {
     const dispatch = useDispatch();
     const userName = useSelector(selectorAuthState);
     const userProfile = useSelector(selectorProfileState);

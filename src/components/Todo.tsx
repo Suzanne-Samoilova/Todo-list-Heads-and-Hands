@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectorTodoState } from "../store/selectorsState";
@@ -12,7 +12,7 @@ import Task from "./Task";
 import PopupNewTask from "./PopupNewTask";
 
 
-function Todo() {
+const Todo = () => {
     const dispatch = useDispatch();
     const todoState = useSelector(selectorTodoState);
 
@@ -21,7 +21,7 @@ function Todo() {
     },[])
 
 
-    const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
+    const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = useState(false);
 
     function handleAddNewTask() {
         setIsAddNewTaskPopupOpen(true);

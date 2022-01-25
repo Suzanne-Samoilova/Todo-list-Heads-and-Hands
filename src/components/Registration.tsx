@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { checkEmail } from "../asyncActions/thunkFunctions";
@@ -11,17 +11,17 @@ import {
 import {regexpEmail, regexpPassword} from "../constants/regExp";
 
 
-function Registration() {
+const Registration = () => {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
-    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
-    const [profileErrors, setProfileErrors] = React.useState<string[]>([" "]);
+    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
+    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
+    const [profileErrors, setProfileErrors] = useState<string[]>([" "]);
 
-    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)

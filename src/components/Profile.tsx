@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
@@ -9,19 +9,19 @@ import PopupChangeProfile from "./PopupChangeProfile";
 import PopupChangePassword from "./PopupChangePassword";
 
 
-function Profile() {
+const Profile = () => {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
     const userName = useSelector(selectorAuthState);
 
-    // загрузить данные профиля и отрисовать
+    
     useEffect(()=> {
         dispatch(getProfile());
     },[])
 
 
-    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!userName.userName);
-    const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = React.useState(false);
+    const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = useState(!userName.userName);
+    const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = useState(false);
 
 
     function handleOpenPopupChangeProfile() {

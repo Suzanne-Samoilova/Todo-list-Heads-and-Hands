@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {add} from "date-fns";
 import { DatePicker } from 'antd';
@@ -14,15 +14,15 @@ import { createTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
 
 
-function PopupNewTask(props: any) {
+const PopupNewTask = (props: any) => {
     const dispatch = useDispatch();
 
     const authState = useSelector(selectorAuthState);
 
-    const [category, setCategory] = React.useState("Общая заметка");
-    const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState("");
-    const [date_deadline, setDate_deadline] = React.useState("");
+    const [category, setCategory] = useState("Общая заметка");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [date_deadline, setDate_deadline] = useState("");
 
     function handleCategoryChange(e: any) {
         setCategory(e.target.value);

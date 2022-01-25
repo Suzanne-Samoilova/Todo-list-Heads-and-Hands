@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-function Archive() {
-
+const Archive = () => {
 
     return (
         <section className="todo">

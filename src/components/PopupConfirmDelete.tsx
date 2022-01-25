@@ -5,7 +5,7 @@ import { deleteTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
 
 
-function PopupConfirmDelete(props: any) {
+const PopupConfirmDelete = (props: any) => {
     const dispatch = useDispatch();
 
     function handleSubmitDeleteTask(e: any) {
