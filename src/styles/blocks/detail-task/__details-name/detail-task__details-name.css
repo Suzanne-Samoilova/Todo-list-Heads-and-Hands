@@ -1,9 +1,11 @@
 .detail-task__details-name {
+    min-height: 18px;
     font-size: 15px;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-bottom: 3px;
+    padding-right: 50px;
     margin: 0;
 }

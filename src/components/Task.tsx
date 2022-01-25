@@ -12,12 +12,10 @@ import PopupChangeTask from "./PopupChangeTask";
 function Task(props: any) {
     const dispatch = useDispatch();
 
-    // попап Изменить таск
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-    // попап Хотите удалить?
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
 
-    // попап Изменить таск
+
     function handleOpenPopupChangeTask(e: any) {
         e.stopPropagation();
         setIsChangeTaskPopupOpen(true);
@@ -27,7 +25,6 @@ function Task(props: any) {
         setIsChangeTaskPopupOpen(false);
     }
 
-    // попап Хотите удалить?
     function handleOpenPopupDeleteTask(e: any) {
         e.stopPropagation();
         setIsOpenPopupDeleteTask(true);
@@ -43,7 +40,6 @@ function Task(props: any) {
         e.stopPropagation();
         const taskId = props.id;
         const taskStatus = props.status;
-        // отослать статус таски
         dispatch(changeStatusTask(taskId, taskStatus));
     }
 
@@ -52,7 +48,6 @@ function Task(props: any) {
         e.stopPropagation();
         const checked = e.target.checked;
         const taskId = props.id;
-        // отослать статус нескольких тасок
         if (checked) {
             dispatch(selectTaskAction({id: taskId}))
         } else {
@@ -69,7 +64,7 @@ function Task(props: any) {
 
 
     function taskClassNameSelector() {
-        let deadlineIsNear = () => {
+        const deadlineIsNear = () => {
             const criticalDate = parse(props.date_deadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
             return criticalDate <= redDate;
@@ -117,14 +112,12 @@ function Task(props: any) {
                 </div>
             </li>
 
-            {/*попап Хотите удалить?*/}
             {isOpenPopupDeleteTask && <PopupConfirmDelete
                 isOpen={isOpenPopupDeleteTask}
                 onClose={handleClosePopupDeleteTask}
                 id={props.id}
                 name={props.name}/>}
 
-            {/*попап Изменить таск*/}
             {isChangeTaskPopupOpen && <PopupChangeTask
                 isOpen={isChangeTaskPopupOpen}
                 onClose={handleClosePopupChangeTask}

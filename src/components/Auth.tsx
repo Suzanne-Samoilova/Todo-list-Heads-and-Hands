@@ -1,42 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { authorization } from "../asyncActions/thunkFunctions";
+import {
+    errorBlankEmail,
+    errorBlankPassword,
+    errorIncorrectEmail
+} from "../constants/errorsText";
+import {regexpEmail} from "../constants/regExp";
 
 
 function Auth() {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
-    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
-    const [authErrors, setAuthErrors] = React.useState<string[]>([" "]);
+    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
+    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
+    const [authErrors, setAuthErrors] = useState<string[]>([" "]);
 
-    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
             .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
+            .match(regexpEmail);
     };
 
 
     const handleEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
-        let emailForValidation = e.target.value;
+        const emailForValidation = e.target.value;
         setAuthErrors([]);
-        let errs = [];
+        const errs = [];
 
         if (emailForValidation.length === 0) {
-            errs.push("Email не может быть пустым.")
+            errs.push(errorBlankEmail)
         }
 
-        if ((!validateEmail(emailForValidation)) && (emailForValidation.length !== 0)) {
-            errs.push("Email введен неверно.")
+        if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
+            errs.push(errorIncorrectEmail)
         }
 
         setEmailErrors(errs);
@@ -46,12 +50,12 @@ function Auth() {
 
 
     const handlePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
-        let passwordForValidation = e.target.value;
+        const passwordForValidation = e.target.value;
         setAuthErrors([]);
-        let errs = [];
+        const errs = [];
 
         if (passwordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
         setPasswordErrors(errs);
@@ -89,7 +93,7 @@ function Auth() {
                                placeholder="Введите адрес эл.почты"
                                required
                                onChange={handleEmail}/>
-                        <span className="authorization__form-error" id="email-error">{emailErrors.join(" ")}</span>
+                        <span className="authorization__form-error" id="email-error">{emailErrors}</span>
 
                         <p className="authorization__input-title">Пароль:</p>
                         <input className="authorization__form-input" id="password"
@@ -98,7 +102,7 @@ function Auth() {
                                placeholder="Введите пароль"
                                required
                                onChange={handlePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors.join(" ")}</span>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors}</span>
                         <span className="authorization__form-error" id="password-error">{authErrors}</span>
 
                         <button className="authorization__button-save"

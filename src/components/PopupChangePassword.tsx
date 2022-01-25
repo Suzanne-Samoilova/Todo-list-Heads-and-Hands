@@ -1,34 +1,39 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectorProfileState} from "../store/selectorsState";
 import {changeProfilePassword} from "../asyncActions/thunkFunctions";
+import {
+    errorBlankPassword,
+    errorIncorrectOldPassword,
+    errorMismatchPasswords
+} from "../constants/errorsText";
 
 
 function PopupChangePassword(props: any) {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
 
-    const [oldPassword, setOldPassword] = React.useState('');
-    const [newPassword, setNewPassword] = React.useState('');
-    const [repeatNewPassword, setRepeatNewPassword] = React.useState('');
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [repeatNewPassword, setRepeatNewPassword] = useState('');
 
-    const [errorOldPassword, setErrorOldPassword] = React.useState<string[]>(['']);
-    const [errorNewPassword, setErrorNewPassword] = React.useState<string[]>(['']);
-    const [errorRepeatPassword, setErrorRepeatPassword] = React.useState<string[]>(['']);
+    const [errorOldPassword, setErrorOldPassword] = useState<string[]>(['']);
+    const [errorNewPassword, setErrorNewPassword] = useState<string[]>(['']);
+    const [errorRepeatPassword, setErrorRepeatPassword] = useState<string[]>(['']);
 
-    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
 
     function handleChangeOldPassword(e: React.ChangeEvent<HTMLInputElement>) {
-        let oldPasswordForValidation = e.target.value;
-        let errs = [];
+        const oldPasswordForValidation = e.target.value;
+        const errs = [];
 
         if (oldPasswordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
         if ((userProfile.password !== oldPasswordForValidation) && (oldPasswordForValidation.length !== 0)) {
-            errs.push("Неверный старый пароль.")
+            errs.push(errorIncorrectOldPassword)
         }
 
         setErrorOldPassword(errs);
@@ -38,15 +43,15 @@ function PopupChangePassword(props: any) {
 
 
     function handleChangeNewPassword(e: any) {
-        let newPasswordForValidation = e.target.value;
-        let errs = [];
+        const newPasswordForValidation = e.target.value;
+        const errs = [];
 
         if (newPasswordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
         if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0)) {
-            errs.push("Новый пароль и повтор пароля не совпадают.")
+            errs.push(errorMismatchPasswords)
         }
 
         if ((repeatNewPassword === newPasswordForValidation) && (repeatNewPassword.length !== 0)) {
@@ -60,15 +65,15 @@ function PopupChangePassword(props: any) {
 
 
     function handleChangeRepeatNewPassword(e: any) {
-        let repeatNewPasswordForValidation = e.target.value;
-        let errs = [];
+        const repeatNewPasswordForValidation = e.target.value;
+        const errs = [];
 
         if (repeatNewPasswordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
         if ((newPassword !== repeatNewPasswordForValidation) && (repeatNewPasswordForValidation.length !== 0)) {
-            errs.push("Новый пароль и повтор пароля не совпадают.")
+            errs.push(errorMismatchPasswords)
         }
 
         if ((newPassword === repeatNewPasswordForValidation) && (newPassword.length !== 0)) {
@@ -109,7 +114,7 @@ function PopupChangePassword(props: any) {
                            placeholder="Введите старый пароль"
                            value={oldPassword}
                            onChange={handleChangeOldPassword}/>
-                    <span className="authorization__form-error" id="old-password-error">{errorOldPassword.join(" ")}</span>
+                    <span className="authorization__form-error" id="old-password-error">{errorOldPassword}</span>
 
                     <p className="popup__task-name">Новый пароль:</p>
                     <input className="popup__input-text"
@@ -118,7 +123,7 @@ function PopupChangePassword(props: any) {
                            placeholder="Введите новый пароль"
                            onChange={handleChangeNewPassword}/>
                     <span className="authorization__form-error"
-                          id="repeat-password-error">{errorNewPassword.join(" ")}</span>
+                          id="repeat-password-error">{errorNewPassword}</span>
 
                     <p className="popup__task-name">Повторите новый пароль:</p>
                     <input className="popup__input-text"
@@ -127,7 +132,7 @@ function PopupChangePassword(props: any) {
                            placeholder="Повторите новый пароль"
                            onChange={handleChangeRepeatNewPassword}/>
                     <span className="authorization__form-error"
-                          id="repeat-password-error">{errorRepeatPassword.join(" ")}</span>
+                          id="repeat-password-error">{errorRepeatPassword}</span>
 
                     <button className="popup__button-save"
                             type="submit"

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
 import { getProfile } from "../asyncActions/thunkFunctions";
-import avatar from "../images/no-avatar.png";
+import avatar from "../static/images/no-avatar.png";
 import Header from "./Header";
 import PopupChangeProfile from "./PopupChangeProfile";
 import PopupChangePassword from "./PopupChangePassword";
@@ -17,7 +17,7 @@ function Profile() {
     // загрузить данные профиля и отрисовать
     useEffect(()=> {
         dispatch(getProfile());
-    },[dispatch])
+    },[])
 
 
     const [isOpenPopupChangeProfile, setIsOpenPopupChangeProfile] = React.useState(!userName.userName);

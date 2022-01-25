@@ -2,6 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { checkEmail } from "../asyncActions/thunkFunctions";
+import {
+    errorBlankEmail,
+    errorBlankPassword,
+    errorIncorrectEmail,
+    errorPasswordMustContain
+} from "../constants/errorsText";
+import {regexpEmail, regexpPassword} from "../constants/regExp";
 
 
 function Registration() {
@@ -19,31 +26,27 @@ function Registration() {
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
             .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
+            .match(regexpEmail);
     };
 
     const validatePassword = (rawPassword: any) => {
         return String(rawPassword)
             .toLowerCase()
-            .match(
-                /(?=.*[!@$%^&*()_+\-\])(?=[#$-/:-?{-~!"^_`[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`[\]]))(?=[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]{6,}/
-            );
+            .match(regexpPassword);
     };
 
 
     const handleChangeEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
-        let emailForValidation = e.target.value;
+        const emailForValidation = e.target.value;
         setProfileErrors([]);
-        let errs = [];
+        const errs = [];
 
         if (emailForValidation.length === 0) {
-            errs.push("Email не может быть пустым.")
+            errs.push(errorBlankEmail)
         }
 
-        if ((!validateEmail(emailForValidation)) && (emailForValidation.length !== 0)) {
-            errs.push("Email введен неверно.")
+        if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
+            errs.push(errorIncorrectEmail)
         }
 
         setEmailErrors(errs);
@@ -53,15 +56,15 @@ function Registration() {
 
 
     const handleChangePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
-        let passwordForValidation = e.target.value;
-        let errs = [];
+        const passwordForValidation = e.target.value;
+        const errs = [];
 
         if (passwordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
-        if ((!validatePassword(passwordForValidation)) && (passwordForValidation.length !== 0)) {
-            errs.push("Пароль должен содержать цифры, буквы (в том числе и заглавную) и хотя бы один из символов !@$%^&*()_+-")
+        if (!validatePassword(passwordForValidation) && passwordForValidation.length !== 0) {
+            errs.push(errorPasswordMustContain)
         }
 
         setPasswordErrors(errs);
@@ -72,7 +75,7 @@ function Registration() {
 
     function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        let errs: any[] = [];
+        const errs: any[] = [];
         dispatch(checkEmail(email, password, errs, setProfileErrors, setEmail, setPassword));
     }
 

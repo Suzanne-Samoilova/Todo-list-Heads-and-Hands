@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { listCategories } from "../utils/listCategories";
+import {add} from "date-fns";
 import { DatePicker } from 'antd';
+import 'moment/locale/ru';
+import moment from "moment";
+import locale from 'antd/es/date-picker/locale/ru_RU';
+import 'antd/dist/antd.css';
+
+import { listCategories } from "../constants/listCategories";
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
 import {selectorAuthState} from "../store/selectorsState";
 import { createTask } from "../asyncActions/thunkFunctions";
-import 'moment/locale/ru';
-import locale from 'antd/es/date-picker/locale/ru_RU';
 import PopupWithForm from "./PopupWithForm";
-import 'antd/dist/antd.css';
-import {add} from "date-fns";
-import moment from "moment";
 
 
 function PopupNewTask(props: any) {
@@ -46,7 +46,7 @@ function PopupNewTask(props: any) {
         const userId = authState.userId;
         const dateNow = getDateNowByDDmmyyyy();
 
-        let deadline = moment(add(Date.now(), {days: 5})).format('DD.MM.YYYY');
+        const deadline = moment(add(Date.now(), {days: 5})).format(dateFormat);
 
         if (date_deadline.length === 0) {
             dispatch(createTask(userId, category, name, description, dateNow, deadline))

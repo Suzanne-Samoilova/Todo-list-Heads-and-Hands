@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 
-import { listCategories } from "../utils/listCategories";
+import { listCategories } from "../constants/listCategories";
 import moment from "moment";
 import { DatePicker } from 'antd';
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
@@ -12,13 +12,12 @@ import PopupWithForm from "./PopupWithForm";
 
 function PopupChangeTask(props: any) {
     const dispatch = useDispatch();
-    // Дата изменения
     const dateNow = getDateNowByDDmmyyyy();
 
-    const [category, setCategory] = React.useState(props.category);
-    const [name, setName] = React.useState(props.name);
-    const [description, setDescription] = React.useState(props.description);
-    const [dateDeadline, setDateDeadline] = React.useState(props.date_deadline);
+    const [category, setCategory] = useState(props.category);
+    const [name, setName] = useState(props.name);
+    const [description, setDescription] = useState(props.description);
+    const [dateDeadline, setDateDeadline] = useState(props.date_deadline);
 
     function handleChangeCategory(e: any) {
         setCategory(e.target.value);
@@ -37,7 +36,6 @@ function PopupChangeTask(props: any) {
     }
 
 
-    // сабмит попапа Изменить таск
     function handleSubmitChangeTask(e: any) {
         e.preventDefault();
         const taskId = props.id;

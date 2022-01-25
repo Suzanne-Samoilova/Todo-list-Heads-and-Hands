@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { push } from "connected-react-router";
@@ -17,10 +17,11 @@ function DetailPage() {
 
     useEffect(()=> {
         dispatch(getDetailTask(id));
-    },[dispatch, id])
+    },[])
 
-    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = React.useState(false);
-    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = React.useState(false);
+
+    const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = useState(false);
+    const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = useState(false);
 
     function handleOpenPopupChangeTask() {
         setIsChangeTaskPopupOpen(true);

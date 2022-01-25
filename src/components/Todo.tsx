@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectorTodoState } from "../store/selectorsState";
-import { deleteMultipleTask, filtersTasks } from "../asyncActions/thunkFunctions";
+import { deleteMultipleTask, filteringTasks } from "../asyncActions/thunkFunctions";
 import { decrementPageAction, incrementPageAction } from "../store/reducerTodo";
-import { LIMIT_PAGINATE_TODO_LIST } from "../constants";
+import { LIMIT_PAGINATE_TODO_LIST } from "../constants/constants";
 import Header from "./Header";
 import TableFilters from "./TableFilters";
 import TableHeader from "./TableHeader";
@@ -16,10 +16,9 @@ function Todo() {
     const dispatch = useDispatch();
     const todoState = useSelector(selectorTodoState);
 
-    // загрузить список тудушек и отрисовать
     useEffect(()=> {
-        dispatch(filtersTasks());
-    },[dispatch])
+        dispatch(filteringTasks());
+    },[])
 
 
     const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = React.useState(false);
@@ -32,21 +31,20 @@ function Todo() {
         setIsAddNewTaskPopupOpen(false);
     }
 
-    // Удалить выбранные таски
+
     const handleDeleteButton = ()=> {
         dispatch(deleteMultipleTask());
-        dispatch(filtersTasks());
+        dispatch(filteringTasks());
     }
 
-    // для пагинации
     function handleNextPage() {
         dispatch(incrementPageAction());
-        dispatch(filtersTasks());
+        dispatch(filteringTasks());
     }
 
     function handlePreviousPage() {
         dispatch(decrementPageAction());
-        dispatch(filtersTasks());
+        dispatch(filteringTasks());
     }
 
 

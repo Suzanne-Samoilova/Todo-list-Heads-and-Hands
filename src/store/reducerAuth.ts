@@ -1,8 +1,7 @@
-// дефолтное состояние присваивается в тот момент, когда пользователь открыл приложение
 const defaultState = {
     isAuthorized: false,
-    userId: undefined,
-    userName: undefined,
+    userId: null,
+    userName: null,
 }
 
 const LOGIN = "LOGIN";
@@ -20,7 +19,7 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
         case LOGOUT:
             return {...state,
                 isAuthorized: false,
-                userId: undefined
+                userId: null
             }
 
         default:

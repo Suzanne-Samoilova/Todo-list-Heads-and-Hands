@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import { changeProfileData } from "../asyncActions/thunkFunctions";
@@ -15,10 +15,10 @@ function PopupChangeProfile(props: any) {
     const userName = useSelector(selectorAuthState);
     const userProfile = useSelector(selectorProfileState);
 
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [city, setCity] = React.useState('');
-    const [dateOfBirth, setDateOfBirth] = React.useState('01.01.2000');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [city, setCity] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('01.01.2000');
 
     const fillForm = () => {
         setName(userProfile.name);

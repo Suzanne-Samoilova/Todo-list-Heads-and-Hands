@@ -5,15 +5,21 @@ import {clearSelectedTasksAction, getTodoAction} from "../store/reducerTodo";
 import {getDetailTaskAction} from "../store/reducerDetailPage";
 import {loginAction} from "../store/reducerAuth";
 import {getProfileAction} from "../store/reducerProfile";
-import {LIMIT_PAGINATE_TODO_LIST} from "../constants";
+import {LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
+import {baseUrl} from "../constants/baseUrl";
+import {
+    errorEmailExists,
+    errorEmailNotFound,
+    errorIncorrectDateOfBirth,
+    errorIncorrectEmailOrPassword
+} from "../constants/errorsText";
 
 
 export const authorization = (email: any, password: any, setAuthErrors: any) => {
     return function (dispatch: any) {
-        axios.get(`http://localhost:3001/users?email=${email}&password=${password}`)
+        axios.get(`${baseUrl}/users?email=${email}&password=${password}`)
             .then(resp => {
                 if (resp.data.length) {
-                    // const userId = resp.data[0].id;
                     const userName = resp.data[0].name;
                     dispatch(loginAction({
                         userId: resp.data[0].id,
@@ -27,8 +33,8 @@ export const authorization = (email: any, password: any, setAuthErrors: any) => 
                     }
 
                 } else {
-                    let errAuth = [];
-                    errAuth.push("Email или пароль введены неправильно.")
+                    const errAuth = [];
+                    errAuth.push(errorIncorrectEmailOrPassword);
                     setAuthErrors(errAuth);
                 }
             })
@@ -39,8 +45,7 @@ export const authorization = (email: any, password: any, setAuthErrors: any) => 
 }
 
 
-// фильтр туду
-export const filtersTasks = () => {
+export const filteringTasks = () => {
     return function (dispatch: any, getState: any) {
         const userId = getState().auth.userId;
         const { currentPage,
@@ -49,20 +54,19 @@ export const filtersTasks = () => {
             categoryTask,
             statusTask } = getState().todo;
 
-        // в отображении тасков туду фильтр архива всегда false
         const statusArchive = false;
 
-        let url = `http://localhost:3001/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
+        let url = `${baseUrl}/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
 
         if (sortNameTask === 'По возрастанию') {
-            url = url + `&_sort=name&_order=asc`;
+            url += `&_sort=name&_order=asc`;
         } else if (sortNameTask === 'По убыванию') {
-            url = url + `&_sort=name&_order=desc`;
+            url +=`&_sort=name&_order=desc`;
         }
 
-        if (nameTask !== null) url = url + `&name=${nameTask}`;
-        if (categoryTask !== null) url = url + `&category=${categoryTask}`;
-        if (statusTask !== null) url = url + `&status=${statusTask}`;
+        if (nameTask !== null) url += `&name=${nameTask}`;
+        if (categoryTask !== null) url += `&category=${categoryTask}`;
+        if (statusTask !== null) url += `&status=${statusTask}`;
 
         axios.get(url)
             .then(resp => {
@@ -76,7 +80,7 @@ export const filtersTasks = () => {
 
 export const createTask = (userId: any, category: any, name: any, description: any, dateNow: any, date_deadline: any) => {
     return function (dispatch: any) {
-        axios.post(`http://localhost:3001/todo/`,
+        axios.post(`${baseUrl}/todo/`,
             {
                 "category": category,
                 "name": name,
@@ -89,7 +93,7 @@ export const createTask = (userId: any, category: any, name: any, description: a
                 "archive": false
             })
             .then(() => {
-                dispatch(filtersTasks());
+                dispatch(filteringTasks());
             })
             .catch(error =>
                 console.log('error:', error));
@@ -97,12 +101,11 @@ export const createTask = (userId: any, category: any, name: any, description: a
 }
 
 
-// удаление нескольких Tasks
 export const deleteMultipleTask = () => {
     return function (dispatch: any, getState: any) {
-        let promises = getState().todo.selectedTasks.map(
+        const promises = getState().todo.selectedTasks.map(
             (taskId:number) => {
-                return axios.delete(`http://localhost:3001/todo/${taskId}`)
+                return axios.delete(`${baseUrl}/todo/${taskId}`)
             }
         );
 
@@ -115,9 +118,9 @@ export const deleteMultipleTask = () => {
 
 export const changeStatusTask = (taskId: any, taskStatus: any) => {
     return function (dispatch: any) {
-        axios.patch(`http://localhost:3001/todo/${taskId}`, {"status": !taskStatus})
+        axios.patch(`${baseUrl}/todo/${taskId}`, {"status": !taskStatus})
             .then(resp => {
-                dispatch(filtersTasks());
+                dispatch(filteringTasks());
                 dispatch(getDetailTask(taskId));
             })
             .catch(error =>
@@ -128,9 +131,9 @@ export const changeStatusTask = (taskId: any, taskStatus: any) => {
 
 export const changeStatusArchive = (id: any, statusArchive: boolean) => {
     return function (dispatch: any) {
-        axios.patch(`http://localhost:3001/todo/${id}`, {"archive": statusArchive})
+        axios.patch(`${baseUrl}/todo/${id}`, {"archive": statusArchive})
             .then(resp => {
-                dispatch(filtersTasks());
+                dispatch(filteringTasks());
             })
             .catch(error =>
                 console.log('error:', error))
@@ -140,7 +143,7 @@ export const changeStatusArchive = (id: any, statusArchive: boolean) => {
 
 export const getDetailTask = (taskId: any) => {
     return function (dispatch: any) {
-        axios.get(`http://localhost:3001/todo/${taskId}`)
+        axios.get(`${baseUrl}/todo/${taskId}`)
             .then(resp => {
                 dispatch(getDetailTaskAction({
                     id: resp.data.id,
@@ -162,7 +165,7 @@ export const getDetailTask = (taskId: any) => {
 
 export const changeTask = (taskId: any, category: any, name: any, description: any, dateNow: any, dateDeadline: any) => {
     return function (dispatch: any) {
-        axios.patch(`http://localhost:3001/todo/${taskId}`, {
+        axios.patch(`${baseUrl}/todo/${taskId}`, {
             "category": category,
             "name": name,
             "description": description,
@@ -170,7 +173,7 @@ export const changeTask = (taskId: any, category: any, name: any, description: a
             "date_deadline": dateDeadline
         })
             .then(resp => {
-                dispatch(filtersTasks());
+                dispatch(filteringTasks());
                 dispatch(getDetailTask(taskId));
             })
             .catch(error =>
@@ -181,9 +184,9 @@ export const changeTask = (taskId: any, category: any, name: any, description: a
 
 export const deleteTask = (taskId: any) => {
     return function (dispatch: any) {
-        axios.delete(`http://localhost:3001/todo/${taskId}`)
+        axios.delete(`${baseUrl}/todo/${taskId}`)
             .then(resp => {
-                dispatch(filtersTasks());
+                dispatch(filteringTasks());
             })
             .catch(error =>
                 console.log('error:', error));
@@ -194,7 +197,7 @@ export const deleteTask = (taskId: any) => {
 export const getProfile = () => {
     return function (dispatch: any, getState: any) {
         const userId = getState().auth.userId;
-        axios.get(`http://localhost:3001/users/${userId}`)
+        axios.get(`${baseUrl}/users/${userId}`)
             .then(resp => {
                 const profile = resp.data;
 
@@ -215,7 +218,7 @@ export const getProfile = () => {
 export const changeProfileData = (name: any, dateOfBirth: any, city: any, email: any) => {
     return function (dispatch: any, getState: any) {
         const userId = getState().auth.userId;
-        axios.patch(`http://localhost:3001/users/${userId}`, {
+        axios.patch(`${baseUrl}/users/${userId}`, {
             "name": name,
             "date_of_birth": dateOfBirth,
             "city": city,
@@ -233,7 +236,7 @@ export const changeProfileData = (name: any, dateOfBirth: any, city: any, email:
 export const changeProfilePassword = (password: any) => {
     return function (dispatch: any, getState: any) {
         const userId = getState().auth.userId;
-        axios.patch(`http://localhost:3001/users/${userId}`, { "password": password })
+        axios.patch(`${baseUrl}/users/${userId}`, { "password": password })
             .then(resp => {
                 dispatch(getProfile());
             })
@@ -245,10 +248,10 @@ export const changeProfilePassword = (password: any) => {
 
 export const checkEmail = (email: any, password: any, errs: any[], setProfileErrors: any, setEmail: any, setPassword: any) => {
     return function (dispatch: any) {
-        axios.get(`http://localhost:3001/users?email=${email}`)
+        axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (resp.data.length) {
-                    errs.push("Пользователь с таким email уже существует!");
+                    errs.push(errorEmailExists);
                     setProfileErrors(errs);
                     setEmail('');
                     setPassword('');
@@ -265,7 +268,7 @@ export const checkEmail = (email: any, password: any, errs: any[], setProfileErr
 
 export const addNewProfile = (email: any, password: any) => {
     return function (dispatch: any) {
-        axios.post(`http://localhost:3001/users/`,
+        axios.post(`${baseUrl}/users/`,
             {
                 "email": email,
                 "password": password,
@@ -284,11 +287,11 @@ export const addNewProfile = (email: any, password: any) => {
 
 export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any, setForgotPasswordErrors: any, setDateOfBirthErrors: any) => {
     return function (dispatch: any) {
-        axios.get(`http://localhost:3001/users?email=${email}`)
+        axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (!resp.data[0]) {
-                    let errAuth = [];
-                    errAuth.push("Пользователь с таким email не найден.");
+                    const errAuth = [];
+                    errAuth.push(errorEmailNotFound);
                     setForgotPasswordErrors(errAuth);
                 } else {
                     const profile = resp.data[0];
@@ -302,8 +305,8 @@ export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: 
                     dispatch(loginAction({userId: profile.id, userName: profile.name}));
 
                     if (dateOfBirth !== profile.date_of_birth) {
-                        let errs = [];
-                        errs.push("Неверная дата рождения.");
+                        const errs = [];
+                        errs.push(errorIncorrectDateOfBirth);
                         setDateOfBirthErrors(errs);
                     } else {
                         dispatch(changeProfilePassword(password));

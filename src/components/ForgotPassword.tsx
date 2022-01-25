@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {push} from "connected-react-router";
 import {DatePicker} from "antd";
@@ -6,53 +6,56 @@ import {dateFormat} from "../utils/dateHelper";
 import moment from "moment";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import {getUserPasswordRecovery} from "../asyncActions/thunkFunctions";
+import {
+    errorBlankEmail,
+    errorBlankPassword,
+    errorIncorrectEmail,
+    errorPasswordMustContain
+} from "../constants/errorsText";
+import {regexpEmail, regexpPassword} from "../constants/regExp";
 
 
 function ForgotPassword() {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = React.useState<string>('');
-    const [password, setPassword] = React.useState<string>('');
-    const [dateOfBirth, setDateOfBirth] = React.useState<string>('01.01.2000');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [dateOfBirth, setDateOfBirth] = useState<string>('01.01.2000');
 
-    const [forgotPasswordErrors, setForgotPasswordErrors] = React.useState<string[]>([" "]);
-    const [emailErrors, setEmailErrors] = React.useState<string[]>([" "]);
-    const [dateOfBirthErrors, setDateOfBirthErrors] = React.useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = React.useState<string[]>([" "]);
+    const [forgotPasswordErrors, setForgotPasswordErrors] = useState<string[]>([" "]);
+    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
+    const [dateOfBirthErrors, setDateOfBirthErrors] = useState<string[]>([" "]);
+    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
 
-    const [buttonDisabled, setButtonDisabled] = React.useState<boolean>(true);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
             .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
+            .match(regexpEmail);
     };
 
     const validatePassword = (rawPassword: any) => {
         return String(rawPassword)
             .toLowerCase()
-            .match(
-                /(?=.*[!@$%^&*()_+\-\])(?=[#$-/:-?{-~!"^_`[\]a-zA-Z]*([0-9#$-/:-?{-~!"^_`[\]]))(?=[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]*[a-zA-Z])[#$-/:-?{-~!"^_`[\]a-zA-Z0-9]{6,}/
-            );
+            .match(regexpPassword);
     };
 
     const handleChangeEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
         setForgotPasswordErrors([]);
-        let emailForValidation = e.target.value;
-        let errs = [];
+        const emailForValidation = e.target.value;
+        const errs = [];
 
         if (!emailForValidation) {
             setForgotPasswordErrors([])
         }
 
         if (emailForValidation.length === 0) {
-            errs.push("Email не может быть пустым.")
+            errs.push(errorBlankEmail)
         }
 
-        if ((!validateEmail(emailForValidation)) && (emailForValidation.length !== 0)) {
-            errs.push("Email введен неверно.")
+        if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
+            errs.push(errorIncorrectEmail)
         }
 
         setEmailErrors(errs);
@@ -68,15 +71,15 @@ function ForgotPassword() {
 
 
     function handleChangePassword(e: React.ChangeEvent<HTMLInputElement>) {
-        let passwordForValidation = e.target.value;
-        let errs = [];
+        const passwordForValidation = e.target.value;
+        const errs = [];
 
         if (passwordForValidation.length === 0) {
-            errs.push("Пароль не может быть пустым.")
+            errs.push(errorBlankPassword)
         }
 
-        if ((!validatePassword(passwordForValidation)) && (passwordForValidation.length !== 0)) {
-            errs.push("Пароль должен содержать цифры, буквы (в том числе и заглавную) и хотя бы один из символов !@$%^&*()_+")
+        if (!validatePassword(passwordForValidation) && (passwordForValidation.length !== 0)) {
+            errs.push(errorPasswordMustContain)
         }
 
         setPasswordErrors(errs);

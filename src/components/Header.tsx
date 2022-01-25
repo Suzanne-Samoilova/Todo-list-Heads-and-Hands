@@ -20,7 +20,7 @@ function Header() {
         dispatch(push(`profile`))
     }
 
-    function handleGoExit() {
+    function logout() {
         dispatch(clearProfileAction());
         dispatch(logoutAction({}));
         dispatch(push(`auth`));
@@ -40,7 +40,7 @@ function Header() {
                 <button className="todo__button-add"
                         onClick={handleGoProfile}>Профиль</button>
                 <button className="todo__button-add"
-                        onClick={handleGoExit}>Выйти</button>
+                        onClick={logout}>Выйти</button>
             </div>
         </div>
     )
