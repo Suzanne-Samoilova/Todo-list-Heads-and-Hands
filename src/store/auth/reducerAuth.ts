@@ -1,11 +1,16 @@
+import {TRootState} from "../../index";
+
+
 const defaultState = {
     isAuthorized: false,
     userId: null,
     userName: null,
 }
 
+
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
+
 
 export const reducerAuth = (state:any = defaultState, action: any) => {
     switch (action.type) {
@@ -27,5 +32,9 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
     }
 }
 
+
 export const loginAction = (payload: any) => ({type: LOGIN, payload});
 export const logoutAction = (payload: any) => ({type: LOGOUT, payload});
+
+
+export const selectorAuthState = (state: TRootState) => state.auth;

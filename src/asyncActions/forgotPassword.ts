@@ -1,8 +1,8 @@
 import axios from "axios";
 import {push} from "connected-react-router";
 
-import {loginAction} from "../store/reducerAuth";
-import {getProfileAction} from "../store/reducerProfile";
+import {loginAction} from "../store/auth/reducerAuth";
+import {getProfileAction} from "../store/profile/reducerProfile";
 import {baseUrl} from "../constants/baseUrl";
 import {errorEmailNotFound, errorIncorrectDateOfBirth} from "../constants/errorsText";
 import {changeProfilePassword} from "./profile";

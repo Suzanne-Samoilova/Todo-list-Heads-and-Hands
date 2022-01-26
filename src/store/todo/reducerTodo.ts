@@ -1,3 +1,6 @@
+import {TRootState} from "../../index";
+
+
 const defaultState = {
     todo: [],
     selectedTasks: [],
@@ -8,6 +11,7 @@ const defaultState = {
     statusTask: null,
     categoryTask: null
 }
+
 
 const GET_TODO = "GET_TODO";
 const SELECT_TASK = "SELECT_TASK";
@@ -22,6 +26,7 @@ const SORTING_NAME = "SORTING_NAME";
 const FILTER_CATEGORY = "FILTER_CATEGORY";
 const FILTER_STATUS = "FILTER_STATUS";
 
+
 export const reducerTodo = (state:any = defaultState, action: any) => {
     switch (action.type) {
         case GET_TODO:
@@ -29,7 +34,6 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
                 todo: action.payload.todo
             }
 
-        // нажал галочку одной таски
         case SELECT_TASK:
             return {...state,
                 selectedTasks: [...state.selectedTasks, action.payload.id]
@@ -40,7 +44,6 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
                 selectedTasks: []
             }
 
-        // отжал галочку одной таски (это норм, потому что не храним на сервере)
         case UNSELECT_TASK:
             return {...state,
                 selectedTasks: state.selectedTasks.filter((id: number) => action.payload.id !== id)
@@ -81,6 +84,7 @@ export const reducerTodo = (state:any = defaultState, action: any) => {
     }
 }
 
+
 export const getTodoAction = (payload: any) => ({type: GET_TODO, payload});
 export const selectTaskAction = (payload: any) => ({type: SELECT_TASK, payload});
 export const unselectTaskAction = (payload: any) => ({type: UNSELECT_TASK, payload});
@@ -93,3 +97,6 @@ export const filterNameTaskAction = (payload: any) => ({type: FILTER_NAME, paylo
 export const sortingNameTaskAction = (payload: any) => ({type: SORTING_NAME, payload});
 export const filterCategoryTaskAction = (payload: any) => ({type: FILTER_CATEGORY, payload});
 export const filterStatusTaskAction = (payload: any) => ({type: FILTER_STATUS, payload});
+
+
+export const selectorTodoState = (state: TRootState) => state.todo;

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { push } from "connected-react-router";
 
-import {selectorDetailState} from "../store/selectorsState";
 import Header from "../components/Header";
 import PopupConfirmDelete from "../components/PopupConfirmDelete";
 import PopupChangeTask from "../components/PopupChangeTask";
 import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
 import {getDetailTask} from "../asyncActions/detailPage";
+import {selectorDetailState} from "../store/detailPage/reducerDetailPage";
 
 
 const DetailPage = () => {

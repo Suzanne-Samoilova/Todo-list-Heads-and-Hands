@@ -1,7 +1,7 @@
 import axios from "axios";
 import {push} from "connected-react-router";
 import {baseUrl} from "../constants/baseUrl";
-import {loginAction} from "../store/reducerAuth";
+import {loginAction} from "../store/auth/reducerAuth";
 import {errorIncorrectEmailOrPassword} from "../constants/errorsText";
 
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
-import { logoutAction } from "../store/reducerAuth";
-import { clearProfileAction } from "../store/reducerProfile";
+import { logoutAction } from "../store/auth/reducerAuth";
+import { clearProfileAction } from "../store/profile/reducerProfile";
 
 
 const Header = () => {

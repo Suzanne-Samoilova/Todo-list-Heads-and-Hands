@@ -6,8 +6,9 @@ import {dateFormat} from "../utils/dateHelper";
 import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import PopupWithForm from "./PopupWithForm";
-import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
 import {changeProfileData} from "../asyncActions/profile";
+import {selectorProfileState} from "../store/profile/reducerProfile";
+import {selectorAuthState} from "../store/auth/reducerAuth";
 
 
 const PopupChangeProfile = (props: any) => {

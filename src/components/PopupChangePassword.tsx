@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectorProfileState} from "../store/selectorsState";
 import {
     errorBlankPassword,
     errorIncorrectOldPassword,
     errorMismatchPasswords
 } from "../constants/errorsText";
 import {changeProfilePassword} from "../asyncActions/profile";
+import {selectorProfileState} from "../store/profile/reducerProfile";
 
 
 const PopupChangePassword = (props: any) => {

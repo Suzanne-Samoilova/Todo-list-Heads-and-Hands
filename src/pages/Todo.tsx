@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectorTodoState } from "../store/selectorsState";
-import { decrementPageAction, incrementPageAction } from "../store/reducerTodo";
+import {decrementPageAction, incrementPageAction, selectorTodoState} from "../store/todo/reducerTodo";
 import {FIRST_PAGE, LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
 import Header from "../components/Header";
 import TableFilters from "../components/TableFilters";

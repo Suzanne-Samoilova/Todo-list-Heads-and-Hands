@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { add, parse } from 'date-fns';
 
-import { selectTaskAction, unselectTaskAction } from "../store/reducerTodo";
+import { selectTaskAction, unselectTaskAction } from "../store/todo/reducerTodo";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";

@@ -9,9 +9,9 @@ import 'antd/dist/antd.css';
 
 import { listCategories } from "../constants/listCategories";
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
-import {selectorAuthState} from "../store/selectorsState";
 import PopupWithForm from "./PopupWithForm";
 import {createTask} from "../asyncActions/todo";
+import {selectorAuthState} from "../store/auth/reducerAuth";
 
 
 const PopupNewTask = (props: any) => {

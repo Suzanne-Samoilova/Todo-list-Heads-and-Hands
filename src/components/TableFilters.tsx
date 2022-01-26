@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectorTodoState } from "../store/selectorsState";
+
 import {
     filterNameTaskAction,
     sortingNameTaskAction,
     filterCategoryTaskAction,
-    filterStatusTaskAction,
-} from "../store/reducerTodo";
+    filterStatusTaskAction, selectorTodoState,
+} from "../store/todo/reducerTodo";
 import { listCategoriesForFilter } from "../constants/listCategoriesForFilter";
 import { selectSortingName, selectSortingStatus } from "../constants/listSelectsForFilter";
 import {filteringTasks} from "../asyncActions/todo";
