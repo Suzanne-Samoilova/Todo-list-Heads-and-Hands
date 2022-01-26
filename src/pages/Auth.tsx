@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { authorization } from "../asyncActions/thunkFunctions";
 import {
     errorBlankEmail,
     errorBlankPassword,
     errorIncorrectEmail
 } from "../constants/errorsText";
 import { regexpEmail } from "../constants/regExp";
+import {authorization} from "../asyncActions/auth";
 
 
 const Auth = () => {

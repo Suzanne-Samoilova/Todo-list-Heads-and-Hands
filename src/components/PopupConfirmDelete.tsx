@@ -1,8 +1,8 @@
 import React from "react";
 import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
+import {deleteTask} from "../asyncActions/todo";
 
 
 const PopupConfirmDelete = (props: any) => {

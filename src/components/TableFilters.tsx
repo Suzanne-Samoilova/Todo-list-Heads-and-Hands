@@ -8,9 +8,9 @@ import {
     filterCategoryTaskAction,
     filterStatusTaskAction,
 } from "../store/reducerTodo";
-import { filteringTasks } from "../asyncActions/thunkFunctions";
 import { listCategoriesForFilter } from "../constants/listCategoriesForFilter";
 import { selectSortingName, selectSortingStatus } from "../constants/listSelectsForFilter";
+import {filteringTasks} from "../asyncActions/todo";
 
 
 const TableFilters = () => {

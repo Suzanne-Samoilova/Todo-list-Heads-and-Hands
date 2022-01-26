@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
-import { getProfile } from "../asyncActions/thunkFunctions";
 import avatar from "../static/images/no-avatar.png";
-import Header from "./Header";
-import PopupChangeProfile from "./PopupChangeProfile";
-import PopupChangePassword from "./PopupChangePassword";
+import Header from "../components/Header";
+import PopupChangeProfile from "../components/PopupChangeProfile";
+import PopupChangePassword from "../components/PopupChangePassword";
+import {getProfile} from "../asyncActions/profile";
 
 
 const Profile = () => {

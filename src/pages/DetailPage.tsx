@@ -4,10 +4,11 @@ import { useParams } from "react-router";
 import { push } from "connected-react-router";
 
 import {selectorDetailState} from "../store/selectorsState";
-import {changeStatusArchive, changeStatusTask, getDetailTask} from "../asyncActions/thunkFunctions";
-import Header from "./Header";
-import PopupConfirmDelete from "./PopupConfirmDelete";
-import PopupChangeTask from "./PopupChangeTask";
+import Header from "../components/Header";
+import PopupConfirmDelete from "../components/PopupConfirmDelete";
+import PopupChangeTask from "../components/PopupChangeTask";
+import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
+import {getDetailTask} from "../asyncActions/detailPage";
 
 
 const DetailPage = () => {

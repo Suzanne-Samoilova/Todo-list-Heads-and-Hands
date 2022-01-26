@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectorTodoState } from "../store/selectorsState";
-import { deleteMultipleTask, filteringTasks } from "../asyncActions/thunkFunctions";
 import { decrementPageAction, incrementPageAction } from "../store/reducerTodo";
 import {FIRST_PAGE, LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
-import Header from "./Header";
-import TableFilters from "./TableFilters";
-import TableHeader from "./TableHeader";
-import Task from "./Task";
-import PopupNewTask from "./PopupNewTask";
+import Header from "../components/Header";
+import TableFilters from "../components/TableFilters";
+import TableHeader from "../components/TableHeader";
+import Task from "../components/Task";
+import PopupNewTask from "../components/PopupNewTask";
+import {deleteMultipleTask, filteringTasks} from "../asyncActions/todo";
 
 
 const Todo = () => {

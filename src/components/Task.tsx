@@ -4,9 +4,9 @@ import { push } from "connected-react-router";
 import { add, parse } from 'date-fns';
 
 import { selectTaskAction, unselectTaskAction } from "../store/reducerTodo";
-import { changeStatusArchive, changeStatusTask } from "../asyncActions/thunkFunctions";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
+import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
 
 
 const Task = (props: any) => {

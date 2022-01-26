@@ -1,11 +1,6 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {push} from "connected-react-router";
-import {DatePicker} from "antd";
-import {dateFormat} from "../utils/dateHelper";
-import moment from "moment";
-import locale from "antd/es/date-picker/locale/ru_RU";
-import {getUserPasswordRecovery} from "../asyncActions/thunkFunctions";
+import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 import {
     errorBlankEmail,
     errorBlankPassword,
@@ -13,19 +8,18 @@ import {
     errorPasswordMustContain
 } from "../constants/errorsText";
 import {regexpEmail, regexpPassword} from "../constants/regExp";
+import {checkEmail} from "../asyncActions/registration";
 
 
-const ForgotPassword = () => {
+const Registration = () => {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [dateOfBirth, setDateOfBirth] = useState<string>('01.01.2000');
 
-    const [forgotPasswordErrors, setForgotPasswordErrors] = useState<string[]>([" "]);
     const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
-    const [dateOfBirthErrors, setDateOfBirthErrors] = useState<string[]>([" "]);
     const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
+    const [profileErrors, setProfileErrors] = useState<string[]>([" "]);
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
@@ -41,14 +35,11 @@ const ForgotPassword = () => {
             .match(regexpPassword);
     };
 
-    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForgotPasswordErrors([]);
-        const emailForValidation = e.target.value;
-        const errs = [];
 
-        if (!emailForValidation) {
-            setForgotPasswordErrors([])
-        }
+    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const emailForValidation = e.target.value;
+        setProfileErrors([]);
+        const errs = [];
 
         if (emailForValidation.length === 0) {
             errs.push(errorBlankEmail)
@@ -64,12 +55,6 @@ const ForgotPassword = () => {
     }
 
 
-    const handleChangeDateOfBirth = (date: any, dateString: string) => {
-        setDateOfBirthErrors([]);
-        setDateOfBirth(dateString);
-    }
-
-
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         const errs = [];
@@ -78,7 +63,7 @@ const ForgotPassword = () => {
             errs.push(errorBlankPassword)
         }
 
-        if (!validatePassword(passwordForValidation) && (passwordForValidation.length !== 0)) {
+        if (!validatePassword(passwordForValidation) && passwordForValidation.length !== 0) {
             errs.push(errorPasswordMustContain)
         }
 
@@ -90,15 +75,16 @@ const ForgotPassword = () => {
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(getUserPasswordRecovery(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
+        const errs: any[] = [];
+        dispatch(checkEmail(email, password, errs, setProfileErrors, setEmail, setPassword));
     }
 
     const handleGoAuth = () => {
         dispatch(push(`auth`));
     }
 
-    const handleGoRegistration = () => {
-        dispatch(push(`registration`));
+    const handleGoForgotPassword = () => {
+        dispatch(push(`forgot-password`));
     }
 
 
@@ -106,55 +92,49 @@ const ForgotPassword = () => {
         <section className="todo">
             <div className="auth">
                 <div className="authorization">
-                    <h2 className="authorization__title">Восстановление пароля</h2>
+                    <h2 className="authorization__title">Регистрация</h2>
 
                     <form className="authorization__form"
                           onSubmit={handleSubmit}>
-                        <span className="authorization__form-error">{forgotPasswordErrors}</span>
+                        <span className="authorization__form-error" id="password-error">{profileErrors}</span>
 
                         <p className="authorization__input-title">E-mail:</p>
-                        <input className="authorization__form-input"
+                        <input className="authorization__form-input" id="email"
                                type="email"
                                name="email"
                                placeholder="Введите адрес эл.почты"
                                required
                                value={email}
                                onChange={handleChangeEmail}/>
-                        <span className="authorization__form-error">{emailErrors}</span>
+                        <span className="authorization__form-error" id="email-error">{emailErrors}</span>
 
-                        <p className="authorization__input-title">Дата рождения:</p>
-                        <DatePicker format={dateFormat}
-                                    locale={locale}
-                                    value={moment(dateOfBirth, dateFormat)}
-                                    onChange={handleChangeDateOfBirth}/>
-                        <span className="authorization__form-error authorization__form-error-birth">{dateOfBirthErrors}</span>
-
-                        <p className="authorization__input-title">Новый пароль:</p>
-                        <input className="authorization__form-input"
+                        <p className="authorization__input-title">Пароль:</p>
+                        <input className="authorization__form-input" id="password"
                                type="text"
                                name="password"
                                placeholder="Введите пароль"
                                required
                                value={password}
                                onChange={handleChangePassword}/>
-                        <span className="authorization__form-error">{passwordErrors}</span>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"
-                                disabled={buttonDisabled}>Восстановить</button>
+                                disabled={buttonDisabled}>Зарегистрироваться</button>
                     </form>
 
-                    <p className="title">Вспомнили пароль?
+                    <p className="title" id="password-error">Уже зарегистрированы?
                         <button className="title__button"
                                 onClick={handleGoAuth}>Авторизоваться</button>
                     </p>
+
                 </div>
 
                 <button className="forgot-password"
-                        onClick={handleGoRegistration}>Зарегистрироваться</button>
+                        onClick={handleGoForgotPassword}>Забыли пароль?</button>
             </div>
         </section>
     );
 }
 
-export default ForgotPassword;
+export default Registration;

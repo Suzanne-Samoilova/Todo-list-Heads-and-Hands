@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import { changeProfileData } from "../asyncActions/thunkFunctions";
 import moment from "moment";
 import {dateFormat} from "../utils/dateHelper";
 import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/ru_RU";
 import PopupWithForm from "./PopupWithForm";
 import {selectorAuthState, selectorProfileState} from "../store/selectorsState";
+import {changeProfileData} from "../asyncActions/profile";
 
 
 const PopupChangeProfile = (props: any) => {

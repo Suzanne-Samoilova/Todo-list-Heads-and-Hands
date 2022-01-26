@@ -10,8 +10,8 @@ import 'antd/dist/antd.css';
 import { listCategories } from "../constants/listCategories";
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
 import {selectorAuthState} from "../store/selectorsState";
-import { createTask } from "../asyncActions/thunkFunctions";
 import PopupWithForm from "./PopupWithForm";
+import {createTask} from "../asyncActions/todo";
 
 
 const PopupNewTask = (props: any) => {
