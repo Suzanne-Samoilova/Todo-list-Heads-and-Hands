@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 import {
     filterNameTaskAction,
     sortingNameTaskAction,
@@ -11,6 +10,13 @@ import {
 import { listCategoriesForFilter } from "../constants/listCategoriesForFilter";
 import { selectSortingName, selectSortingStatus } from "../constants/listSelectsForFilter";
 import {filteringTasks} from "../asyncActions/todo";
+import {
+    filterAnyCategory,
+    filterAscending,
+    filterDescending,
+    filterDone,
+    filterNotDone
+} from "../constants/filtersText";
 
 
 const TableFilters = () => {
@@ -31,10 +37,10 @@ const TableFilters = () => {
 
     const handleSortingName = (e: any) => {
         const sortNameTask = e.target.value;
-            if (sortNameTask === 'По возрастанию') {
-            dispatch(sortingNameTaskAction({sortNameTask: 'По возрастанию'}));
-        } else if (sortNameTask === 'По убыванию') {
-            dispatch(sortingNameTaskAction({sortNameTask: 'По убыванию'}));
+            if (sortNameTask === filterAscending) {
+            dispatch(sortingNameTaskAction({sortNameTask: filterAscending}));
+        } else if (sortNameTask === filterDescending) {
+            dispatch(sortingNameTaskAction({sortNameTask: filterDescending}));
         } else {
             dispatch(sortingNameTaskAction({sortNameTask: null}));
         }
@@ -44,7 +50,7 @@ const TableFilters = () => {
 
     const handleSortingCategory = (e: any) => {
         const category = e.target.value;
-        if (category === 'Любая категория') {
+        if (category === filterAnyCategory) {
             dispatch(filterCategoryTaskAction({categoryTask: null}));
         } else {
             dispatch(filterCategoryTaskAction({categoryTask: category}));
@@ -55,9 +61,9 @@ const TableFilters = () => {
 
     const handleSortingStatus = (e: any) => {
         const status = e.target.value;
-        if (status === 'Не выполнено') {
+        if (status === filterNotDone) {
             dispatch(filterStatusTaskAction({statusTask: false}));
-        } else if (status === 'Выполнено') {
+        } else if (status === filterDone) {
             dispatch(filterStatusTaskAction({statusTask: true}));
         } else {
             dispatch(filterStatusTaskAction({statusTask: null}));

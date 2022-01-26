@@ -3,6 +3,7 @@ import {LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
 import axios from "axios";
 import {clearSelectedTasksAction, getTodoAction} from "../store/todo/reducerTodo";
 import {getDetailTask} from "./detailPage";
+import {filterAscending, filterDescending} from "../constants/filtersText";
 
 
 export const filteringTasks = () => {
@@ -18,9 +19,9 @@ export const filteringTasks = () => {
 
         let url = `${baseUrl}/todo?user_id=${userId}&_page=${currentPage}&_limit=${LIMIT_PAGINATE_TODO_LIST}&archive=${statusArchive}`;
 
-        if (sortNameTask === 'По возрастанию') {
+        if (sortNameTask === filterAscending) {
             url += `&_sort=name&_order=asc`;
-        } else if (sortNameTask === 'По убыванию') {
+        } else if (sortNameTask === filterDescending) {
             url +=`&_sort=name&_order=desc`;
         }
 

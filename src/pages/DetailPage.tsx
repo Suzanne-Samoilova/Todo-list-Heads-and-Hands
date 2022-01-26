@@ -9,6 +9,7 @@ import PopupChangeTask from "../components/PopupChangeTask";
 import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
 import {getDetailTask} from "../asyncActions/detailPage";
 import {selectorDetailState} from "../store/detailPage/reducerDetailPage";
+import {filterDone, filterNotDone} from "../constants/filtersText";
 
 
 const DetailPage = () => {
@@ -85,7 +86,7 @@ const DetailPage = () => {
 
                         <div className="detail-task__details-buttons">
                             <button className="tasks__button-delete"
-                                    onClick={handleChange}>{task.status ? 'Не выполнено' : 'Выполнено'}</button>
+                                    onClick={handleChange}>{task.status ? filterNotDone : filterDone}</button>
                             <button className="tasks__button-change"
                                     onClick={handleOpenPopupChangeTask}>Изменить</button>
                             <button className="tasks__button-change"

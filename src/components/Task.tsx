@@ -7,6 +7,7 @@ import { selectTaskAction, unselectTaskAction } from "../store/todo/reducerTodo"
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupChangeTask from "./PopupChangeTask";
 import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
+import {filterDone, filterNotDone} from "../constants/filtersText";
 
 
 const Task = (props: any) => {
@@ -101,7 +102,7 @@ const Task = (props: any) => {
 
                 <div className="tasks__box tasks__box-buttons">
                     <button className="tasks__button-delete"
-                            onClick={handleChange}>{props.status ? 'Не выполнено' : 'Выполнено'}</button>
+                            onClick={handleChange}>{props.status ? filterNotDone : filterDone}</button>
                     <button className="tasks__button-change"
                             onClick={handleOpenPopupChangeTask}>Изменить</button>
                     <button className="tasks__button-change"
