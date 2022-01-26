@@ -24,19 +24,19 @@ const Profile = () => {
     const [isOpenPopupChangePassword, setIsOpenPopupChangePassword] = useState(false);
 
 
-    function handleOpenPopupChangeProfile() {
+    const handleOpenPopupChangeProfile = () => {
         setIsOpenPopupChangeProfile(true);
     }
 
-    function handleClosePopupChangeProfile() {
+    const handleClosePopupChangeProfile = () => {
         setIsOpenPopupChangeProfile(false);
     }
 
-    function handleOpenPopupChangePassword() {
+    const handleOpenPopupChangePassword = () => {
         setIsOpenPopupChangePassword(true);
     }
 
-    function handleClosePopupChangePassword() {
+    const handleClosePopupChangePassword = () => {
         setIsOpenPopupChangePassword(false);
     }
 

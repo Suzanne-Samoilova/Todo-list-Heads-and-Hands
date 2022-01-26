@@ -24,24 +24,24 @@ const PopupNewTask = (props: any) => {
     const [description, setDescription] = useState("");
     const [date_deadline, setDate_deadline] = useState("");
 
-    function handleCategoryChange(e: any) {
+    const handleCategoryChange = (e: any) => {
         setCategory(e.target.value);
     }
 
-    function handleNameChange(e: any) {
+    const handleNameChange = (e: any) => {
         setName(e.target.value);
     }
 
-    function handleDescriptionChange(e: any) {
+    const handleDescriptionChange = (e: any) => {
         setDescription(e.target.value);
     }
 
-    function handleDateDeadlineChange(date: any, dateString: string) {
+    const handleDateDeadlineChange = (date: any, dateString: string) => {
         setDate_deadline(dateString);
     }
 
 
-    function handleSubmitCreateTask(e: any) {
+    const handleSubmitCreateTask = (e: any) => {
         e.preventDefault();
         const userId = authState.userId;
         const dateNow = getDateNowByDDmmyyyy();

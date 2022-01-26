@@ -24,7 +24,7 @@ const PopupChangePassword = (props: any) => {
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
 
-    function handleChangeOldPassword(e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChangeOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const oldPasswordForValidation = e.target.value;
         const errs = [];
 
@@ -42,7 +42,7 @@ const PopupChangePassword = (props: any) => {
     }
 
 
-    function handleChangeNewPassword(e: any) {
+    const handleChangeNewPassword = (e: any) => {
         const newPasswordForValidation = e.target.value;
         const errs = [];
 
@@ -64,7 +64,7 @@ const PopupChangePassword = (props: any) => {
     }
 
 
-    function handleChangeRepeatNewPassword(e: any) {
+    const handleChangeRepeatNewPassword = (e: any) => {
         const repeatNewPasswordForValidation = e.target.value;
         const errs = [];
 
@@ -86,8 +86,7 @@ const PopupChangePassword = (props: any) => {
     }
 
 
-    // сменить пароль
-    function handleSubmitChangePassword(e: any) {
+    const handleSubmitChangePassword = (e: any) => {
         e.preventDefault();
         dispatch(changeProfilePassword(repeatNewPassword));
         props.onClose();

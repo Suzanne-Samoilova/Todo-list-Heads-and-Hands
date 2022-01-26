@@ -8,19 +8,19 @@ import { clearProfileAction } from "../store/reducerProfile";
 const Header = () => {
     const dispatch = useDispatch();
 
-    function handleGoTodo() {
+    const handleGoTodo = () => {
         dispatch(push(`/`))
     }
 
-    function handleGoArchive() {
+    const handleGoArchive = () => {
         dispatch(push(`archive`))
     }
 
-    function handleGoProfile() {
+    const handleGoProfile = () => {
         dispatch(push(`profile`))
     }
 
-    function logout() {
+    const logout = () => {
         dispatch(clearProfileAction());
         dispatch(logoutAction({}));
         dispatch(push(`auth`));

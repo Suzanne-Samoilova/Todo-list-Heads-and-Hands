@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { authorization } from "../asyncActions/thunkFunctions";
@@ -7,7 +7,8 @@ import {
     errorBlankPassword,
     errorIncorrectEmail
 } from "../constants/errorsText";
-import {regexpEmail} from "../constants/regExp";
+import { regexpEmail } from "../constants/regExp";
+
 
 const Auth = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Auth = () => {
     };
 
 
-    const handleEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
         setAuthErrors([]);
         const errs = [];
@@ -48,7 +49,7 @@ const Auth = () => {
     }
 
 
-    const handlePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         setAuthErrors([]);
         const errs = [];
@@ -63,16 +64,16 @@ const Auth = () => {
     }
 
 
-    function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(authorization(email, password, setAuthErrors));
     }
 
-    function handleGoRegistration() {
+    const handleGoRegistration = () => {
         dispatch(push(`registration`));
     }
 
-    function handleGoForgotPassword() {
+    const handleGoForgotPassword = () => {
         dispatch(push(`forgot-password`));
     }
 

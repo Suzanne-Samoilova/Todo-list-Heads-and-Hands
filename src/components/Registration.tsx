@@ -36,7 +36,7 @@ const Registration = () => {
     };
 
 
-    const handleChangeEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
         setProfileErrors([]);
         const errs = [];
@@ -55,7 +55,7 @@ const Registration = () => {
     }
 
 
-    const handleChangePassword = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         const errs = [];
 
@@ -73,17 +73,17 @@ const Registration = () => {
     }
 
 
-    function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const errs: any[] = [];
         dispatch(checkEmail(email, password, errs, setProfileErrors, setEmail, setPassword));
     }
 
-    function handleGoAuth() {
+    const handleGoAuth = () => {
         dispatch(push(`auth`));
     }
 
-    function handleGoForgotPassword() {
+    const handleGoForgotPassword = () => {
         dispatch(push(`forgot-password`));
     }
 

@@ -8,7 +8,7 @@ import PopupWithForm from "./PopupWithForm";
 const PopupConfirmDelete = (props: any) => {
     const dispatch = useDispatch();
 
-    function handleSubmitDeleteTask(e: any) {
+    const handleSubmitDeleteTask = (e: any) => {
         e.preventDefault();
         const taskId = props.id;
         dispatch(deleteTask(taskId));

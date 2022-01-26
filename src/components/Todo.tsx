@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectorTodoState } from "../store/selectorsState";
 import { deleteMultipleTask, filteringTasks } from "../asyncActions/thunkFunctions";
 import { decrementPageAction, incrementPageAction } from "../store/reducerTodo";
-import { LIMIT_PAGINATE_TODO_LIST } from "../constants/constants";
+import {FIRST_PAGE, LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
 import Header from "./Header";
 import TableFilters from "./TableFilters";
 import TableHeader from "./TableHeader";
@@ -23,26 +23,25 @@ const Todo = () => {
 
     const [isAddNewTaskPopupOpen, setIsAddNewTaskPopupOpen] = useState(false);
 
-    function handleAddNewTask() {
+    const handleAddNewTask = () => {
         setIsAddNewTaskPopupOpen(true);
     }
 
-    function handleClosePopupAddNewTask() {
+    const handleClosePopupAddNewTask = () => {
         setIsAddNewTaskPopupOpen(false);
     }
 
-
-    const handleDeleteButton = ()=> {
+    const handleDeleteButton = () => {
         dispatch(deleteMultipleTask());
         dispatch(filteringTasks());
     }
 
-    function handleNextPage() {
+    const handleNextPage = () => {
         dispatch(incrementPageAction());
         dispatch(filteringTasks());
     }
 
-    function handlePreviousPage() {
+    const handlePreviousPage = () => {
         dispatch(decrementPageAction());
         dispatch(filteringTasks());
     }
@@ -81,7 +80,7 @@ const Todo = () => {
                 <div className="todo__box-buttons todo__box-buttons-right">
                     <button className="todo__button-left"
                             onClick={handlePreviousPage}
-                            disabled={todoState.currentPage <= 1}/>
+                            disabled={todoState.currentPage <= FIRST_PAGE}/>
                     <button className="todo__button-right"
                             onClick={handleNextPage}
                             disabled={todoState.todo.length < LIMIT_PAGINATE_TODO_LIST}/>

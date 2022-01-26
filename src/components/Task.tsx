@@ -15,22 +15,21 @@ const Task = (props: any) => {
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = useState(false);
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = useState(false);
 
-
-    function handleOpenPopupChangeTask(e: any) {
+    const handleOpenPopupChangeTask = (e: any) => {
         e.stopPropagation();
         setIsChangeTaskPopupOpen(true);
     }
 
-    function handleClosePopupChangeTask() {
+    const handleClosePopupChangeTask = () => {
         setIsChangeTaskPopupOpen(false);
     }
 
-    function handleOpenPopupDeleteTask(e: any) {
+    const handleOpenPopupDeleteTask = (e: any) => {
         e.stopPropagation();
         setIsOpenPopupDeleteTask(true);
     }
 
-    function handleClosePopupDeleteTask() {
+    const handleClosePopupDeleteTask = () => {
         setIsOpenPopupDeleteTask(false);
     }
 
@@ -56,14 +55,14 @@ const Task = (props: any) => {
     }
 
 
-    function handleArchiveTask(e: any) {
+    const handleArchiveTask = (e: any) => {
         e.stopPropagation();
         const id = props.id;
         dispatch(changeStatusArchive(id, true));
     }
 
 
-    function taskClassNameSelector() {
+    const taskClassNameSelector = () => {
         const deadlineIsNear = () => {
             const criticalDate = parse(props.date_deadline, 'dd.MM.yyyy', new Date());
             const redDate = add(Date.now(), {days: 3});
@@ -76,7 +75,7 @@ const Task = (props: any) => {
     }
 
 
-    function handleGoDetailPage() {
+    const handleGoDetailPage = () => {
         const taskId = props.id;
         dispatch(push(`${taskId}`));
     }

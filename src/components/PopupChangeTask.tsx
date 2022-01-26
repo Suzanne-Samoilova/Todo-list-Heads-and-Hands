@@ -19,24 +19,24 @@ const PopupChangeTask = (props: any) => {
     const [description, setDescription] = useState(props.description);
     const [dateDeadline, setDateDeadline] = useState(props.date_deadline);
 
-    function handleChangeCategory(e: any) {
+    const handleChangeCategory = (e: any) => {
         setCategory(e.target.value);
     }
 
-    function handleChangeName(e: any) {
+    const handleChangeName = (e: any) => {
         setName(e.target.value);
     }
 
-    function handleChangeDescription(e: any) {
+    const handleChangeDescription = (e: any) => {
         setDescription(e.target.value);
     }
 
-    function handleChangeDateDeadline(date: any, dateString: string) {
+    const handleChangeDateDeadline = (date: any, dateString: string) => {
         setDateDeadline(dateString);
     }
 
 
-    function handleSubmitChangeTask(e: any) {
+    const handleSubmitChangeTask = (e: any) => {
         e.preventDefault();
         const taskId = props.id;
         dispatch(changeTask(taskId, category, name, description, dateNow, dateDeadline));

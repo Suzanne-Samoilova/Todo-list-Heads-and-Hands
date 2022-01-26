@@ -41,7 +41,7 @@ const ForgotPassword = () => {
             .match(regexpPassword);
     };
 
-    const handleChangeEmail = function (e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForgotPasswordErrors([]);
         const emailForValidation = e.target.value;
         const errs = [];
@@ -64,13 +64,13 @@ const ForgotPassword = () => {
     }
 
 
-    function handleChangeDateOfBirth(date: any, dateString: string) {
+    const handleChangeDateOfBirth = (date: any, dateString: string) => {
         setDateOfBirthErrors([]);
         setDateOfBirth(dateString);
     }
 
 
-    function handleChangePassword(e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         const errs = [];
 
@@ -88,16 +88,16 @@ const ForgotPassword = () => {
     }
 
 
-    function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(getUserPasswordRecovery(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
     }
 
-    function handleGoAuth() {
+    const handleGoAuth = () => {
         dispatch(push(`auth`));
     }
 
-    function handleGoRegistration() {
+    const handleGoRegistration = () => {
         dispatch(push(`registration`));
     }
 

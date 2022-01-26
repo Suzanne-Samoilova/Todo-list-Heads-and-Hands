@@ -18,7 +18,7 @@ const TableFilters = () => {
     const todo = useSelector(selectorTodoState);
 
 
-    function handleFilterName(e: any) {
+    const handleFilterName = (e: any) => {
         const filterName = e.target.value;
         if (filterName.length !== 0) {
             dispatch(filterNameTaskAction({nameTask: filterName}));
@@ -29,7 +29,7 @@ const TableFilters = () => {
     }
 
 
-    function handleSortingName(e: any) {
+    const handleSortingName = (e: any) => {
         const sortNameTask = e.target.value;
             if (sortNameTask === 'По возрастанию') {
             dispatch(sortingNameTaskAction({sortNameTask: 'По возрастанию'}));
@@ -42,7 +42,7 @@ const TableFilters = () => {
     }
 
 
-    function handleSortingCategory(e: any) {
+    const handleSortingCategory = (e: any) => {
         const category = e.target.value;
         if (category === 'Любая категория') {
             dispatch(filterCategoryTaskAction({categoryTask: null}));
@@ -53,7 +53,7 @@ const TableFilters = () => {
     }
 
 
-    function handleSortingStatus(e: any) {
+    const handleSortingStatus = (e: any) => {
         const status = e.target.value;
         if (status === 'Не выполнено') {
             dispatch(filterStatusTaskAction({statusTask: false}));

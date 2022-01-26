@@ -35,24 +35,24 @@ const PopupChangeProfile = (props: any) => {
     }, [userProfile])
 
 
-    function handleChangeName(e: any) {
+    const handleChangeName = (e: any) => {
         setName(e.target.value);
     }
 
-    function handleChangeEmail(e: any) {
+    const handleChangeEmail = (e: any) => {
         setEmail(e.target.value);
     }
 
-    function handleChangeCity(e: any) {
+    const handleChangeCity = (e: any) => {
         setCity(e.target.value);
     }
 
-    function handleChangeDateOfBirth(date: any, dateString: string) {
+    const handleChangeDateOfBirth = (date: any, dateString: string) => {
         setDateOfBirth(dateString);
     }
 
 
-    function handleSubmitChangeProfile(e: any) {
+    const handleSubmitChangeProfile = (e: any) => {
         e.preventDefault();
         dispatch(changeProfileData(name, dateOfBirth, city, email));
         props.onClose();

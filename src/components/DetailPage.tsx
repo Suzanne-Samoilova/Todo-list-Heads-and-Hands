@@ -23,19 +23,19 @@ const DetailPage = () => {
     const [isChangeTaskPopupOpen, setIsChangeTaskPopupOpen] = useState(false);
     const [isOpenPopupDeleteTask, setIsOpenPopupDeleteTask] = useState(false);
 
-    function handleOpenPopupChangeTask() {
+    const handleOpenPopupChangeTask = () => {
         setIsChangeTaskPopupOpen(true);
     }
 
-    function handleClosePopupChangeTask() {
+    const handleClosePopupChangeTask = () => {
         setIsChangeTaskPopupOpen(false);
     }
 
-    function handleOpenPopupDeleteTask() {
+    const handleOpenPopupDeleteTask = () => {
         setIsOpenPopupDeleteTask(true);
     }
 
-    function handleClosePopupDeleteTask() {
+    const handleClosePopupDeleteTask = () => {
         setIsOpenPopupDeleteTask(false);
     }
 
@@ -45,7 +45,7 @@ const DetailPage = () => {
         dispatch(changeStatusTask(id, taskStatus));
     }
 
-    function handleArchiveTask() {
+    const handleArchiveTask = () => {
         dispatch(changeStatusArchive(id, true));
         dispatch(push(`/`));
     }
@@ -96,14 +96,12 @@ const DetailPage = () => {
                 </div>
             </div>
 
-            {/*попап Хотите удалить?*/}
             {isOpenPopupDeleteTask && <PopupConfirmDelete
                 isOpen={isOpenPopupDeleteTask}
                 onClose={handleClosePopupDeleteTask}
                 id={task.id}
                 name={task.name}/>}
 
-            {/*/!*попап Изменить таск*!/*/}
             {isChangeTaskPopupOpen && <PopupChangeTask
                 isOpen={isChangeTaskPopupOpen}
                 onClose={handleClosePopupChangeTask}

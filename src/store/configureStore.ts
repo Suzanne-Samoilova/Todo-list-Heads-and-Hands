@@ -8,7 +8,7 @@ import createRootReducer from "./reducers";
 
 export const history = createBrowserHistory();
 
-function configureStore(preloadedState?: any) {
+const configureStore = (preloadedState?: any) => {
     const store = createStore(
         createRootReducer(history), // root reducer with router state
         preloadedState,
@@ -24,4 +24,5 @@ function configureStore(preloadedState?: any) {
 }
 
 const store = configureStore();
+
 export default store;
