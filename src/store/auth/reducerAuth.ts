@@ -1,4 +1,4 @@
-import {TRootState} from "../../index";
+import {LOGIN, LOGOUT} from "./const";
 
 
 const defaultState = {
@@ -6,10 +6,6 @@ const defaultState = {
     userId: null,
     userName: null,
 }
-
-
-const LOGIN = "LOGIN";
-const LOGOUT = "LOGOUT";
 
 
 export const reducerAuth = (state:any = defaultState, action: any) => {
@@ -31,10 +27,3 @@ export const reducerAuth = (state:any = defaultState, action: any) => {
             return state
     }
 }
-
-
-export const loginAction = (payload: any) => ({type: LOGIN, payload});
-export const logoutAction = (payload: any) => ({type: LOGOUT, payload});
-
-
-export const selectorAuthState = (state: TRootState) => state.auth;

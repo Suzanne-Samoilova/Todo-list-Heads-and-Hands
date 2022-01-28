@@ -1,4 +1,4 @@
-import {TRootState} from "../../index";
+import {CLEAR_PROFILE, GET_PROFILE} from "./const";
 
 
 const defaultState = {
@@ -8,10 +8,6 @@ const defaultState = {
     date_of_birth: null,
     city: null
 }
-
-
-const GET_PROFILE = "GET_PROFILE";
-const CLEAR_PROFILE = "CLEAR_PROFILE";
 
 
 export const reducerProfile = (state:any = defaultState, action: any) => {
@@ -38,10 +34,3 @@ export const reducerProfile = (state:any = defaultState, action: any) => {
             return state
     }
 }
-
-
-export const getProfileAction = (payload: any) => ({type: GET_PROFILE, payload});
-export const clearProfileAction = () => ({type: CLEAR_PROFILE});
-
-
-export const selectorProfileState = (state: TRootState) => state.profile;

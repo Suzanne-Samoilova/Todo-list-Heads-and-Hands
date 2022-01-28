@@ -1,15 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-    filterNameTaskAction,
-    sortingNameTaskAction,
-    filterCategoryTaskAction,
-    filterStatusTaskAction, selectorTodoState,
-} from "../store/todo/reducerTodo";
 import { listCategoriesForFilter } from "../constants/listCategoriesForFilter";
 import { selectSortingName, selectSortingStatus } from "../constants/listSelectsForFilter";
-import {filteringTasks} from "../asyncActions/todo";
 import {
     filterAnyCategory,
     filterAscending,
@@ -17,6 +10,14 @@ import {
     filterDone,
     filterNotDone
 } from "../constants/filtersText";
+import {selectorTodoState} from "../store/todo/selector";
+import {
+    filterCategoryTaskAction,
+    filterNameTaskAction,
+    filterStatusTaskAction,
+    sortingNameTaskAction
+} from "../store/todo/action";
+import {filteringTasks} from "../asyncActions/todo";
 
 
 const TableFilters = () => {

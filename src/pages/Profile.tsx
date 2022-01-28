@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import PopupChangeProfile from "../components/PopupChangeProfile";
 import PopupChangePassword from "../components/PopupChangePassword";
 import {getProfile} from "../asyncActions/profile";
-import {selectorProfileState} from "../store/profile/reducerProfile";
-import {selectorAuthState} from "../store/auth/reducerAuth";
+import {selectorAuthState} from "../store/auth/selector";
+import {selectorProfileState} from "../store/profile/selector";
 
 
 const Profile = () => {

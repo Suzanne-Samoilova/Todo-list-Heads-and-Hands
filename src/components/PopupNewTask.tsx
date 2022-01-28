@@ -11,7 +11,7 @@ import { listCategories } from "../constants/listCategories";
 import { dateFormat, getDateNowByDDmmyyyy } from "../utils/dateHelper";
 import PopupWithForm from "./PopupWithForm";
 import {createTask} from "../asyncActions/todo";
-import {selectorAuthState} from "../store/auth/reducerAuth";
+import {selectorAuthState} from "../store/auth/selector";
 
 
 const PopupNewTask = (props: any) => {

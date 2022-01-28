@@ -139,11 +139,11 @@
       "archive": true
     },
     {
-      "category": "Покупки",
+      "category": "Напоминания",
       "name": "Новогодние подарки",
       "description": "купить когда-нибудь",
       "date_create": "06.01.2022",
-      "date_change": "25.01.2022",
+      "date_change": "28.01.2022",
       "date_deadline": "14.01.2022",
       "user_id": 1,
       "id": 53,

@@ -8,8 +8,8 @@ import PopupConfirmDelete from "../components/PopupConfirmDelete";
 import PopupChangeTask from "../components/PopupChangeTask";
 import {changeStatusArchive, changeStatusTask} from "../asyncActions/todo";
 import {getDetailTask} from "../asyncActions/detailPage";
-import {selectorDetailState} from "../store/detailPage/reducerDetailPage";
 import {filterDone, filterNotDone} from "../constants/filtersText";
+import {selectorDetailState} from "../store/detailPage/selector";
 
 
 const DetailPage = () => {

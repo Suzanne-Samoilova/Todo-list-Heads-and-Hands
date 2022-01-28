@@ -1,0 +1,1 @@
+export const GET_DETAIL_TASK = "GET_DETAIL_TASK";

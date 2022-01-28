@@ -1,6 +1,6 @@
 import axios from "axios";
 import {baseUrl} from "../constants/baseUrl";
-import {getProfileAction} from "../store/profile/reducerProfile";
+import {getProfileAction} from "../store/profile/action";
 
 
 export const getProfile = () => {

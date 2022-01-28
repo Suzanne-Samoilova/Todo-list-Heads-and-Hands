@@ -1,4 +1,4 @@
-import {TRootState} from "../../index";
+import {GET_DETAIL_TASK} from "./const";
 
 
 const defaultState = {
@@ -12,9 +12,6 @@ const defaultState = {
     status: null,
     archive: null
 }
-
-
-const GET_DETAIL_TASK = "GET_DETAIL_TASK";
 
 
 export const reducerDetailPage = (state:any = defaultState, action: any) => {
@@ -37,9 +34,3 @@ export const reducerDetailPage = (state:any = defaultState, action: any) => {
             return state
     }
 }
-
-
-export const getDetailTaskAction = (payload: any) => ({type: GET_DETAIL_TASK, payload});
-
-
-export const selectorDetailState = (state: TRootState) => state.detail;

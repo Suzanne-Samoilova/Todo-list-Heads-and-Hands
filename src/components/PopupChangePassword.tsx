@@ -6,7 +6,7 @@ import {
     errorMismatchPasswords
 } from "../constants/errorsText";
 import {changeProfilePassword} from "../asyncActions/profile";
-import {selectorProfileState} from "../store/profile/reducerProfile";
+import {selectorProfileState} from "../store/profile/selector";
 
 
 const PopupChangePassword = (props: any) => {

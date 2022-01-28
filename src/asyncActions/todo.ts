@@ -1,9 +1,9 @@
 import {baseUrl} from "../constants/baseUrl";
 import {LIMIT_PAGINATE_TODO_LIST} from "../constants/constants";
 import axios from "axios";
-import {clearSelectedTasksAction, getTodoAction} from "../store/todo/reducerTodo";
 import {getDetailTask} from "./detailPage";
 import {filterAscending, filterDescending} from "../constants/filtersText";
+import {clearSelectedTasksAction, getTodoAction} from "../store/todo/action";
 
 
 export const filteringTasks = () => {

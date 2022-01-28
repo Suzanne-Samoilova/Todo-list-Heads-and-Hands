@@ -1,6 +1,6 @@
 import axios from "axios";
 import {baseUrl} from "../constants/baseUrl";
-import {getDetailTaskAction} from "../store/detailPage/reducerDetailPage";
+import {getDetailTaskAction} from "../store/detailPage/action";
 
 
 export const getDetailTask = (taskId: any) => {

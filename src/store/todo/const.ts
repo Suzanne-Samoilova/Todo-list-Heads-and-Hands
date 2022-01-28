@@ -1,0 +1,12 @@
+export const GET_TODO = "GET_TODO";
+export const SELECT_TASK = "SELECT_TASK";
+export const UNSELECT_TASK = "UNSELECT_TASK";
+export const CLEAR_SELECTED_TASKS = "CLEAR_SELECTED_TASKS";
+
+export const INCREMENT_PAGE = "INCREMENT_PAGE";
+export const DECREMENT_PAGE = "DECREMENT_PAGE";
+
+export const FILTER_NAME = "FILTER_NAME";
+export const SORTING_NAME = "SORTING_NAME";
+export const FILTER_CATEGORY = "FILTER_CATEGORY";
+export const FILTER_STATUS = "FILTER_STATUS";

@@ -1,11 +1,11 @@
 import axios from "axios";
 import {push} from "connected-react-router";
 
-import {loginAction} from "../store/auth/reducerAuth";
-import {getProfileAction} from "../store/profile/reducerProfile";
 import {baseUrl} from "../constants/baseUrl";
 import {errorEmailNotFound, errorIncorrectDateOfBirth} from "../constants/errorsText";
 import {changeProfilePassword} from "./profile";
+import {loginAction} from "../store/auth/action";
+import {getProfileAction} from "../store/profile/action";
 
 
 export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any, setForgotPasswordErrors: any, setDateOfBirthErrors: any) => {
