@@ -11,13 +11,13 @@ import {
     filterNotDone
 } from "../constants/filtersText";
 import {selectorTodoState} from "../store/todo/selector";
+import {filteringTasks} from "../asyncActions/todo";
 import {
     filterCategoryTaskAction,
     filterNameTaskAction,
     filterStatusTaskAction,
     sortingNameTaskAction
 } from "../store/todo/action";
-import {filteringTasks} from "../asyncActions/todo";
 
 
 const TableFilters = () => {

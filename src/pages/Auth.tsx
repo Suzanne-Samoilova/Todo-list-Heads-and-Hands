@@ -13,12 +13,12 @@ import {authorization} from "../asyncActions/auth";
 const Auth = () => {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
-    const [authErrors, setAuthErrors] = useState<string[]>([" "]);
+    const [emailErrors, setEmailErrors] = useState<string>(" ");
+    const [passwordErrors, setPasswordErrors] = useState<string>(" ");
+    const [authErrors, setAuthErrors] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
@@ -32,41 +32,44 @@ const Auth = () => {
 
     const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
-        setAuthErrors([]);
-        const errs = [];
+        setAuthErrors("");
+
+        let error = "";
 
         if (emailForValidation.length === 0) {
-            errs.push(errorBlankEmail)
+            error = errorBlankEmail;
         }
 
         if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
-            errs.push(errorIncorrectEmail)
+            error = errorIncorrectEmail;
         }
 
-        setEmailErrors(errs);
+        setEmailErrors(error);
         setEmail(emailForValidation);
-        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
+        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(error.length));
     }
 
 
     const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
-        setAuthErrors([]);
-        const errs = [];
+        setAuthErrors("");
+
+        let error = "";
 
         if (passwordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword;
         }
 
-        setPasswordErrors(errs);
+        setPasswordErrors(error);
         setPassword(passwordForValidation);
-        setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
+        setButtonDisabled(Boolean(emailErrors.length) || Boolean(error.length));
     }
 
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(authorization(email, password, setAuthErrors));
+        setButtonDisabled(true);
     }
 
     const handleGoRegistration = () => {
@@ -102,8 +105,7 @@ const Auth = () => {
                                placeholder="Введите пароль"
                                required
                                onChange={handlePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors}</span>
-                        <span className="authorization__form-error" id="password-error">{authErrors}</span>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors || authErrors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"
