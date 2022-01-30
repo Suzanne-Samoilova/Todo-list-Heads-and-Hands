@@ -13,9 +13,7 @@ export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: 
         axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (!resp.data[0]) {
-                    const errAuth = [];
-                    errAuth.push(errorEmailNotFound);
-                    setForgotPasswordErrors(errAuth);
+                    setForgotPasswordErrors(errorEmailNotFound);
                 } else {
                     const profile = resp.data[0];
                     dispatch(getProfileAction({
@@ -28,9 +26,7 @@ export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: 
                     dispatch(loginAction({userId: profile.id, userName: profile.name}));
 
                     if (dateOfBirth !== profile.date_of_birth) {
-                        const errs = [];
-                        errs.push(errorIncorrectDateOfBirth);
-                        setDateOfBirthErrors(errs);
+                        setDateOfBirthErrors(errorIncorrectDateOfBirth);
                     } else {
                         dispatch(changeProfilePassword(password));
                         dispatch(push(`auth`));
