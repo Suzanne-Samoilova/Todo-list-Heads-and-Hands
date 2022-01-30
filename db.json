@@ -347,10 +347,10 @@
       "name": "Похудеть",
       "description": "Много бегать. Еще больше",
       "date_create": "18.01.2022",
-      "date_change": "24.01.2022",
-      "date_deadline": "05.02.2022",
+      "date_change": "30.01.2022",
+      "date_deadline": "01.02.2022",
       "user_id": 1,
-      "status": false,
+      "status": true,
       "archive": false,
       "id": 81
     },
