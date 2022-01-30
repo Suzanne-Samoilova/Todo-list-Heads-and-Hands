@@ -23,9 +23,6 @@ export const authorization = (email: any, password: any, setAuthErrors: any) => 
                     }
 
                 } else {
-                    // let e
-                    // const errAuth = [];
-                    // errAuth.push(errorIncorrectEmailOrPassword);
                     setAuthErrors(errorIncorrectEmailOrPassword);
                 }
             })

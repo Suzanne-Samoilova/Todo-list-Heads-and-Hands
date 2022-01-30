@@ -18,14 +18,14 @@ import {regexpEmail, regexpPassword} from "../constants/regExp";
 const ForgotPassword = () => {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [dateOfBirth, setDateOfBirth] = useState<string>('01.01.2000');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [dateOfBirth, setDateOfBirth] = useState<string>("01.01.2000");
 
-    const [forgotPasswordErrors, setForgotPasswordErrors] = useState<string[]>([" "]);
-    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
-    const [dateOfBirthErrors, setDateOfBirthErrors] = useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
+    const [forgotPasswordErrors, setForgotPasswordErrors] = useState<string>(" ");
+    const [emailErrors, setEmailErrors] = useState<string>(" ");
+    const [dateOfBirthErrors, setDateOfBirthErrors] = useState<string>(" ");
+    const [passwordErrors, setPasswordErrors] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
@@ -42,55 +42,60 @@ const ForgotPassword = () => {
     };
 
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForgotPasswordErrors([]);
+        setForgotPasswordErrors("");
+        setDateOfBirthErrors("");
         const emailForValidation = e.target.value;
-        const errs = [];
+
+        let error = "";
 
         if (!emailForValidation) {
-            setForgotPasswordErrors([])
+            setForgotPasswordErrors("")
         }
 
         if (emailForValidation.length === 0) {
-            errs.push(errorBlankEmail)
+            error = errorBlankEmail
         }
 
         if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
-            errs.push(errorIncorrectEmail)
+            error = errorIncorrectEmail
         }
 
-        setEmailErrors(errs);
+        setEmailErrors(error);
         setEmail(emailForValidation);
-        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
+        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(error.length));
     }
 
 
     const handleChangeDateOfBirth = (date: any, dateString: string) => {
-        setDateOfBirthErrors([]);
+        setDateOfBirthErrors("");
         setDateOfBirth(dateString);
+        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(emailErrors.length));
     }
 
 
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
-        const errs = [];
+
+        let error = "";
 
         if (passwordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword
         }
 
         if (!validatePassword(passwordForValidation) && (passwordForValidation.length !== 0)) {
-            errs.push(errorPasswordMustContain)
+            error = errorPasswordMustContain
         }
 
-        setPasswordErrors(errs);
+        setPasswordErrors(error);
         setPassword(passwordForValidation);
-        setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
+        setButtonDisabled(Boolean(emailErrors.length) || Boolean(error.length));
     }
 
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(getUserPasswordRecovery(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
+        setButtonDisabled(true);
     }
 
     const handleGoAuth = () => {
