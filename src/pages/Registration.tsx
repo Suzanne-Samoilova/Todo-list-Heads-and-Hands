@@ -14,12 +14,12 @@ import {checkEmail} from "../asyncActions/registration";
 const Registration = () => {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
-    const [emailErrors, setEmailErrors] = useState<string[]>([" "]);
-    const [passwordErrors, setPasswordErrors] = useState<string[]>([" "]);
-    const [profileErrors, setProfileErrors] = useState<string[]>([" "]);
+    const [emailErrors, setEmailErrors] = useState<string>(" ");
+    const [passwordErrors, setPasswordErrors] = useState<string>(" ");
+    const [profileErrors, setProfileErrors] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
@@ -38,45 +38,52 @@ const Registration = () => {
 
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
-        setProfileErrors([]);
-        const errs = [];
+        setProfileErrors("");
+
+        let error = "";
 
         if (emailForValidation.length === 0) {
-            errs.push(errorBlankEmail)
+            error = errorBlankEmail
         }
 
         if (!validateEmail(emailForValidation) && (emailForValidation.length !== 0)) {
-            errs.push(errorIncorrectEmail)
+            error = errorIncorrectEmail
         }
 
-        setEmailErrors(errs);
+        setEmailErrors(error);
         setEmail(emailForValidation);
-        setButtonDisabled(Boolean(passwordErrors.length) || Boolean(errs.length));
+        password
+            ? setButtonDisabled(Boolean(passwordErrors.length) || Boolean(error.length))
+            : setButtonDisabled(true);
     }
 
 
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
-        const errs = [];
+        setProfileErrors("");
+
+        let error = "";
 
         if (passwordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword
         }
 
         if (!validatePassword(passwordForValidation) && passwordForValidation.length !== 0) {
-            errs.push(errorPasswordMustContain)
+            error = errorPasswordMustContain
         }
 
-        setPasswordErrors(errs);
+        setPasswordErrors(error);
         setPassword(passwordForValidation);
-        setButtonDisabled(Boolean(emailErrors.length) || Boolean(errs.length));
+        email
+            ? setButtonDisabled(Boolean(emailErrors.length) || Boolean(error.length))
+            : setButtonDisabled(true);
     }
 
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const errs: any[] = [];
-        dispatch(checkEmail(email, password, errs, setProfileErrors, setEmail, setPassword));
+        dispatch(checkEmail(email, password, setProfileErrors, setEmail, setPassword));
+        setButtonDisabled(true);
     }
 
     const handleGoAuth = () => {

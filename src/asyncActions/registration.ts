@@ -4,15 +4,14 @@ import {errorEmailExists} from "../constants/errorsText";
 import {push} from "connected-react-router";
 
 
-export const checkEmail = (email: any, password: any, errs: any[], setProfileErrors: any, setEmail: any, setPassword: any) => {
+export const checkEmail = (email: any, password: any, setProfileErrors: any, setEmail: any, setPassword: any) => {
     return function (dispatch: any) {
         axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (resp.data.length) {
-                    errs.push(errorEmailExists);
-                    setProfileErrors(errs);
-                    setEmail('');
-                    setPassword('');
+                    setProfileErrors(errorEmailExists);
+                    setEmail("");
+                    setPassword("");
                 } else {
                     dispatch(addNewProfile(email, password));
                 }
