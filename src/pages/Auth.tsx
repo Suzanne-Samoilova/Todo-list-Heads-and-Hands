@@ -101,22 +101,22 @@ const Auth = () => {
                           onSubmit={handleSubmit}>
 
                         <p className="authorization__input-title">E-mail:</p>
-                        <input className="authorization__form-input" id="email"
+                        <input className="authorization__form-input"
                                type="email"
                                name="email"
                                placeholder="Введите адрес эл.почты"
                                required
                                onChange={handleEmail}/>
-                        <span className="authorization__form-error" id="email-error">{emailErrors}</span>
+                        <span className="authorization__form-error">{emailErrors}</span>
 
                         <p className="authorization__input-title">Пароль:</p>
-                        <input className="authorization__form-input" id="password"
+                        <input className="authorization__form-input"
                                type="text"
                                name="password"
                                placeholder="Введите пароль"
                                required
                                onChange={handlePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors || authErrors || errors}</span>
+                        <span className="authorization__form-error">{passwordErrors || authErrors || errors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"

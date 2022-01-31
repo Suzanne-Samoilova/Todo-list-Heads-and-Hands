@@ -113,7 +113,7 @@ const PopupChangePassword = (props: any) => {
                            placeholder="Введите старый пароль"
                            value={oldPassword}
                            onChange={handleChangeOldPassword}/>
-                    <span className="authorization__form-error" id="old-password-error">{errorOldPassword}</span>
+                    <span className="authorization__form-error">{errorOldPassword}</span>
 
                     <p className="popup__task-name">Новый пароль:</p>
                     <input className="popup__input-text"
@@ -121,8 +121,7 @@ const PopupChangePassword = (props: any) => {
                            name="newPassword"
                            placeholder="Введите новый пароль"
                            onChange={handleChangeNewPassword}/>
-                    <span className="authorization__form-error"
-                          id="repeat-password-error">{errorNewPassword}</span>
+                    <span className="authorization__form-error">{errorNewPassword}</span>
 
                     <p className="popup__task-name">Повторите новый пароль:</p>
                     <input className="popup__input-text"
@@ -130,8 +129,7 @@ const PopupChangePassword = (props: any) => {
                            name="repeatNewPassword"
                            placeholder="Повторите новый пароль"
                            onChange={handleChangeRepeatNewPassword}/>
-                    <span className="authorization__form-error"
-                          id="repeat-password-error">{errorRepeatPassword}</span>
+                    <span className="authorization__form-error">{errorRepeatPassword}</span>
 
                     <button className="popup__button-save"
                             type="submit"
