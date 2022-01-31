@@ -1,4 +1,11 @@
-import {CLEAR_PROFILE, GET_PROFILE} from "./const";
+import {
+    GET_PROFILE,
+    CLEAR_PROFILE,
+    SET_EMAIL_ERROR,
+    SET_BIRTHDAY_ERROR,
+    CLEAR_EMAIL_ERROR,
+    CLEAR_BIRTHDAY_ERROR
+} from "./const";
 
 
 const defaultState = {
@@ -6,7 +13,10 @@ const defaultState = {
     password: null,
     name: null,
     date_of_birth: null,
-    city: null
+    city: null,
+
+    errorEmail: null,
+    errorBirthday: null
 }
 
 
@@ -28,6 +38,26 @@ export const reducerProfile = (state:any = defaultState, action: any) => {
                 name: null,
                 date_of_birth: null,
                 city: null
+            }
+
+        case SET_EMAIL_ERROR:
+            return {...state,
+                errorEmail: action.payload.error
+            }
+
+        case SET_BIRTHDAY_ERROR:
+            return {...state,
+                errorBirthday: action.payload.error
+            }
+
+        case CLEAR_EMAIL_ERROR:
+            return {...state,
+                errorEmail: null
+            }
+
+        case CLEAR_BIRTHDAY_ERROR:
+            return {...state,
+                errorBirthday: null
             }
 
         default:

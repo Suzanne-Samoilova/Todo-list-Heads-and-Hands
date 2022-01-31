@@ -13,76 +13,76 @@ const PopupChangePassword = (props: any) => {
     const dispatch = useDispatch();
     const userProfile = useSelector(selectorProfileState);
 
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [repeatNewPassword, setRepeatNewPassword] = useState('');
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [repeatNewPassword, setRepeatNewPassword] = useState("");
 
-    const [errorOldPassword, setErrorOldPassword] = useState<string[]>(['']);
-    const [errorNewPassword, setErrorNewPassword] = useState<string[]>(['']);
-    const [errorRepeatPassword, setErrorRepeatPassword] = useState<string[]>(['']);
+    const [errorOldPassword, setErrorOldPassword] = useState<string>("");
+    const [errorNewPassword, setErrorNewPassword] = useState<string>("");
+    const [errorRepeatPassword, setErrorRepeatPassword] = useState<string>("");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
 
 
     const handleChangeOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const oldPasswordForValidation = e.target.value;
-        const errs = [];
+        let error = "";
 
         if (oldPasswordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword
         }
 
         if ((userProfile.password !== oldPasswordForValidation) && (oldPasswordForValidation.length !== 0)) {
-            errs.push(errorIncorrectOldPassword)
+            error = errorIncorrectOldPassword
         }
 
-        setErrorOldPassword(errs);
+        setErrorOldPassword(error);
         setOldPassword(oldPasswordForValidation);
-        setButtonDisabled(Boolean(errs.length) || Boolean(errorNewPassword.length) || Boolean(errorRepeatPassword.length));
+        setButtonDisabled(Boolean(error.length) || Boolean(errorNewPassword.length) || Boolean(errorRepeatPassword.length));
     }
 
 
     const handleChangeNewPassword = (e: any) => {
         const newPasswordForValidation = e.target.value;
-        const errs = [];
+        let error = "";
 
         if (newPasswordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword
         }
 
-        if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0)) {
-            errs.push(errorMismatchPasswords)
+        if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0) && (repeatNewPassword.length !== 0)) {
+            error = errorMismatchPasswords
         }
 
         if ((repeatNewPassword === newPasswordForValidation) && (repeatNewPassword.length !== 0)) {
-            setErrorRepeatPassword([]);
+            setErrorRepeatPassword("");
         }
 
-        setErrorNewPassword(errs);
+        setErrorNewPassword(error);
         setNewPassword(newPasswordForValidation);
-        setButtonDisabled(Boolean(errorOldPassword.length) || Boolean(errs.length) || Boolean(errorRepeatPassword.length));
+        setButtonDisabled(Boolean(errorOldPassword.length) || Boolean(error.length) || Boolean(errorRepeatPassword.length));
     }
 
 
     const handleChangeRepeatNewPassword = (e: any) => {
         const repeatNewPasswordForValidation = e.target.value;
-        const errs = [];
+        let error = "";
 
         if (repeatNewPasswordForValidation.length === 0) {
-            errs.push(errorBlankPassword)
+            error = errorBlankPassword
         }
 
         if ((newPassword !== repeatNewPasswordForValidation) && (repeatNewPasswordForValidation.length !== 0)) {
-            errs.push(errorMismatchPasswords)
+            error = errorMismatchPasswords
         }
 
         if ((newPassword === repeatNewPasswordForValidation) && (newPassword.length !== 0)) {
-            setErrorNewPassword([]);
+            setErrorNewPassword("");
         }
 
-        setErrorRepeatPassword(errs);
+        setErrorRepeatPassword(error);
         setRepeatNewPassword(repeatNewPasswordForValidation);
-        setButtonDisabled(Boolean(errorOldPassword.length) || Boolean(errorNewPassword.length) || Boolean(errs.length));
+        setButtonDisabled(Boolean(errorOldPassword.length) || Boolean(errorNewPassword.length) || Boolean(error.length));
     }
 
 

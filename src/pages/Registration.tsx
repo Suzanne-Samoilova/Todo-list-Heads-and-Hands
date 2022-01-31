@@ -39,7 +39,6 @@ const Registration = () => {
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
         setProfileErrors("");
-
         let error = "";
 
         if (emailForValidation.length === 0) {
@@ -61,7 +60,6 @@ const Registration = () => {
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         setProfileErrors("");
-
         let error = "";
 
         if (passwordForValidation.length === 0) {

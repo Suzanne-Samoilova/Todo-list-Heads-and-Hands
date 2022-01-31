@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { push } from "connected-react-router";
 import {
     errorBlankEmail,
@@ -8,10 +8,13 @@ import {
 } from "../constants/errorsText";
 import { regexpEmail } from "../constants/regExp";
 import {authorization} from "../asyncActions/auth";
+import {selectorAuthState} from "../store/auth/selector";
+import {clearErrorAuthAction} from "../store/auth/action";
 
 
 const Auth = () => {
     const dispatch = useDispatch();
+    let errors = useSelector(selectorAuthState).error;
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -33,8 +36,11 @@ const Auth = () => {
     const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
         setAuthErrors("");
-
         let error = "";
+
+        if (errors) {
+            dispatch(clearErrorAuthAction())
+        }
 
         if (emailForValidation.length === 0) {
             error = errorBlankEmail;
@@ -53,8 +59,11 @@ const Auth = () => {
     const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
         setAuthErrors("");
-
         let error = "";
+
+        if (errors) {
+            dispatch(clearErrorAuthAction())
+        }
 
         if (passwordForValidation.length === 0) {
             error = errorBlankPassword;
@@ -68,7 +77,9 @@ const Auth = () => {
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(authorization(email, password, setAuthErrors));
+        dispatch(authorization(email, password));
+
+
         setButtonDisabled(true);
     }
 
@@ -105,7 +116,7 @@ const Auth = () => {
                                placeholder="Введите пароль"
                                required
                                onChange={handlePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors || authErrors}</span>
+                        <span className="authorization__form-error" id="password-error">{passwordErrors || authErrors || errors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"

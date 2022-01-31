@@ -5,15 +5,15 @@ import {baseUrl} from "../constants/baseUrl";
 import {errorEmailNotFound, errorIncorrectDateOfBirth} from "../constants/errorsText";
 import {changeProfilePassword} from "./profile";
 import {loginAction} from "../store/auth/action";
-import {getProfileAction} from "../store/profile/action";
+import {getProfileAction, setErrorBirthdayAction, setErrorPasswordAction} from "../store/profile/action";
 
 
-export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any, setForgotPasswordErrors: any, setDateOfBirthErrors: any) => {
+export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any) => {
     return function (dispatch: any) {
         axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (!resp.data[0]) {
-                    setForgotPasswordErrors(errorEmailNotFound);
+                    dispatch(setErrorPasswordAction({error: errorEmailNotFound}))
                 } else {
                     const profile = resp.data[0];
                     dispatch(getProfileAction({
@@ -26,7 +26,7 @@ export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: 
                     dispatch(loginAction({userId: profile.id, userName: profile.name}));
 
                     if (dateOfBirth !== profile.date_of_birth) {
-                        setDateOfBirthErrors(errorIncorrectDateOfBirth);
+                        dispatch(setErrorBirthdayAction({error: errorIncorrectDateOfBirth}))
                     } else {
                         dispatch(changeProfilePassword(password));
                         dispatch(push(`auth`));

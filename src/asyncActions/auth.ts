@@ -2,10 +2,10 @@ import axios from "axios";
 import {push} from "connected-react-router";
 import {baseUrl} from "../constants/baseUrl";
 import {errorIncorrectEmailOrPassword} from "../constants/errorsText";
-import {loginAction} from "../store/auth/action";
+import {loginAction, setErrorAuthAction} from "../store/auth/action";
 
 
-export const authorization = (email: any, password: any, setAuthErrors: any) => {
+export const authorization = (email: any, password: any) => {
     return function (dispatch: any) {
         axios.get(`${baseUrl}/users?email=${email}&password=${password}`)
             .then(resp => {
@@ -23,7 +23,7 @@ export const authorization = (email: any, password: any, setAuthErrors: any) => 
                     }
 
                 } else {
-                    setAuthErrors(errorIncorrectEmailOrPassword);
+                    dispatch(setErrorAuthAction({error: errorIncorrectEmailOrPassword}))
                 }
             })
             .catch(error =>

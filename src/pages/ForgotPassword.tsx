@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {push} from "connected-react-router";
 import {DatePicker} from "antd";
 import {dateFormat} from "../utils/dateHelper";
@@ -13,18 +13,20 @@ import {
     errorPasswordMustContain
 } from "../constants/errorsText";
 import {regexpEmail, regexpPassword} from "../constants/regExp";
+import {selectorProfileState} from "../store/profile/selector";
+import {clearErrorBirthdayAction, clearErrorEmailAction} from "../store/profile/action";
 
 
 const ForgotPassword = () => {
     const dispatch = useDispatch();
+    let errorsEmailState = useSelector(selectorProfileState).errorEmail;
+    let errorBirthdayState = useSelector(selectorProfileState).errorBirthday;
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [dateOfBirth, setDateOfBirth] = useState<string>("01.01.2000");
 
-    const [forgotPasswordErrors, setForgotPasswordErrors] = useState<string>(" ");
     const [emailErrors, setEmailErrors] = useState<string>(" ");
-    const [dateOfBirthErrors, setDateOfBirthErrors] = useState<string>(" ");
     const [passwordErrors, setPasswordErrors] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
@@ -42,14 +44,15 @@ const ForgotPassword = () => {
     };
 
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForgotPasswordErrors("");
-        setDateOfBirthErrors("");
         const emailForValidation = e.target.value;
-
         let error = "";
 
-        if (!emailForValidation) {
-            setForgotPasswordErrors("")
+        if (errorBirthdayState) {
+            dispatch(clearErrorBirthdayAction())
+        }
+
+        if (errorsEmailState) {
+            dispatch(clearErrorEmailAction())
         }
 
         if (emailForValidation.length === 0) {
@@ -67,7 +70,10 @@ const ForgotPassword = () => {
 
 
     const handleChangeDateOfBirth = (date: any, dateString: string) => {
-        setDateOfBirthErrors("");
+        if (errorBirthdayState) {
+            dispatch(clearErrorBirthdayAction())
+        }
+
         setDateOfBirth(dateString);
         setButtonDisabled(Boolean(passwordErrors.length) || Boolean(emailErrors.length));
     }
@@ -75,7 +81,6 @@ const ForgotPassword = () => {
 
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
-
         let error = "";
 
         if (passwordForValidation.length === 0) {
@@ -94,7 +99,7 @@ const ForgotPassword = () => {
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(getUserPasswordRecovery(email, password, dateOfBirth, setForgotPasswordErrors, setDateOfBirthErrors));
+        dispatch(getUserPasswordRecovery(email, password, dateOfBirth));
         setButtonDisabled(true);
     }
 
@@ -115,7 +120,7 @@ const ForgotPassword = () => {
 
                     <form className="authorization__form"
                           onSubmit={handleSubmit}>
-                        <span className="authorization__form-error">{forgotPasswordErrors}</span>
+                        <span className="authorization__form-error">{errorsEmailState}</span>
 
                         <p className="authorization__input-title">E-mail:</p>
                         <input className="authorization__form-input"
@@ -132,7 +137,7 @@ const ForgotPassword = () => {
                                     locale={locale}
                                     value={moment(dateOfBirth, dateFormat)}
                                     onChange={handleChangeDateOfBirth}/>
-                        <span className="authorization__form-error authorization__form-error-birth">{dateOfBirthErrors}</span>
+                        <span className="authorization__form-error authorization__form-error-birth">{errorBirthdayState}</span>
 
                         <p className="authorization__input-title">Новый пароль:</p>
                         <input className="authorization__form-input"
