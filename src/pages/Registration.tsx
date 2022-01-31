@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { push } from "connected-react-router";
 import {
     errorBlankEmail,
@@ -9,19 +9,22 @@ import {
 } from "../constants/errorsText";
 import {regexpEmail, regexpPassword} from "../constants/regExp";
 import {checkEmail} from "../asyncActions/registration";
+import {selectorProfileState} from "../store/profile/selector";
+import {clearErrorExistsEmailAction} from "../store/profile/action";
 
 
 const Registration = () => {
     const dispatch = useDispatch();
+    const errorExistsEmail = useSelector(selectorProfileState).errorExistsEmail;
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     const [emailErrors, setEmailErrors] = useState<string>(" ");
     const [passwordErrors, setPasswordErrors] = useState<string>(" ");
-    const [profileErrors, setProfileErrors] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+
 
     const validateEmail = (rawEmail: any) => {
         return String(rawEmail)
@@ -38,8 +41,11 @@ const Registration = () => {
 
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const emailForValidation = e.target.value;
-        setProfileErrors("");
         let error = "";
+
+        if (errorExistsEmail) {
+            dispatch(clearErrorExistsEmailAction());
+        }
 
         if (emailForValidation.length === 0) {
             error = errorBlankEmail
@@ -59,8 +65,11 @@ const Registration = () => {
 
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const passwordForValidation = e.target.value;
-        setProfileErrors("");
         let error = "";
+
+        if (errorExistsEmail) {
+            dispatch(clearErrorExistsEmailAction());
+        }
 
         if (passwordForValidation.length === 0) {
             error = errorBlankPassword
@@ -80,7 +89,13 @@ const Registration = () => {
 
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(checkEmail(email, password, setProfileErrors, setEmail, setPassword));
+        dispatch(checkEmail(email, password));
+
+        if (!errorExistsEmail) {
+            setEmail("");
+            setPassword("");
+        }
+
         setButtonDisabled(true);
     }
 
@@ -101,34 +116,34 @@ const Registration = () => {
 
                     <form className="authorization__form"
                           onSubmit={handleSubmit}>
-                        <span className="authorization__form-error" id="password-error">{profileErrors}</span>
+                        <span className="authorization__form-error">{errorExistsEmail}</span>
 
                         <p className="authorization__input-title">E-mail:</p>
-                        <input className="authorization__form-input" id="email"
+                        <input className="authorization__form-input"
                                type="email"
                                name="email"
                                placeholder="Введите адрес эл.почты"
                                required
                                value={email}
                                onChange={handleChangeEmail}/>
-                        <span className="authorization__form-error" id="email-error">{emailErrors}</span>
+                        <span className="authorization__form-error">{emailErrors}</span>
 
                         <p className="authorization__input-title">Пароль:</p>
-                        <input className="authorization__form-input" id="password"
+                        <input className="authorization__form-input"
                                type="text"
                                name="password"
                                placeholder="Введите пароль"
                                required
                                value={password}
                                onChange={handleChangePassword}/>
-                        <span className="authorization__form-error" id="password-error">{passwordErrors}</span>
+                        <span className="authorization__form-error">{passwordErrors}</span>
 
                         <button className="authorization__button-save"
                                 type="submit"
                                 disabled={buttonDisabled}>Зарегистрироваться</button>
                     </form>
 
-                    <p className="title" id="password-error">Уже зарегистрированы?
+                    <p className="title">Уже зарегистрированы?
                         <button className="title__button"
                                 onClick={handleGoAuth}>Авторизоваться</button>
                     </p>

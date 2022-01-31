@@ -2,9 +2,9 @@ import {
     GET_PROFILE,
     CLEAR_PROFILE,
     SET_EMAIL_ERROR,
-    SET_BIRTHDAY_ERROR,
     CLEAR_EMAIL_ERROR,
-    CLEAR_BIRTHDAY_ERROR
+    SET_BIRTHDAY_ERROR,
+    CLEAR_BIRTHDAY_ERROR, SET_EXISTS_EMAIL_ERROR, CLEAR_EXISTS_EMAIL_ERROR
 } from "./const";
 
 
@@ -16,7 +16,8 @@ const defaultState = {
     city: null,
 
     errorEmail: null,
-    errorBirthday: null
+    errorBirthday: null,
+    errorExistsEmail: null
 }
 
 
@@ -45,19 +46,29 @@ export const reducerProfile = (state:any = defaultState, action: any) => {
                 errorEmail: action.payload.error
             }
 
-        case SET_BIRTHDAY_ERROR:
-            return {...state,
-                errorBirthday: action.payload.error
-            }
-
         case CLEAR_EMAIL_ERROR:
             return {...state,
                 errorEmail: null
             }
 
+        case SET_BIRTHDAY_ERROR:
+            return {...state,
+                errorBirthday: action.payload.error
+            }
+
         case CLEAR_BIRTHDAY_ERROR:
             return {...state,
                 errorBirthday: null
+            }
+
+        case SET_EXISTS_EMAIL_ERROR:
+            return {...state,
+                errorExistsEmail: action.payload.error
+            }
+
+        case CLEAR_EXISTS_EMAIL_ERROR:
+            return {...state,
+                errorExistsEmail: null
             }
 
         default:

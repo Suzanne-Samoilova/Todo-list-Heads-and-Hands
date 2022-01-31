@@ -5,7 +5,7 @@ import {baseUrl} from "../constants/baseUrl";
 import {errorEmailNotFound, errorIncorrectDateOfBirth} from "../constants/errorsText";
 import {changeProfilePassword} from "./profile";
 import {loginAction} from "../store/auth/action";
-import {getProfileAction, setErrorBirthdayAction, setErrorPasswordAction} from "../store/profile/action";
+import {getProfileAction, setErrorBirthdayAction, setErrorEmailAction} from "../store/profile/action";
 
 
 export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: any) => {
@@ -13,7 +13,7 @@ export const getUserPasswordRecovery = (email: any, password: any, dateOfBirth: 
         axios.get(`${baseUrl}/users?email=${email}`)
             .then(resp => {
                 if (!resp.data[0]) {
-                    dispatch(setErrorPasswordAction({error: errorEmailNotFound}))
+                    dispatch(setErrorEmailAction({error: errorEmailNotFound}))
                 } else {
                     const profile = resp.data[0];
                     dispatch(getProfileAction({
