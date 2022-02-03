@@ -85,7 +85,7 @@ const PopupNewTask = (props: any) => {
                    placeholder="Введите название таска"
                    value={name}
                    onChange={handleNameChange}
-                   required/>
+                   required />
 
             <p className="popup__task-name">Описание:</p>
             <input className="popup__input-text"
@@ -93,13 +93,12 @@ const PopupNewTask = (props: any) => {
                    name="task-description"
                    placeholder="Введите описание таска"
                    value={description}
-                   onChange={handleDescriptionChange}
-                   required/>
+                   onChange={handleDescriptionChange} />
 
             <p className="popup__task-name popup__task-datepicker">Крайний срок исполнения:</p>
             <DatePicker onChange={handleDateDeadlineChange}
                         format={dateFormat}
-                        locale={locale}/>
+                        locale={locale} />
         </PopupWithForm>
     );
 }

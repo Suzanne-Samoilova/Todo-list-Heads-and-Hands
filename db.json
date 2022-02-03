@@ -421,6 +421,18 @@
       "status": false,
       "archive": false,
       "id": 94
+    },
+    {
+      "category": "Работа",
+      "name": "НОВЫЙ",
+      "description": "",
+      "date_create": "03.02.2022",
+      "date_change": "03.02.2022",
+      "date_deadline": "13.03.2022",
+      "user_id": 1,
+      "status": false,
+      "archive": false,
+      "id": 95
     }
   ]
 }
