@@ -3,10 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     errorBlankPassword,
     errorIncorrectOldPassword,
-    errorMismatchPasswords
+    errorMismatchPasswords, errorPasswordMustContain
 } from "../constants/errorsText";
 import {changeProfilePassword} from "../asyncActions/profile";
 import {selectorProfileState} from "../store/profile/selector";
+import {regexpPassword} from "../constants/regExp";
 
 
 const PopupChangePassword = (props: any) => {
@@ -17,11 +18,17 @@ const PopupChangePassword = (props: any) => {
     const [newPassword, setNewPassword] = useState("");
     const [repeatNewPassword, setRepeatNewPassword] = useState("");
 
-    const [errorOldPassword, setErrorOldPassword] = useState<string>("");
-    const [errorNewPassword, setErrorNewPassword] = useState<string>("");
-    const [errorRepeatPassword, setErrorRepeatPassword] = useState<string>("");
+    const [errorOldPassword, setErrorOldPassword] = useState<string>(" ");
+    const [errorNewPassword, setErrorNewPassword] = useState<string>(" ");
+    const [errorRepeatPassword, setErrorRepeatPassword] = useState<string>(" ");
 
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+
+    const validatePassword = (rawPassword: any) => {
+        return String(rawPassword)
+            .toLowerCase()
+            .match(regexpPassword);
+    };
 
 
     const handleChangeOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,11 +53,15 @@ const PopupChangePassword = (props: any) => {
         const newPasswordForValidation = e.target.value;
         let error = "";
 
+        if (!validatePassword(newPasswordForValidation) && newPasswordForValidation.length !== 0) {
+            error = errorPasswordMustContain
+        }
+
         if (newPasswordForValidation.length === 0) {
             error = errorBlankPassword
         }
 
-        if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0) && (repeatNewPassword.length !== 0)) {
+        if ((repeatNewPassword !== newPasswordForValidation) && (newPasswordForValidation.length !== 0) && (repeatNewPassword.length !== 0) && validatePassword(newPasswordForValidation)) {
             error = errorMismatchPasswords
         }
 
@@ -68,13 +79,18 @@ const PopupChangePassword = (props: any) => {
         const repeatNewPasswordForValidation = e.target.value;
         let error = "";
 
+        if (!validatePassword(repeatNewPasswordForValidation) && repeatNewPasswordForValidation.length !== 0) {
+            error = errorPasswordMustContain
+        }
+
         if (repeatNewPasswordForValidation.length === 0) {
             error = errorBlankPassword
         }
 
-        if ((newPassword !== repeatNewPasswordForValidation) && (repeatNewPasswordForValidation.length !== 0)) {
+        if ((newPassword !== repeatNewPasswordForValidation) && (repeatNewPasswordForValidation.length !== 0) && (newPassword.length !== 0) && validatePassword(repeatNewPasswordForValidation)) {
             error = errorMismatchPasswords
         }
+
 
         if ((newPassword === repeatNewPasswordForValidation) && (newPassword.length !== 0)) {
             setErrorNewPassword("");
@@ -112,7 +128,8 @@ const PopupChangePassword = (props: any) => {
                            name="oldPassword"
                            placeholder="Введите старый пароль"
                            value={oldPassword}
-                           onChange={handleChangeOldPassword}/>
+                           onChange={handleChangeOldPassword}
+                           required />
                     <span className="authorization__form-error">{errorOldPassword}</span>
 
                     <p className="popup__task-name">Новый пароль:</p>
@@ -120,7 +137,8 @@ const PopupChangePassword = (props: any) => {
                            type="text"
                            name="newPassword"
                            placeholder="Введите новый пароль"
-                           onChange={handleChangeNewPassword}/>
+                           onChange={handleChangeNewPassword}
+                           required />
                     <span className="authorization__form-error">{errorNewPassword}</span>
 
                     <p className="popup__task-name">Повторите новый пароль:</p>
@@ -128,7 +146,8 @@ const PopupChangePassword = (props: any) => {
                            type="text"
                            name="repeatNewPassword"
                            placeholder="Повторите новый пароль"
-                           onChange={handleChangeRepeatNewPassword}/>
+                           onChange={handleChangeRepeatNewPassword}
+                           required />
                     <span className="authorization__form-error">{errorRepeatPassword}</span>
 
                     <button className="popup__button-save"
