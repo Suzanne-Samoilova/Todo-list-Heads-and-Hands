@@ -106,7 +106,7 @@ const Auth = () => {
                                name="email"
                                placeholder="Введите адрес эл.почты"
                                required
-                               onChange={handleEmail}/>
+                               onChange={handleEmail} />
                         <span className="authorization__form-error">{emailErrors}</span>
 
                         <p className="authorization__input-title">Пароль:</p>
@@ -115,7 +115,7 @@ const Auth = () => {
                                name="password"
                                placeholder="Введите пароль"
                                required
-                               onChange={handlePassword}/>
+                               onChange={handlePassword} />
                         <span className="authorization__form-error">{passwordErrors || authErrors || errors}</span>
 
                         <button className="authorization__button-save"

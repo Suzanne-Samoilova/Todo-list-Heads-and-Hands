@@ -1,19 +1,27 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { Route, Switch } from 'react-router';
-import { TRootState } from "../index";
 import '../App.css';
 
-import Auth from "./Auth";
-import Todo from "./Todo";
-import Archive from "./Archive";
-import Profile from "./Profile";
-import Registration from "./Registration";
-import ForgotPassword from "./ForgotPassword";
-import DetailPage from "./DetailPage";
+import Auth from "../pages/Auth";
+import Todo from "../pages/Todo";
+import Archive from "../pages/Archive";
+import Profile from "../pages/Profile";
+import Registration from "../pages/Registration";
+import ForgotPassword from "../pages/ForgotPassword";
+import DetailPage from "../pages/DetailPage";
+import {selectorAuthState} from "../store/auth/selector";
+import {push} from "connected-react-router";
+
 
 const App = () => {
-    const isAuthorized = useSelector((state: TRootState)=> state.auth.isAuthorized )
+    const dispatch = useDispatch();
+    const isAuthorized = useSelector(selectorAuthState).isAuthorized;
+
+    if (!isAuthorized) {
+        dispatch(push(`auth`))
+    }
+
 
     return (
         <div className="App">
